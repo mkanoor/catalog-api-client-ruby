@@ -93,6 +93,7 @@ Class | Method | HTTP request | Description
 *CatalogApiClient::AdminsApi* | [**destroy_portfolio**](docs/AdminsApi.md#destroy_portfolio) | **DELETE** /portfolios/{id} | Delete an existing portfolio
 *CatalogApiClient::AdminsApi* | [**destroy_portfolio_item**](docs/AdminsApi.md#destroy_portfolio_item) | **DELETE** /portfolio_items/{id} | Delete an existing portfolio item
 *CatalogApiClient::AdminsApi* | [**fetch_portfolio_items_with_portfolio**](docs/AdminsApi.md#fetch_portfolio_items_with_portfolio) | **GET** /portfolios/{portfolio_id}/portfolio_items | Get all portfolio items from a specific portfolio
+*CatalogApiClient::AdminsApi* | [**list_approval_requests**](docs/AdminsApi.md#list_approval_requests) | **GET** /order_items/{order_item_id}/approval_requests | Gets a list of approval requests for an item
 *CatalogApiClient::AdminsApi* | [**list_order_items**](docs/AdminsApi.md#list_order_items) | **GET** /orders/{order_id}/order_items | Gets a list of items in a given order
 *CatalogApiClient::AdminsApi* | [**list_orders**](docs/AdminsApi.md#list_orders) | **GET** /orders | Get a list of orders
 *CatalogApiClient::AdminsApi* | [**list_portfolio_items**](docs/AdminsApi.md#list_portfolio_items) | **GET** /portfolio_items | List all portfolio items
@@ -111,6 +112,7 @@ Class | Method | HTTP request | Description
 *CatalogApiClient::DefaultApi* | [**update_portfolio_item**](docs/DefaultApi.md#update_portfolio_item) | **PATCH** /portfolio_items/{id} | Edit an existing portfolio item
 *CatalogApiClient::UsersApi* | [**add_to_order**](docs/UsersApi.md#add_to_order) | **POST** /orders/{order_id}/order_items | Add an order item to an order in pending state
 *CatalogApiClient::UsersApi* | [**fetch_portfolio_items_with_portfolio**](docs/UsersApi.md#fetch_portfolio_items_with_portfolio) | **GET** /portfolios/{portfolio_id}/portfolio_items | Get all portfolio items from a specific portfolio
+*CatalogApiClient::UsersApi* | [**list_approval_requests**](docs/UsersApi.md#list_approval_requests) | **GET** /order_items/{order_item_id}/approval_requests | Gets a list of approval requests for an item
 *CatalogApiClient::UsersApi* | [**list_order_items**](docs/UsersApi.md#list_order_items) | **GET** /orders/{order_id}/order_items | Gets a list of items in a given order
 *CatalogApiClient::UsersApi* | [**list_orders**](docs/UsersApi.md#list_orders) | **GET** /orders | Get a list of orders
 *CatalogApiClient::UsersApi* | [**list_portfolio_items**](docs/UsersApi.md#list_portfolio_items) | **GET** /portfolio_items | List all portfolio items
@@ -127,6 +129,8 @@ Class | Method | HTTP request | Description
 ## Documentation for Models
 
  - [CatalogApiClient::AddPortfolioItem](docs/AddPortfolioItem.md)
+ - [CatalogApiClient::ApprovalRequest](docs/ApprovalRequest.md)
+ - [CatalogApiClient::ApprovalRequestsCollection](docs/ApprovalRequestsCollection.md)
  - [CatalogApiClient::CollectionLinks](docs/CollectionLinks.md)
  - [CatalogApiClient::CollectionMetadata](docs/CollectionMetadata.md)
  - [CatalogApiClient::CreatePortfolioItem](docs/CreatePortfolioItem.md)

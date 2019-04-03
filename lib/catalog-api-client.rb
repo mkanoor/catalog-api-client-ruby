@@ -18,6 +18,8 @@ require 'catalog-api-client/configuration'
 
 # Models
 require 'catalog-api-client/models/add_portfolio_item'
+require 'catalog-api-client/models/approval_request'
+require 'catalog-api-client/models/approval_requests_collection'
 require 'catalog-api-client/models/collection_links'
 require 'catalog-api-client/models/collection_metadata'
 require 'catalog-api-client/models/create_portfolio_item'

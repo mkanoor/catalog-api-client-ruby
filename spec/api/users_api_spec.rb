@@ -59,6 +59,20 @@ describe 'UsersApi' do
     end
   end
 
+  # unit tests for list_approval_requests
+  # Gets a list of approval requests for an item
+  # Gets a list of approval request associated with an order item. As the item is being approved one can check the status of the approvals. 
+  # @param order_item_id The Order Item ID
+  # @param [Hash] opts the optional parameters
+  # @option opts [Integer] :limit The numbers of items to return per page.
+  # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
+  # @return [ApprovalRequestsCollection]
+  describe 'list_approval_requests test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for list_order_items
   # Gets a list of items in a given order
   # Gets a list of items associated with an order. 
