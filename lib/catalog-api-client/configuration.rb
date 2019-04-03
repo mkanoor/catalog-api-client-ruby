@@ -130,7 +130,7 @@ module CatalogApiClient
     def initialize
       @scheme = 'https'
       @host = 'localhost'
-      @base_path = '/api/catalog'
+      @base_path = '/api/catalog/v1.0'
       @api_key = {}
       @api_key_prefix = {}
       @timeout = 0
@@ -217,11 +217,11 @@ module CatalogApiClient
     def server_settings
       [
         {
-          url: "https://localhost/api/catalog",
+          url: "https://localhost/api/catalog/v1.0",
           description: "No descriptoin provided",
         },
         {
-          url: "http://localhost/api/catalog",
+          url: "http://localhost/api/catalog/v1.0",
           description: "No descriptoin provided",
         }
       ]

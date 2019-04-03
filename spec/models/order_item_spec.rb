@@ -71,7 +71,7 @@ describe 'OrderItem' do
   describe 'test attribute "state"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["Created", "Ordered", "Failed", "Completed"])
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["Created", "Approval Pending", "Ordered", "Failed", "Completed"])
       # validator.allowable_values.each do |value|
       #   expect { @instance.state = value }.not_to raise_error
       # end

@@ -81,7 +81,7 @@ end
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://localhost/api/catalog*
+All URIs are relative to *https://localhost/api/catalog/v1.0*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

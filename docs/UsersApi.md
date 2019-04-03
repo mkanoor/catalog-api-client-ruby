@@ -1,6 +1,6 @@
 # CatalogApiClient::UsersApi
 
-All URIs are relative to *https://localhost/api/catalog*
+All URIs are relative to *https://localhost/api/catalog/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
