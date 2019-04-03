@@ -1,0 +1,6 @@
+{
+	"moduleName": "CatalogApiClient",
+	"gemName": "catalog-api-client",
+	"gemHomepage" : "http://www.redhat.com",
+	"gemAuthor" : "user@redhat.com"
+}
