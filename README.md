@@ -66,15 +66,15 @@ CatalogApiClient.configure do |config|
   config.password = 'YOUR PASSWORD'
 end
 
-api_instance = CatalogApiClient::AdminsApi.new
-portfolio_id = 'portfolio_id_example' # String | The Portfolio ID
-add_portfolio_item = CatalogApiClient::AddPortfolioItem.new # AddPortfolioItem | 
+api_instance = CatalogApiClient::OrderApi.new
+order_id = 'order_id_example' # String | The Order ID
+order_item = CatalogApiClient::OrderItem.new # OrderItem | 
 
 begin
-  #Add a portfolio item to a portfolio
-  api_instance.add_portfolio_item_to_portfolio(portfolio_id, add_portfolio_item)
+  #Add an order item to an order in pending state
+  api_instance.add_to_order(order_id, order_item)
 rescue CatalogApiClient::ApiError => e
-  puts "Exception when calling AdminsApi->add_portfolio_item_to_portfolio: #{e}"
+  puts "Exception when calling OrderApi->add_to_order: #{e}"
 end
 
 ```
@@ -85,45 +85,31 @@ All URIs are relative to *https://localhost/api/catalog/v1.0*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*CatalogApiClient::AdminsApi* | [**add_portfolio_item_to_portfolio**](docs/AdminsApi.md#add_portfolio_item_to_portfolio) | **POST** /portfolios/{portfolio_id}/portfolio_items | Add a portfolio item to a portfolio
-*CatalogApiClient::AdminsApi* | [**add_to_order**](docs/AdminsApi.md#add_to_order) | **POST** /orders/{order_id}/order_items | Add an order item to an order in pending state
-*CatalogApiClient::AdminsApi* | [**create_order**](docs/AdminsApi.md#create_order) | **POST** /orders | Create a new order
-*CatalogApiClient::AdminsApi* | [**create_portfolio**](docs/AdminsApi.md#create_portfolio) | **POST** /portfolios | Add a new portfolio
-*CatalogApiClient::AdminsApi* | [**create_portfolio_item**](docs/AdminsApi.md#create_portfolio_item) | **POST** /portfolio_items | Add a new portfolio item
-*CatalogApiClient::AdminsApi* | [**destroy_portfolio**](docs/AdminsApi.md#destroy_portfolio) | **DELETE** /portfolios/{id} | Delete an existing portfolio
-*CatalogApiClient::AdminsApi* | [**destroy_portfolio_item**](docs/AdminsApi.md#destroy_portfolio_item) | **DELETE** /portfolio_items/{id} | Delete an existing portfolio item
-*CatalogApiClient::AdminsApi* | [**fetch_portfolio_items_with_portfolio**](docs/AdminsApi.md#fetch_portfolio_items_with_portfolio) | **GET** /portfolios/{portfolio_id}/portfolio_items | Get all portfolio items from a specific portfolio
-*CatalogApiClient::AdminsApi* | [**list_approval_requests**](docs/AdminsApi.md#list_approval_requests) | **GET** /order_items/{order_item_id}/approval_requests | Gets a list of approval requests for an item
-*CatalogApiClient::AdminsApi* | [**list_order_items**](docs/AdminsApi.md#list_order_items) | **GET** /orders/{order_id}/order_items | Gets a list of items in a given order
-*CatalogApiClient::AdminsApi* | [**list_orders**](docs/AdminsApi.md#list_orders) | **GET** /orders | Get a list of orders
-*CatalogApiClient::AdminsApi* | [**list_portfolio_items**](docs/AdminsApi.md#list_portfolio_items) | **GET** /portfolio_items | List all portfolio items
-*CatalogApiClient::AdminsApi* | [**list_portfolios**](docs/AdminsApi.md#list_portfolios) | **GET** /portfolios | List portfolios
-*CatalogApiClient::AdminsApi* | [**list_progress_messages**](docs/AdminsApi.md#list_progress_messages) | **GET** /order_items/{order_item_id}/progress_messages | Gets a list of progress messages in an item
-*CatalogApiClient::AdminsApi* | [**list_provider_control_parameters**](docs/AdminsApi.md#list_provider_control_parameters) | **GET** /portfolio_items/{portfolio_item_id}/provider_control_parameters | Gets the provider control parameters for this portfolio item; requires control paramaters provided when provisioning the portfolio item.
-*CatalogApiClient::AdminsApi* | [**list_service_plans**](docs/AdminsApi.md#list_service_plans) | **GET** /portfolio_items/{portfolio_item_id}/service_plans | Gets all service plans for a specific portfolio item; requires a connection to the topology service.
-*CatalogApiClient::AdminsApi* | [**share_info**](docs/AdminsApi.md#share_info) | **GET** /portfolios/{portfolio_id}/share_info | Fetch share information about this portfolio, the response would include a collection of groups and permissions with each group
-*CatalogApiClient::AdminsApi* | [**share_portfolio**](docs/AdminsApi.md#share_portfolio) | **POST** /portfolios/{portfolio_id}/share | Share a portfolio with one or more groups with specific permission
-*CatalogApiClient::AdminsApi* | [**show_order_item**](docs/AdminsApi.md#show_order_item) | **GET** /orders/{order_id}/order_items/{id} | Gets an individual order item from a given order
-*CatalogApiClient::AdminsApi* | [**show_portfolio**](docs/AdminsApi.md#show_portfolio) | **GET** /portfolios/{id} | Get a specific portfolio
-*CatalogApiClient::AdminsApi* | [**show_portfolio_item**](docs/AdminsApi.md#show_portfolio_item) | **GET** /portfolio_items/{id} | Gets a specific portfolio item
-*CatalogApiClient::AdminsApi* | [**submit_order**](docs/AdminsApi.md#submit_order) | **POST** /orders/{order_id}/submit_order | Submit a given order
-*CatalogApiClient::AdminsApi* | [**unshare_portfolio**](docs/AdminsApi.md#unshare_portfolio) | **POST** /portfolios/{portfolio_id}/unshare | Unshare a portfolio from one or more groups with specific permission
-*CatalogApiClient::AdminsApi* | [**update_portfolio**](docs/AdminsApi.md#update_portfolio) | **PATCH** /portfolios/{id} | Edit an existing portfolio
-*CatalogApiClient::DefaultApi* | [**update_portfolio_item**](docs/DefaultApi.md#update_portfolio_item) | **PATCH** /portfolio_items/{id} | Edit an existing portfolio item
-*CatalogApiClient::UsersApi* | [**add_to_order**](docs/UsersApi.md#add_to_order) | **POST** /orders/{order_id}/order_items | Add an order item to an order in pending state
-*CatalogApiClient::UsersApi* | [**fetch_portfolio_items_with_portfolio**](docs/UsersApi.md#fetch_portfolio_items_with_portfolio) | **GET** /portfolios/{portfolio_id}/portfolio_items | Get all portfolio items from a specific portfolio
-*CatalogApiClient::UsersApi* | [**list_approval_requests**](docs/UsersApi.md#list_approval_requests) | **GET** /order_items/{order_item_id}/approval_requests | Gets a list of approval requests for an item
-*CatalogApiClient::UsersApi* | [**list_order_items**](docs/UsersApi.md#list_order_items) | **GET** /orders/{order_id}/order_items | Gets a list of items in a given order
-*CatalogApiClient::UsersApi* | [**list_orders**](docs/UsersApi.md#list_orders) | **GET** /orders | Get a list of orders
-*CatalogApiClient::UsersApi* | [**list_portfolio_items**](docs/UsersApi.md#list_portfolio_items) | **GET** /portfolio_items | List all portfolio items
-*CatalogApiClient::UsersApi* | [**list_portfolios**](docs/UsersApi.md#list_portfolios) | **GET** /portfolios | List portfolios
-*CatalogApiClient::UsersApi* | [**list_progress_messages**](docs/UsersApi.md#list_progress_messages) | **GET** /order_items/{order_item_id}/progress_messages | Gets a list of progress messages in an item
-*CatalogApiClient::UsersApi* | [**list_provider_control_parameters**](docs/UsersApi.md#list_provider_control_parameters) | **GET** /portfolio_items/{portfolio_item_id}/provider_control_parameters | Gets the provider control parameters for this portfolio item; requires control paramaters provided when provisioning the portfolio item.
-*CatalogApiClient::UsersApi* | [**list_service_plans**](docs/UsersApi.md#list_service_plans) | **GET** /portfolio_items/{portfolio_item_id}/service_plans | Gets all service plans for a specific portfolio item; requires a connection to the topology service.
-*CatalogApiClient::UsersApi* | [**share_info**](docs/UsersApi.md#share_info) | **GET** /portfolios/{portfolio_id}/share_info | Fetch share information about this portfolio, the response would include a collection of groups and permissions with each group
-*CatalogApiClient::UsersApi* | [**show_order_item**](docs/UsersApi.md#show_order_item) | **GET** /orders/{order_id}/order_items/{id} | Gets an individual order item from a given order
-*CatalogApiClient::UsersApi* | [**show_portfolio**](docs/UsersApi.md#show_portfolio) | **GET** /portfolios/{id} | Get a specific portfolio
-*CatalogApiClient::UsersApi* | [**show_portfolio_item**](docs/UsersApi.md#show_portfolio_item) | **GET** /portfolio_items/{id} | Gets a specific portfolio item
+*CatalogApiClient::OrderApi* | [**add_to_order**](docs/OrderApi.md#add_to_order) | **POST** /orders/{order_id}/order_items | Add an order item to an order in pending state
+*CatalogApiClient::OrderApi* | [**create_order**](docs/OrderApi.md#create_order) | **POST** /orders | Create a new order
+*CatalogApiClient::OrderApi* | [**list_order_items**](docs/OrderApi.md#list_order_items) | **GET** /orders/{order_id}/order_items | Gets a list of items in a given order
+*CatalogApiClient::OrderApi* | [**list_orders**](docs/OrderApi.md#list_orders) | **GET** /orders | Get a list of orders
+*CatalogApiClient::OrderApi* | [**show_order_item**](docs/OrderApi.md#show_order_item) | **GET** /orders/{order_id}/order_items/{id} | Gets an individual order item from a given order
+*CatalogApiClient::OrderApi* | [**submit_order**](docs/OrderApi.md#submit_order) | **POST** /orders/{order_id}/submit_order | Submit a given order
+*CatalogApiClient::OrderItemApi* | [**list_approval_requests**](docs/OrderItemApi.md#list_approval_requests) | **GET** /order_items/{order_item_id}/approval_requests | Gets a list of approval requests for an item
+*CatalogApiClient::OrderItemApi* | [**list_progress_messages**](docs/OrderItemApi.md#list_progress_messages) | **GET** /order_items/{order_item_id}/progress_messages | Gets a list of progress messages in an item
+*CatalogApiClient::PortfolioApi* | [**add_portfolio_item_to_portfolio**](docs/PortfolioApi.md#add_portfolio_item_to_portfolio) | **POST** /portfolios/{portfolio_id}/portfolio_items | Add a portfolio item to a portfolio
+*CatalogApiClient::PortfolioApi* | [**create_portfolio**](docs/PortfolioApi.md#create_portfolio) | **POST** /portfolios | Add a new portfolio
+*CatalogApiClient::PortfolioApi* | [**destroy_portfolio**](docs/PortfolioApi.md#destroy_portfolio) | **DELETE** /portfolios/{id} | Delete an existing portfolio
+*CatalogApiClient::PortfolioApi* | [**fetch_portfolio_items_with_portfolio**](docs/PortfolioApi.md#fetch_portfolio_items_with_portfolio) | **GET** /portfolios/{portfolio_id}/portfolio_items | Get all portfolio items from a specific portfolio
+*CatalogApiClient::PortfolioApi* | [**list_portfolios**](docs/PortfolioApi.md#list_portfolios) | **GET** /portfolios | List portfolios
+*CatalogApiClient::PortfolioApi* | [**share_info**](docs/PortfolioApi.md#share_info) | **GET** /portfolios/{portfolio_id}/share_info | Fetch share information about this portfolio, the response would include a collection of groups and permissions with each group
+*CatalogApiClient::PortfolioApi* | [**share_portfolio**](docs/PortfolioApi.md#share_portfolio) | **POST** /portfolios/{portfolio_id}/share | Share a portfolio with one or more groups with specific permission
+*CatalogApiClient::PortfolioApi* | [**show_portfolio**](docs/PortfolioApi.md#show_portfolio) | **GET** /portfolios/{id} | Get a specific portfolio
+*CatalogApiClient::PortfolioApi* | [**unshare_portfolio**](docs/PortfolioApi.md#unshare_portfolio) | **POST** /portfolios/{portfolio_id}/unshare | Unshare a portfolio from one or more groups with specific permission
+*CatalogApiClient::PortfolioApi* | [**update_portfolio**](docs/PortfolioApi.md#update_portfolio) | **PATCH** /portfolios/{id} | Edit an existing portfolio
+*CatalogApiClient::PortfolioItemApi* | [**create_portfolio_item**](docs/PortfolioItemApi.md#create_portfolio_item) | **POST** /portfolio_items | Add a new portfolio item
+*CatalogApiClient::PortfolioItemApi* | [**destroy_portfolio_item**](docs/PortfolioItemApi.md#destroy_portfolio_item) | **DELETE** /portfolio_items/{id} | Delete an existing portfolio item
+*CatalogApiClient::PortfolioItemApi* | [**list_portfolio_items**](docs/PortfolioItemApi.md#list_portfolio_items) | **GET** /portfolio_items | List all portfolio items
+*CatalogApiClient::PortfolioItemApi* | [**list_provider_control_parameters**](docs/PortfolioItemApi.md#list_provider_control_parameters) | **GET** /portfolio_items/{portfolio_item_id}/provider_control_parameters | Gets the provider control parameters for this portfolio item; requires control paramaters provided when provisioning the portfolio item.
+*CatalogApiClient::PortfolioItemApi* | [**list_service_plans**](docs/PortfolioItemApi.md#list_service_plans) | **GET** /portfolio_items/{portfolio_item_id}/service_plans | Gets all service plans for a specific portfolio item; requires a connection to the topology service.
+*CatalogApiClient::PortfolioItemApi* | [**show_portfolio_item**](docs/PortfolioItemApi.md#show_portfolio_item) | **GET** /portfolio_items/{id} | Gets a specific portfolio item
+*CatalogApiClient::PortfolioItemApi* | [**update_portfolio_item**](docs/PortfolioItemApi.md#update_portfolio_item) | **PATCH** /portfolio_items/{id} | Edit an existing portfolio item
 
 
 ## Documentation for Models

@@ -41,9 +41,10 @@ require 'catalog-api-client/models/share_policy'
 require 'catalog-api-client/models/unshare_policy'
 
 # APIs
-require 'catalog-api-client/api/admins_api'
-require 'catalog-api-client/api/default_api'
-require 'catalog-api-client/api/users_api'
+require 'catalog-api-client/api/order_api'
+require 'catalog-api-client/api/order_item_api'
+require 'catalog-api-client/api/portfolio_api'
+require 'catalog-api-client/api/portfolio_item_api'
 
 module CatalogApiClient
   class << self
