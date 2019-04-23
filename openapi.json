@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "description": "This API gets and orders catalog items from different cloud sources.",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "title": "Catalog API",
     "contact": {
       "email": "support@redhat.com"
@@ -15,9 +15,6 @@
   "security": [
     {
       "BasicAuth": []
-    },
-    {
-      "APIKeyAuth": []
     }
   ],
   "tags": [
@@ -976,14 +973,68 @@
           }
         }
       }
+    },
+    "/portfolio_items/{portfolio_item_id}/icon": {
+      "get": {
+        "tags": [
+          "PortfolioItem"
+        ],
+        "summary": "Fetches the specified portfolio item's icon information",
+        "operationId": "listServiceOfferingIcon",
+        "description": "Fetch the specified portfolio item's icon information.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/PortfolioItemID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Portfolio Item Icon",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceOfferingIcon"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "description": "Icon Not Found/Not Present on Portfolio Item"
+          },
+          "500": {
+            "description": "Could not access the Topology Service"
+          }
+        }
+      }
     }
   },
   "servers": [
     {
-      "url": "https://localhost/api/catalog/v1.0"
+      "url": "https://cloud.redhat.com/{basePath}",
+      "description": "Production Server",
+      "variables": {
+        "basePath": {
+          "default": "/api/catalog/v1.0"
+        }
+      }
     },
     {
-      "url": "http://localhost/api/catalog/v1.0"
+      "url": "http://localhost:{port}/{basePath}",
+      "description": "Development Server",
+      "variables": {
+        "port": {
+          "default": "3000"
+        },
+        "basePath": {
+          "default": "/api/catalog/v1.0"
+        }
+      }
     }
   ],
   "components": {
@@ -1085,12 +1136,6 @@
         "type": "http",
         "description": "The userid/password is needed when accessing this API externally",
         "scheme": "basic"
-      },
-      "APIKeyAuth": {
-        "type": "apiKey",
-        "in": "header",
-        "name": "x-rh-auth-identity",
-        "description": "This is a base64 encoded string of a collection of attributes, that identify a user. This token is needed when accessing the API internally."
       }
     },
     "schemas": {
@@ -1136,17 +1181,12 @@
             "type": "string",
             "title": "Owner",
             "example": "jdoe"
-          }
-        }
-      },
-      "Organization": {
-        "type": "object",
-        "properties": {
-          "id": {
+          },
+          "service_offering_icon_ref": {
             "type": "string",
             "readOnly": true,
-            "title": "Id",
-            "example": "ID of the sample organization."
+            "title": "Service Offering Icon Ref",
+            "example": 20
           }
         }
       },
@@ -1372,6 +1412,11 @@
             "type": "string",
             "title": "Owner",
             "example": "jdoe"
+          },
+          "external_url": {
+            "type": "string",
+            "title": "External url",
+            "description": "The external url of the service instance used with relation to this order item"
           }
         }
       },
@@ -1417,6 +1462,29 @@
             "type": "string",
             "title": "Workflow Ref",
             "description": "The workflow that was requested",
+            "readOnly": true
+          }
+        }
+      },
+      "ServiceOfferingIcon": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "ID",
+            "description": "The unique identifier for this Service Offering Icon",
+            "readOnly": true
+          },
+          "data": {
+            "type": "string",
+            "title": "Data",
+            "description": "The raw SVG data for this icon",
+            "readOnly": false
+          },
+          "source_ref": {
+            "type": "string",
+            "title": "Source Ref",
+            "description": "Stores the Source Ref for this icon",
             "readOnly": true
           }
         }

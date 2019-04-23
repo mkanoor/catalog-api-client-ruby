@@ -1,6 +1,6 @@
 # CatalogApiClient::PortfolioApi
 
-All URIs are relative to *https://localhost/api/catalog/v1.0*
+All URIs are relative to *https://cloud.redhat.com//api/catalog/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -29,11 +29,6 @@ Adds a new portfolio item to an existing portfolio.
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -64,7 +59,7 @@ nil (empty response body)
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -86,11 +81,6 @@ Adds a portfolio.
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -120,7 +110,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -142,11 +132,6 @@ Deletes the portfolio specified by the ID.
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -175,7 +160,7 @@ nil (empty response body)
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -197,11 +182,6 @@ Gets all portfilio items in the portfolio specified by the given ID.
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -237,7 +217,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -259,11 +239,6 @@ Gets a list of portfolios.
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -297,7 +272,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -319,11 +294,6 @@ Fetch share information about a portfolio
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -353,7 +323,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -375,11 +345,6 @@ Share a Portfolio with one or more groups with specific permissions
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -410,7 +375,7 @@ nil (empty response body)
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -432,11 +397,6 @@ Gets the portfolio specified by the portfolio ID.
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -466,7 +426,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -488,11 +448,6 @@ Unshare a Portfolio with one or more groups with specific permissions
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -523,7 +478,7 @@ nil (empty response body)
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -545,11 +500,6 @@ Returns the edited portfolio.
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -581,7 +531,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 

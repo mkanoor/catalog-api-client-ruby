@@ -1,6 +1,6 @@
 # CatalogApiClient::PortfolioItemApi
 
-All URIs are relative to *https://localhost/api/catalog/v1.0*
+All URIs are relative to *https://cloud.redhat.com//api/catalog/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**destroy_portfolio_item**](PortfolioItemApi.md#destroy_portfolio_item) | **DELETE** /portfolio_items/{id} | Delete an existing portfolio item
 [**list_portfolio_items**](PortfolioItemApi.md#list_portfolio_items) | **GET** /portfolio_items | List all portfolio items
 [**list_provider_control_parameters**](PortfolioItemApi.md#list_provider_control_parameters) | **GET** /portfolio_items/{portfolio_item_id}/provider_control_parameters | Gets the provider control parameters for this portfolio item; requires control paramaters provided when provisioning the portfolio item.
+[**list_service_offering_icon**](PortfolioItemApi.md#list_service_offering_icon) | **GET** /portfolio_items/{portfolio_item_id}/icon | Fetches the specified portfolio item&#39;s icon information
 [**list_service_plans**](PortfolioItemApi.md#list_service_plans) | **GET** /portfolio_items/{portfolio_item_id}/service_plans | Gets all service plans for a specific portfolio item; requires a connection to the topology service.
 [**show_portfolio_item**](PortfolioItemApi.md#show_portfolio_item) | **GET** /portfolio_items/{id} | Gets a specific portfolio item
 [**update_portfolio_item**](PortfolioItemApi.md#update_portfolio_item) | **PATCH** /portfolio_items/{id} | Edit an existing portfolio item
@@ -26,11 +27,6 @@ Adds a name and description for a portfolio item and returns the newly created p
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -60,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -82,11 +78,6 @@ Deletes the portfolio item based on portfolio item ID passed
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -115,7 +106,7 @@ nil (empty response body)
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -137,11 +128,6 @@ Gets a list of portfolio items.
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -175,7 +161,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -197,11 +183,6 @@ Gets the provider control parameters for a portfolio item.
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -231,7 +212,58 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+
+# **list_service_offering_icon**
+> ServiceOfferingIcon list_service_offering_icon(portfolio_item_id)
+
+Fetches the specified portfolio item's icon information
+
+Fetch the specified portfolio item's icon information.
+
+### Example
+```ruby
+# load the gem
+require 'catalog-api-client'
+# setup authorization
+CatalogApiClient.configure do |config|
+  # Configure HTTP basic authorization: BasicAuth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
+
+api_instance = CatalogApiClient::PortfolioItemApi.new
+portfolio_item_id = 'portfolio_item_id_example' # String | The Portfolio Item ID
+
+begin
+  #Fetches the specified portfolio item's icon information
+  result = api_instance.list_service_offering_icon(portfolio_item_id)
+  p result
+rescue CatalogApiClient::ApiError => e
+  puts "Exception when calling PortfolioItemApi->list_service_offering_icon: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **portfolio_item_id** | **String**| The Portfolio Item ID | 
+
+### Return type
+
+[**ServiceOfferingIcon**](ServiceOfferingIcon.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -253,11 +285,6 @@ Gets all service plans for a portfolio item.
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -287,7 +314,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -309,11 +336,6 @@ Gets a specific portfolio item based on the portfolio item ID passed
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -343,7 +365,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -365,11 +387,6 @@ Edits portfolio item specified by the given ID.
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -401,7 +418,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 

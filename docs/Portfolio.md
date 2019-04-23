@@ -10,5 +10,6 @@ Name | Type | Description | Notes
 **image_url** | **String** |  | [optional] 
 **workflow_ref** | **String** |  | [optional] 
 **owner** | **String** |  | [optional] 
+**service_offering_icon_ref** | **String** |  | [optional] 
 
 

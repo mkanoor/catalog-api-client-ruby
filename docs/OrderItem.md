@@ -15,5 +15,6 @@ Name | Type | Description | Notes
 **completed_at** | **DateTime** |  | [optional] 
 **updated_at** | **DateTime** |  | [optional] 
 **owner** | **String** |  | [optional] 
+**external_url** | **String** | The external url of the service instance used with relation to this order item | [optional] 
 
 

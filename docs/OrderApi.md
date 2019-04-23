@@ -1,6 +1,6 @@
 # CatalogApiClient::OrderApi
 
-All URIs are relative to *https://localhost/api/catalog/v1.0*
+All URIs are relative to *https://cloud.redhat.com//api/catalog/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -25,11 +25,6 @@ Adds an order item to an order in pending state
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -60,7 +55,7 @@ nil (empty response body)
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -82,11 +77,6 @@ Creates a new order.
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -112,7 +102,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -134,11 +124,6 @@ Gets a list of items associated with an order.
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -174,7 +159,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -196,11 +181,6 @@ Gets a list of orders associated with the logged in user.
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -234,7 +214,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -256,11 +236,6 @@ Gets an order item associated with an order.
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -292,7 +267,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -314,11 +289,6 @@ Returns an updated order.
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -348,7 +318,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 

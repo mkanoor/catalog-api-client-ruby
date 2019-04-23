@@ -1,6 +1,6 @@
 # CatalogApiClient::OrderItemApi
 
-All URIs are relative to *https://localhost/api/catalog/v1.0*
+All URIs are relative to *https://cloud.redhat.com//api/catalog/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -21,11 +21,6 @@ Gets a list of approval request associated with an order item. As the item is be
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -61,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
@@ -83,11 +78,6 @@ Gets a list of progress messages associated with an order item. As the item is b
 require 'catalog-api-client'
 # setup authorization
 CatalogApiClient.configure do |config|
-  # Configure API key authorization: APIKeyAuth
-  config.api_key['x-rh-auth-identity'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  #config.api_key_prefix['x-rh-auth-identity'] = 'Bearer'
-
   # Configure HTTP basic authorization: BasicAuth
   config.username = 'YOUR USERNAME'
   config.password = 'YOUR PASSWORD'
@@ -123,7 +113,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyAuth](../README.md#APIKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[BasicAuth](../README.md#BasicAuth)
 
 ### HTTP request headers
 
