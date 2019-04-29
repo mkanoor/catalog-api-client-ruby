@@ -130,6 +130,7 @@ module CatalogApiClient
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page. (default to 100)
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set. (default to 0)
+    # @option opts [Object] :filter Filter for querying collections.
     # @return [OrderItemsCollection]
     def list_order_items(order_id, opts = {})
       data, _status_code, _headers = list_order_items_with_http_info(order_id, opts)
@@ -142,6 +143,7 @@ module CatalogApiClient
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page.
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
+    # @option opts [Object] :filter Filter for querying collections.
     # @return [Array<(OrderItemsCollection, Fixnum, Hash)>] OrderItemsCollection data, response status code and response headers
     def list_order_items_with_http_info(order_id, opts = {})
       if @api_client.config.debugging
@@ -170,6 +172,7 @@ module CatalogApiClient
       query_params = {}
       query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
       query_params[:'offset'] = opts[:'offset'] if !opts[:'offset'].nil?
+      query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
 
       # header parameters
       header_params = {}
@@ -200,6 +203,7 @@ module CatalogApiClient
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page. (default to 100)
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set. (default to 0)
+    # @option opts [Object] :filter Filter for querying collections.
     # @return [OrdersCollection]
     def list_orders(opts = {})
       data, _status_code, _headers = list_orders_with_http_info(opts)
@@ -211,6 +215,7 @@ module CatalogApiClient
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page.
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
+    # @option opts [Object] :filter Filter for querying collections.
     # @return [Array<(OrdersCollection, Fixnum, Hash)>] OrdersCollection data, response status code and response headers
     def list_orders_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -235,6 +240,7 @@ module CatalogApiClient
       query_params = {}
       query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
       query_params[:'offset'] = opts[:'offset'] if !opts[:'offset'].nil?
+      query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
 
       # header parameters
       header_params = {}

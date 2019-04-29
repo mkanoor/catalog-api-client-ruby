@@ -188,6 +188,7 @@ module CatalogApiClient
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page. (default to 100)
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set. (default to 0)
+    # @option opts [Object] :filter Filter for querying collections.
     # @return [PortfolioItemsCollection]
     def fetch_portfolio_items_with_portfolio(portfolio_id, opts = {})
       data, _status_code, _headers = fetch_portfolio_items_with_portfolio_with_http_info(portfolio_id, opts)
@@ -200,6 +201,7 @@ module CatalogApiClient
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page.
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
+    # @option opts [Object] :filter Filter for querying collections.
     # @return [Array<(PortfolioItemsCollection, Fixnum, Hash)>] PortfolioItemsCollection data, response status code and response headers
     def fetch_portfolio_items_with_portfolio_with_http_info(portfolio_id, opts = {})
       if @api_client.config.debugging
@@ -228,6 +230,7 @@ module CatalogApiClient
       query_params = {}
       query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
       query_params[:'offset'] = opts[:'offset'] if !opts[:'offset'].nil?
+      query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
 
       # header parameters
       header_params = {}
@@ -258,6 +261,7 @@ module CatalogApiClient
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page. (default to 100)
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set. (default to 0)
+    # @option opts [Object] :filter Filter for querying collections.
     # @return [PortfoliosCollection]
     def list_portfolios(opts = {})
       data, _status_code, _headers = list_portfolios_with_http_info(opts)
@@ -269,6 +273,7 @@ module CatalogApiClient
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page.
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
+    # @option opts [Object] :filter Filter for querying collections.
     # @return [Array<(PortfoliosCollection, Fixnum, Hash)>] PortfoliosCollection data, response status code and response headers
     def list_portfolios_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -293,6 +298,7 @@ module CatalogApiClient
       query_params = {}
       query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
       query_params[:'offset'] = opts[:'offset'] if !opts[:'offset'].nil?
+      query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
 
       # header parameters
       header_params = {}

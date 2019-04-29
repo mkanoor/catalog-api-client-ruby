@@ -191,7 +191,8 @@ api_instance = CatalogApiClient::PortfolioApi.new
 portfolio_id = 'portfolio_id_example' # String | The Portfolio ID
 opts = {
   limit: 100, # Integer | The numbers of items to return per page.
-  offset: 0 # Integer | The number of items to skip before starting to collect the result set.
+  offset: 0, # Integer | The number of items to skip before starting to collect the result set.
+  filter: nil # Object | Filter for querying collections.
 }
 
 begin
@@ -210,6 +211,7 @@ Name | Type | Description  | Notes
  **portfolio_id** | **String**| The Portfolio ID | 
  **limit** | **Integer**| The numbers of items to return per page. | [optional] [default to 100]
  **offset** | **Integer**| The number of items to skip before starting to collect the result set. | [optional] [default to 0]
+ **filter** | [**Object**](.md)| Filter for querying collections. | [optional] 
 
 ### Return type
 
@@ -247,7 +249,8 @@ end
 api_instance = CatalogApiClient::PortfolioApi.new
 opts = {
   limit: 100, # Integer | The numbers of items to return per page.
-  offset: 0 # Integer | The number of items to skip before starting to collect the result set.
+  offset: 0, # Integer | The number of items to skip before starting to collect the result set.
+  filter: nil # Object | Filter for querying collections.
 }
 
 begin
@@ -265,6 +268,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **Integer**| The numbers of items to return per page. | [optional] [default to 100]
  **offset** | **Integer**| The number of items to skip before starting to collect the result set. | [optional] [default to 0]
+ **filter** | [**Object**](.md)| Filter for querying collections. | [optional] 
 
 ### Return type
 

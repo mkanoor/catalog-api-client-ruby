@@ -76,6 +76,7 @@ describe 'PortfolioApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [Integer] :limit The numbers of items to return per page.
   # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
+  # @option opts [Object] :filter Filter for querying collections.
   # @return [PortfolioItemsCollection]
   describe 'fetch_portfolio_items_with_portfolio test' do
     it 'should work' do
@@ -89,6 +90,7 @@ describe 'PortfolioApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [Integer] :limit The numbers of items to return per page.
   # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
+  # @option opts [Object] :filter Filter for querying collections.
   # @return [PortfoliosCollection]
   describe 'list_portfolios test' do
     it 'should work' do

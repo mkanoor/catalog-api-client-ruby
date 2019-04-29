@@ -25,6 +25,7 @@ module CatalogApiClient
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page. (default to 100)
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set. (default to 0)
+    # @option opts [Object] :filter Filter for querying collections.
     # @return [ApprovalRequestsCollection]
     def list_approval_requests(order_item_id, opts = {})
       data, _status_code, _headers = list_approval_requests_with_http_info(order_item_id, opts)
@@ -37,6 +38,7 @@ module CatalogApiClient
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page.
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
+    # @option opts [Object] :filter Filter for querying collections.
     # @return [Array<(ApprovalRequestsCollection, Fixnum, Hash)>] ApprovalRequestsCollection data, response status code and response headers
     def list_approval_requests_with_http_info(order_item_id, opts = {})
       if @api_client.config.debugging
@@ -65,6 +67,7 @@ module CatalogApiClient
       query_params = {}
       query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
       query_params[:'offset'] = opts[:'offset'] if !opts[:'offset'].nil?
+      query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
 
       # header parameters
       header_params = {}
@@ -96,6 +99,7 @@ module CatalogApiClient
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page. (default to 100)
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set. (default to 0)
+    # @option opts [Object] :filter Filter for querying collections.
     # @return [ProgressMessagesCollection]
     def list_progress_messages(order_item_id, opts = {})
       data, _status_code, _headers = list_progress_messages_with_http_info(order_item_id, opts)
@@ -108,6 +112,7 @@ module CatalogApiClient
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page.
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
+    # @option opts [Object] :filter Filter for querying collections.
     # @return [Array<(ProgressMessagesCollection, Fixnum, Hash)>] ProgressMessagesCollection data, response status code and response headers
     def list_progress_messages_with_http_info(order_item_id, opts = {})
       if @api_client.config.debugging
@@ -136,6 +141,7 @@ module CatalogApiClient
       query_params = {}
       query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
       query_params[:'offset'] = opts[:'offset'] if !opts[:'offset'].nil?
+      query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
 
       # header parameters
       header_params = {}

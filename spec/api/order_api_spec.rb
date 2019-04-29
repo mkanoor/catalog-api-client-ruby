@@ -63,6 +63,7 @@ describe 'OrderApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [Integer] :limit The numbers of items to return per page.
   # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
+  # @option opts [Object] :filter Filter for querying collections.
   # @return [OrderItemsCollection]
   describe 'list_order_items test' do
     it 'should work' do
@@ -76,6 +77,7 @@ describe 'OrderApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [Integer] :limit The numbers of items to return per page.
   # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
+  # @option opts [Object] :filter Filter for querying collections.
   # @return [OrdersCollection]
   describe 'list_orders test' do
     it 'should work' do

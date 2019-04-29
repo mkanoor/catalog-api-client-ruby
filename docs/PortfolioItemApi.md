@@ -136,7 +136,8 @@ end
 api_instance = CatalogApiClient::PortfolioItemApi.new
 opts = {
   limit: 100, # Integer | The numbers of items to return per page.
-  offset: 0 # Integer | The number of items to skip before starting to collect the result set.
+  offset: 0, # Integer | The number of items to skip before starting to collect the result set.
+  filter: nil # Object | Filter for querying collections.
 }
 
 begin
@@ -154,6 +155,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **Integer**| The numbers of items to return per page. | [optional] [default to 100]
  **offset** | **Integer**| The number of items to skip before starting to collect the result set. | [optional] [default to 0]
+ **filter** | [**Object**](.md)| Filter for querying collections. | [optional] 
 
 ### Return type
 

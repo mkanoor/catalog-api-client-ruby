@@ -50,6 +50,9 @@
           },
           {
             "$ref": "#/components/parameters/QueryOffset"
+          },
+          {
+            "$ref": "#/components/parameters/QueryFilter"
           }
         ],
         "responses": {
@@ -237,6 +240,9 @@
           },
           {
             "$ref": "#/components/parameters/QueryOffset"
+          },
+          {
+            "$ref": "#/components/parameters/QueryFilter"
           }
         ],
         "responses": {
@@ -430,6 +436,9 @@
           },
           {
             "$ref": "#/components/parameters/QueryOffset"
+          },
+          {
+            "$ref": "#/components/parameters/QueryFilter"
           }
         ],
         "responses": {
@@ -691,6 +700,9 @@
           },
           {
             "$ref": "#/components/parameters/QueryOffset"
+          },
+          {
+            "$ref": "#/components/parameters/QueryFilter"
           }
         ],
         "responses": {
@@ -756,6 +768,9 @@
           },
           {
             "$ref": "#/components/parameters/QueryOffset"
+          },
+          {
+            "$ref": "#/components/parameters/QueryFilter"
           }
         ],
         "responses": {
@@ -907,6 +922,9 @@
           },
           {
             "$ref": "#/components/parameters/QueryOffset"
+          },
+          {
+            "$ref": "#/components/parameters/QueryFilter"
           }
         ],
         "responses": {
@@ -949,6 +967,9 @@
           },
           {
             "$ref": "#/components/parameters/QueryOffset"
+          },
+          {
+            "$ref": "#/components/parameters/QueryFilter"
           }
         ],
         "responses": {
@@ -1106,6 +1127,17 @@
           "minimum": 0,
           "default": 0
         }
+      },
+      "QueryFilter": {
+        "in": "query",
+        "name": "filter",
+        "description": "Filter for querying collections.",
+        "required": false,
+        "style": "deepObject",
+        "explode": true,
+        "schema": {
+          "type": "object"
+        }
       }
     },
     "responses": {
@@ -1180,7 +1212,8 @@
           "owner": {
             "type": "string",
             "title": "Owner",
-            "example": "jdoe"
+            "example": "jdoe",
+            "readOnly": true
           },
           "service_offering_icon_ref": {
             "type": "string",
@@ -1284,7 +1317,8 @@
           "owner": {
             "type": "string",
             "title": "Owner",
-            "example": "jdoe"
+            "example": "jdoe",
+            "readOnly": true
           }
         }
       },
@@ -1329,7 +1363,8 @@
           "owner": {
             "type": "string",
             "title": "Owner",
-            "example": "jdoe"
+            "example": "jdoe",
+            "readOnly": true
           }
         }
       },
@@ -1411,7 +1446,8 @@
           "owner": {
             "type": "string",
             "title": "Owner",
-            "example": "jdoe"
+            "example": "jdoe",
+            "readOnly": true
           },
           "external_url": {
             "type": "string",

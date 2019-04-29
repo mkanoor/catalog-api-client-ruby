@@ -39,6 +39,7 @@ describe 'OrderItemApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [Integer] :limit The numbers of items to return per page.
   # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
+  # @option opts [Object] :filter Filter for querying collections.
   # @return [ApprovalRequestsCollection]
   describe 'list_approval_requests test' do
     it 'should work' do
@@ -53,6 +54,7 @@ describe 'OrderItemApi' do
   # @param [Hash] opts the optional parameters
   # @option opts [Integer] :limit The numbers of items to return per page.
   # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
+  # @option opts [Object] :filter Filter for querying collections.
   # @return [ProgressMessagesCollection]
   describe 'list_progress_messages test' do
     it 'should work' do
