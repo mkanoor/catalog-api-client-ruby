@@ -16,5 +16,6 @@ Name | Type | Description | Notes
 **updated_at** | **DateTime** |  | [optional] 
 **owner** | **String** |  | [optional] 
 **external_url** | **String** | The external url of the service instance used with relation to this order item | [optional] 
+**insights_request_id** | **String** | The insights request id can be used to collect log data for this order item as its processed by the system | [optional] 
 
 

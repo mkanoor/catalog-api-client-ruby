@@ -45,6 +45,9 @@ module CatalogApiClient
     # The external url of the service instance used with relation to this order item
     attr_accessor :external_url
 
+    # The insights request id can be used to collect log data for this order item as its processed by the system
+    attr_accessor :insights_request_id
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -82,7 +85,8 @@ module CatalogApiClient
         :'completed_at' => :'completed_at',
         :'updated_at' => :'updated_at',
         :'owner' => :'owner',
-        :'external_url' => :'external_url'
+        :'external_url' => :'external_url',
+        :'insights_request_id' => :'insights_request_id'
       }
     end
 
@@ -101,7 +105,8 @@ module CatalogApiClient
         :'completed_at' => :'DateTime',
         :'updated_at' => :'DateTime',
         :'owner' => :'String',
-        :'external_url' => :'String'
+        :'external_url' => :'String',
+        :'insights_request_id' => :'String'
       }
     end
 
@@ -166,6 +171,10 @@ module CatalogApiClient
       if attributes.has_key?(:'external_url')
         self.external_url = attributes[:'external_url']
       end
+
+      if attributes.has_key?(:'insights_request_id')
+        self.insights_request_id = attributes[:'insights_request_id']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -203,7 +212,7 @@ module CatalogApiClient
       return false if @provider_control_parameters.nil?
       return false if @service_plan_ref.nil?
       return false if @portfolio_item_id.nil?
-      state_validator = EnumAttributeValidator.new('String', ['Created', 'Approval Pending', 'Ordered', 'Failed', 'Completed'])
+      state_validator = EnumAttributeValidator.new('String', ['Created', 'Approval Pending', 'Ordered', 'Failed', 'Completed', 'Denied'])
       return false unless state_validator.valid?(@state)
       true
     end
@@ -211,7 +220,7 @@ module CatalogApiClient
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] state Object to be assigned
     def state=(state)
-      validator = EnumAttributeValidator.new('String', ['Created', 'Approval Pending', 'Ordered', 'Failed', 'Completed'])
+      validator = EnumAttributeValidator.new('String', ['Created', 'Approval Pending', 'Ordered', 'Failed', 'Completed', 'Denied'])
       unless validator.valid?(state)
         fail ArgumentError, 'invalid value for "state", must be one of #{validator.allowable_values}.'
       end
@@ -235,7 +244,8 @@ module CatalogApiClient
           completed_at == o.completed_at &&
           updated_at == o.updated_at &&
           owner == o.owner &&
-          external_url == o.external_url
+          external_url == o.external_url &&
+          insights_request_id == o.insights_request_id
     end
 
     # @see the `==` method
@@ -247,7 +257,7 @@ module CatalogApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, count, service_parameters, provider_control_parameters, service_plan_ref, portfolio_item_id, state, created_at, ordered_at, completed_at, updated_at, owner, external_url].hash
+      [id, count, service_parameters, provider_control_parameters, service_plan_ref, portfolio_item_id, state, created_at, ordered_at, completed_at, updated_at, owner, external_url, insights_request_id].hash
     end
 
     # Builds the object from hash
