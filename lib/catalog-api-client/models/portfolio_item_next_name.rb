@@ -13,31 +13,20 @@ OpenAPI Generator version: 3.3.4
 require 'date'
 
 module CatalogApiClient
-  class ServiceOfferingIcon
-    # The unique identifier for this Service Offering Icon
-    attr_accessor :id
-
-    # The raw SVG data for this icon
-    attr_accessor :data
-
-    # Stores the Source Ref for this icon
-    attr_accessor :source_ref
+  class PortfolioItemNextName
+    attr_accessor :next_name
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
-        :'data' => :'data',
-        :'source_ref' => :'source_ref'
+        :'next_name' => :'next_name'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String',
-        :'data' => :'String',
-        :'source_ref' => :'String'
+        :'next_name' => :'String'
       }
     end
 
@@ -49,16 +38,8 @@ module CatalogApiClient
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'id')
-        self.id = attributes[:'id']
-      end
-
-      if attributes.has_key?(:'data')
-        self.data = attributes[:'data']
-      end
-
-      if attributes.has_key?(:'source_ref')
-        self.source_ref = attributes[:'source_ref']
+      if attributes.has_key?(:'next_name')
+        self.next_name = attributes[:'next_name']
       end
     end
 
@@ -80,9 +61,7 @@ module CatalogApiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
-          data == o.data &&
-          source_ref == o.source_ref
+          next_name == o.next_name
     end
 
     # @see the `==` method
@@ -94,7 +73,7 @@ module CatalogApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, data, source_ref].hash
+      [next_name].hash
     end
 
     # Builds the object from hash

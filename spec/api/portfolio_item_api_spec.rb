@@ -32,6 +32,19 @@ describe 'PortfolioItemApi' do
     end
   end
 
+  # unit tests for add_icon_to_portfolio_item
+  # Add an Icon to a Portfolio Item
+  # Add an Icon to a Portfolio Item
+  # @param portfolio_item_id The Portfolio Item ID
+  # @param add_icon 
+  # @param [Hash] opts the optional parameters
+  # @return [Icon]
+  describe 'add_icon_to_portfolio_item test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for create_portfolio_item
   # Add a new portfolio item
   # Adds a name and description for a portfolio item and returns the newly created portfolio item. 
@@ -49,8 +62,21 @@ describe 'PortfolioItemApi' do
   # Deletes the portfolio item based on portfolio item ID passed 
   # @param id ID of the resource
   # @param [Hash] opts the optional parameters
-  # @return [nil]
+  # @return [RestoreKey]
   describe 'destroy_portfolio_item test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for get_portfolio_item_next_name
+  # Get the next name for a the Portfolio Item prior to a copy operation
+  # Get the next name for a the Portfolio Item prior to a copy operation
+  # @param portfolio_item_id The Portfolio Item ID
+  # @param [Hash] opts the optional parameters
+  # @option opts [String] :destination_portfolio_id The destination portfolio to compare names against
+  # @return [PortfolioItemNextName]
+  describe 'get_portfolio_item_next_name test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -82,18 +108,6 @@ describe 'PortfolioItemApi' do
     end
   end
 
-  # unit tests for list_service_offering_icon
-  # Fetches the specified portfolio item&#39;s icon information
-  # Fetch the specified portfolio item&#39;s icon information.
-  # @param portfolio_item_id The Portfolio Item ID
-  # @param [Hash] opts the optional parameters
-  # @return [ServiceOfferingIcon]
-  describe 'list_service_offering_icon test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for list_service_plans
   # Gets all service plans for a specific portfolio item; requires a connection to the topology service.
   # Gets all service plans for a portfolio item. 
@@ -106,6 +120,32 @@ describe 'PortfolioItemApi' do
     end
   end
 
+  # unit tests for portfolio_items_portfolio_item_id_undelete_post
+  # Undelete a specified Portfolio Item
+  # If a record has been discarded, this operation will undelete it so it can be requested normally.
+  # @param portfolio_item_id The Portfolio Item ID
+  # @param restore_key 
+  # @param [Hash] opts the optional parameters
+  # @return [PortfolioItem]
+  describe 'portfolio_items_portfolio_item_id_undelete_post test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for post_copy_portfolio_item
+  # Make a copy of the Portfolio Item
+  # Make a copy of the Portfolio Item.
+  # @param portfolio_item_id The Portfolio Item ID
+  # @param [Hash] opts the optional parameters
+  # @option opts [CopyPortfolioItem] :copy_portfolio_item 
+  # @return [PortfolioItem]
+  describe 'post_copy_portfolio_item test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for show_portfolio_item
   # Gets a specific portfolio item
   # Gets a specific portfolio item based on the portfolio item ID passed 
@@ -113,6 +153,18 @@ describe 'PortfolioItemApi' do
   # @param [Hash] opts the optional parameters
   # @return [PortfolioItem]
   describe 'show_portfolio_item test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for show_portfolio_item_icon
+  # Fetches the specified portfolio item&#39;s icon image
+  # Fetch the specified portfolio item&#39;s icon image.
+  # @param portfolio_item_id The Portfolio Item ID
+  # @param [Hash] opts the optional parameters
+  # @return [nil]
+  describe 'show_portfolio_item_icon test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

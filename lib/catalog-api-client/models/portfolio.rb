@@ -28,7 +28,9 @@ module CatalogApiClient
 
     attr_accessor :owner
 
-    attr_accessor :service_offering_icon_ref
+    attr_accessor :created_at
+
+    attr_accessor :updated_at
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
@@ -40,7 +42,8 @@ module CatalogApiClient
         :'image_url' => :'image_url',
         :'workflow_ref' => :'workflow_ref',
         :'owner' => :'owner',
-        :'service_offering_icon_ref' => :'service_offering_icon_ref'
+        :'created_at' => :'created_at',
+        :'updated_at' => :'updated_at'
       }
     end
 
@@ -54,7 +57,8 @@ module CatalogApiClient
         :'image_url' => :'String',
         :'workflow_ref' => :'String',
         :'owner' => :'String',
-        :'service_offering_icon_ref' => :'String'
+        :'created_at' => :'DateTime',
+        :'updated_at' => :'DateTime'
       }
     end
 
@@ -96,8 +100,12 @@ module CatalogApiClient
         self.owner = attributes[:'owner']
       end
 
-      if attributes.has_key?(:'service_offering_icon_ref')
-        self.service_offering_icon_ref = attributes[:'service_offering_icon_ref']
+      if attributes.has_key?(:'created_at')
+        self.created_at = attributes[:'created_at']
+      end
+
+      if attributes.has_key?(:'updated_at')
+        self.updated_at = attributes[:'updated_at']
       end
     end
 
@@ -109,10 +117,6 @@ module CatalogApiClient
         invalid_properties.push('invalid value for "name", name cannot be nil.')
       end
 
-      if @description.nil?
-        invalid_properties.push('invalid value for "description", description cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -120,7 +124,6 @@ module CatalogApiClient
     # @return true if the model is valid
     def valid?
       return false if @name.nil?
-      return false if @description.nil?
       true
     end
 
@@ -136,7 +139,8 @@ module CatalogApiClient
           image_url == o.image_url &&
           workflow_ref == o.workflow_ref &&
           owner == o.owner &&
-          service_offering_icon_ref == o.service_offering_icon_ref
+          created_at == o.created_at &&
+          updated_at == o.updated_at
     end
 
     # @see the `==` method
@@ -148,7 +152,7 @@ module CatalogApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, name, description, enabled, image_url, workflow_ref, owner, service_offering_icon_ref].hash
+      [id, name, description, enabled, image_url, workflow_ref, owner, created_at, updated_at].hash
     end
 
     # Builds the object from hash

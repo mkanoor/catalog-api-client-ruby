@@ -20,6 +20,9 @@ module CatalogApiClient
     # The service plan description.
     attr_accessor :description
 
+    # The reference ID of the service offering
+    attr_accessor :service_offering_id
+
     # The unique identifier for this service plan.
     attr_accessor :id
 
@@ -31,6 +34,7 @@ module CatalogApiClient
       {
         :'name' => :'name',
         :'description' => :'description',
+        :'service_offering_id' => :'service_offering_id',
         :'id' => :'id',
         :'create_json_schema' => :'create_json_schema'
       }
@@ -41,6 +45,7 @@ module CatalogApiClient
       {
         :'name' => :'String',
         :'description' => :'String',
+        :'service_offering_id' => :'String',
         :'id' => :'String',
         :'create_json_schema' => :'Object'
       }
@@ -60,6 +65,10 @@ module CatalogApiClient
 
       if attributes.has_key?(:'description')
         self.description = attributes[:'description']
+      end
+
+      if attributes.has_key?(:'service_offering_id')
+        self.service_offering_id = attributes[:'service_offering_id']
       end
 
       if attributes.has_key?(:'id')
@@ -91,6 +100,7 @@ module CatalogApiClient
       self.class == o.class &&
           name == o.name &&
           description == o.description &&
+          service_offering_id == o.service_offering_id &&
           id == o.id &&
           create_json_schema == o.create_json_schema
     end
@@ -104,7 +114,7 @@ module CatalogApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [name, description, id, create_json_schema].hash
+      [name, description, service_offering_id, id, create_json_schema].hash
     end
 
     # Builds the object from hash

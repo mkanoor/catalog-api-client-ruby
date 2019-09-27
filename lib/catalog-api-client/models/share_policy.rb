@@ -14,11 +14,33 @@ require 'date'
 
 module CatalogApiClient
   class SharePolicy
-    # The permissions to apply for this share.
+    # The permissions to apply for this share. Each permission comprises of 3 parts catalog:portfolios:verb separated by :. The valid verbs are read, write and order
     attr_accessor :permissions
 
     # An array of group UUID's retrieved from the RBAC Service with whom the resource has to be shared.
     attr_accessor :group_uuids
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map

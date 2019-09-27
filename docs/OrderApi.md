@@ -5,10 +5,13 @@ All URIs are relative to *https://cloud.redhat.com//api/catalog/v1.0*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_to_order**](OrderApi.md#add_to_order) | **POST** /orders/{order_id}/order_items | Add an order item to an order in pending state
+[**cancel_order**](OrderApi.md#cancel_order) | **PATCH** /orders/{order_id}/cancel | Cancels a given order
 [**create_order**](OrderApi.md#create_order) | **POST** /orders | Create a new order
-[**list_order_items**](OrderApi.md#list_order_items) | **GET** /orders/{order_id}/order_items | Gets a list of items in a given order
+[**destroy_order**](OrderApi.md#destroy_order) | **DELETE** /orders/{id} | Delete an existing Order
+[**list_order_items_from_order**](OrderApi.md#list_order_items_from_order) | **GET** /orders/{order_id}/order_items | Gets a list of items in a given order
 [**list_orders**](OrderApi.md#list_orders) | **GET** /orders | Get a list of orders
-[**show_order_item**](OrderApi.md#show_order_item) | **GET** /orders/{order_id}/order_items/{id} | Gets an individual order item from a given order
+[**restore_order**](OrderApi.md#restore_order) | **POST** /orders/{id}/restore | Restore specific Order
+[**show_order_item_from_order**](OrderApi.md#show_order_item_from_order) | **GET** /orders/{order_id}/order_items/{id} | Gets an individual order item from a given order
 [**submit_order**](OrderApi.md#submit_order) | **POST** /orders/{order_id}/submit_order | Submit a given order
 
 
@@ -64,6 +67,57 @@ nil (empty response body)
 
 
 
+# **cancel_order**
+> Order cancel_order(order_id)
+
+Cancels a given order
+
+Returns an updated order. 
+
+### Example
+```ruby
+# load the gem
+require 'catalog-api-client'
+# setup authorization
+CatalogApiClient.configure do |config|
+  # Configure HTTP basic authorization: BasicAuth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
+
+api_instance = CatalogApiClient::OrderApi.new
+order_id = 'order_id_example' # String | The Order ID
+
+begin
+  #Cancels a given order
+  result = api_instance.cancel_order(order_id)
+  p result
+rescue CatalogApiClient::ApiError => e
+  puts "Exception when calling OrderApi->cancel_order: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **order_id** | **String**| The Order ID | 
+
+### Return type
+
+[**Order**](Order.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+
 # **create_order**
 > Order create_order
 
@@ -111,8 +165,59 @@ This endpoint does not need any parameter.
 
 
 
-# **list_order_items**
-> OrderItemsCollection list_order_items(order_id, opts)
+# **destroy_order**
+> RestoreKey destroy_order(id)
+
+Delete an existing Order
+
+Deletes the Order based on order ID passed 
+
+### Example
+```ruby
+# load the gem
+require 'catalog-api-client'
+# setup authorization
+CatalogApiClient.configure do |config|
+  # Configure HTTP basic authorization: BasicAuth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
+
+api_instance = CatalogApiClient::OrderApi.new
+id = 'id_example' # String | ID of the resource
+
+begin
+  #Delete an existing Order
+  result = api_instance.destroy_order(id)
+  p result
+rescue CatalogApiClient::ApiError => e
+  puts "Exception when calling OrderApi->destroy_order: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| ID of the resource | 
+
+### Return type
+
+[**RestoreKey**](RestoreKey.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+
+# **list_order_items_from_order**
+> OrderItemsCollection list_order_items_from_order(order_id, opts)
 
 Gets a list of items in a given order
 
@@ -139,10 +244,10 @@ opts = {
 
 begin
   #Gets a list of items in a given order
-  result = api_instance.list_order_items(order_id, opts)
+  result = api_instance.list_order_items_from_order(order_id, opts)
   p result
 rescue CatalogApiClient::ApiError => e
-  puts "Exception when calling OrderApi->list_order_items: #{e}"
+  puts "Exception when calling OrderApi->list_order_items_from_order: #{e}"
 end
 ```
 
@@ -227,8 +332,61 @@ Name | Type | Description  | Notes
 
 
 
-# **show_order_item**
-> OrderItem show_order_item(order_id, id)
+# **restore_order**
+> Order restore_order(id, restore_key)
+
+Restore specific Order
+
+Restores the order specified by the order ID. 
+
+### Example
+```ruby
+# load the gem
+require 'catalog-api-client'
+# setup authorization
+CatalogApiClient.configure do |config|
+  # Configure HTTP basic authorization: BasicAuth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
+
+api_instance = CatalogApiClient::OrderApi.new
+id = 'id_example' # String | ID of the resource
+restore_key = CatalogApiClient::RestoreKey.new # RestoreKey | 
+
+begin
+  #Restore specific Order
+  result = api_instance.restore_order(id, restore_key)
+  p result
+rescue CatalogApiClient::ApiError => e
+  puts "Exception when calling OrderApi->restore_order: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| ID of the resource | 
+ **restore_key** | [**RestoreKey**](RestoreKey.md)|  | 
+
+### Return type
+
+[**Order**](Order.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+
+# **show_order_item_from_order**
+> OrderItem show_order_item_from_order(order_id, id)
 
 Gets an individual order item from a given order
 
@@ -251,10 +409,10 @@ id = 'id_example' # String | ID of the resource
 
 begin
   #Gets an individual order item from a given order
-  result = api_instance.show_order_item(order_id, id)
+  result = api_instance.show_order_item_from_order(order_id, id)
   p result
 rescue CatalogApiClient::ApiError => e
-  puts "Exception when calling OrderApi->show_order_item: #{e}"
+  puts "Exception when calling OrderApi->show_order_item_from_order: #{e}"
 end
 ```
 

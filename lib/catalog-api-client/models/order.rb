@@ -23,7 +23,8 @@ module CatalogApiClient
 
     attr_accessor :created_at
 
-    attr_accessor :ordered_at
+    # The time at which the order request was sent to the Topology Service
+    attr_accessor :order_request_sent_at
 
     attr_accessor :completed_at
 
@@ -58,7 +59,7 @@ module CatalogApiClient
         :'user_id' => :'user_id',
         :'state' => :'state',
         :'created_at' => :'created_at',
-        :'ordered_at' => :'ordered_at',
+        :'order_request_sent_at' => :'order_request_sent_at',
         :'completed_at' => :'completed_at',
         :'owner' => :'owner'
       }
@@ -71,7 +72,7 @@ module CatalogApiClient
         :'user_id' => :'String',
         :'state' => :'String',
         :'created_at' => :'DateTime',
-        :'ordered_at' => :'DateTime',
+        :'order_request_sent_at' => :'DateTime',
         :'completed_at' => :'DateTime',
         :'owner' => :'String'
       }
@@ -101,8 +102,8 @@ module CatalogApiClient
         self.created_at = attributes[:'created_at']
       end
 
-      if attributes.has_key?(:'ordered_at')
-        self.ordered_at = attributes[:'ordered_at']
+      if attributes.has_key?(:'order_request_sent_at')
+        self.order_request_sent_at = attributes[:'order_request_sent_at']
       end
 
       if attributes.has_key?(:'completed_at')
@@ -124,7 +125,7 @@ module CatalogApiClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      state_validator = EnumAttributeValidator.new('String', ['Created', 'Approval Pending', 'Ordered', 'Failed', 'Completed'])
+      state_validator = EnumAttributeValidator.new('String', ['Created', 'Approval Pending', 'Ordered', 'Failed', 'Completed', 'Canceled'])
       return false unless state_validator.valid?(@state)
       true
     end
@@ -132,7 +133,7 @@ module CatalogApiClient
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] state Object to be assigned
     def state=(state)
-      validator = EnumAttributeValidator.new('String', ['Created', 'Approval Pending', 'Ordered', 'Failed', 'Completed'])
+      validator = EnumAttributeValidator.new('String', ['Created', 'Approval Pending', 'Ordered', 'Failed', 'Completed', 'Canceled'])
       unless validator.valid?(state)
         fail ArgumentError, 'invalid value for "state", must be one of #{validator.allowable_values}.'
       end
@@ -148,7 +149,7 @@ module CatalogApiClient
           user_id == o.user_id &&
           state == o.state &&
           created_at == o.created_at &&
-          ordered_at == o.ordered_at &&
+          order_request_sent_at == o.order_request_sent_at &&
           completed_at == o.completed_at &&
           owner == o.owner
     end
@@ -162,7 +163,7 @@ module CatalogApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, user_id, state, created_at, ordered_at, completed_at, owner].hash
+      [id, user_id, state, created_at, order_request_sent_at, completed_at, owner].hash
     end
 
     # Builds the object from hash

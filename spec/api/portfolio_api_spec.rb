@@ -62,7 +62,7 @@ describe 'PortfolioApi' do
   # Deletes the portfolio specified by the ID. 
   # @param id ID of the resource
   # @param [Hash] opts the optional parameters
-  # @return [nil]
+  # @return [RestoreKey]
   describe 'destroy_portfolio test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
@@ -93,6 +93,18 @@ describe 'PortfolioApi' do
   # @option opts [Object] :filter Filter for querying collections.
   # @return [PortfoliosCollection]
   describe 'list_portfolios test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for post_copy_portfolio
+  # Make a copy of the Portfolio
+  # Make a copy of the Portfolio.
+  # @param portfolio_id The Portfolio ID
+  # @param [Hash] opts the optional parameters
+  # @return [Portfolio]
+  describe 'post_copy_portfolio test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -130,6 +142,19 @@ describe 'PortfolioApi' do
   # @param [Hash] opts the optional parameters
   # @return [Portfolio]
   describe 'show_portfolio test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for un_delete_portfolio
+  # Undelete specific portfolio
+  # Undeletes the portfolio specified by the portfolio ID. 
+  # @param id ID of the resource
+  # @param restore_key 
+  # @param [Hash] opts the optional parameters
+  # @return [Portfolio]
+  describe 'un_delete_portfolio test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

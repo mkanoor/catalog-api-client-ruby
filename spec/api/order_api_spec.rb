@@ -45,6 +45,18 @@ describe 'OrderApi' do
     end
   end
 
+  # unit tests for cancel_order
+  # Cancels a given order
+  # Returns an updated order. 
+  # @param order_id The Order ID
+  # @param [Hash] opts the optional parameters
+  # @return [Order]
+  describe 'cancel_order test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for create_order
   # Create a new order
   # Creates a new order. 
@@ -56,7 +68,19 @@ describe 'OrderApi' do
     end
   end
 
-  # unit tests for list_order_items
+  # unit tests for destroy_order
+  # Delete an existing Order
+  # Deletes the Order based on order ID passed 
+  # @param id ID of the resource
+  # @param [Hash] opts the optional parameters
+  # @return [RestoreKey]
+  describe 'destroy_order test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for list_order_items_from_order
   # Gets a list of items in a given order
   # Gets a list of items associated with an order. 
   # @param order_id The Order ID
@@ -65,7 +89,7 @@ describe 'OrderApi' do
   # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
   # @option opts [Object] :filter Filter for querying collections.
   # @return [OrderItemsCollection]
-  describe 'list_order_items test' do
+  describe 'list_order_items_from_order test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end
@@ -85,14 +109,27 @@ describe 'OrderApi' do
     end
   end
 
-  # unit tests for show_order_item
+  # unit tests for restore_order
+  # Restore specific Order
+  # Restores the order specified by the order ID. 
+  # @param id ID of the resource
+  # @param restore_key 
+  # @param [Hash] opts the optional parameters
+  # @return [Order]
+  describe 'restore_order test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for show_order_item_from_order
   # Gets an individual order item from a given order
   # Gets an order item associated with an order. 
   # @param order_id The Order ID
   # @param id ID of the resource
   # @param [Hash] opts the optional parameters
   # @return [OrderItem]
-  describe 'show_order_item test' do
+  describe 'show_order_item_from_order test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

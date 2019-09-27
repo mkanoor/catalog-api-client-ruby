@@ -26,7 +26,7 @@ module CatalogApiClient
     # The reason for the current state.
     attr_accessor :reason
 
-    # The state of the approval request (approved, denied, undecided)
+    # The state of the approval request (approved, denied, undecided, canceled)
     attr_accessor :state
 
     # The workflow that was requested
@@ -121,7 +121,7 @@ module CatalogApiClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      state_validator = EnumAttributeValidator.new('String', ['undecided', 'approved', 'denied'])
+      state_validator = EnumAttributeValidator.new('String', ['undecided', 'approved', 'denied', 'canceled'])
       return false unless state_validator.valid?(@state)
       true
     end
@@ -129,7 +129,7 @@ module CatalogApiClient
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] state Object to be assigned
     def state=(state)
-      validator = EnumAttributeValidator.new('String', ['undecided', 'approved', 'denied'])
+      validator = EnumAttributeValidator.new('String', ['undecided', 'approved', 'denied', 'canceled'])
       unless validator.valid?(state)
         fail ArgumentError, 'invalid value for "state", must be one of #{validator.allowable_values}.'
       end

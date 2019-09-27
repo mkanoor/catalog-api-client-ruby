@@ -61,15 +61,13 @@ CatalogApiClient.configure do |config|
   config.password = 'YOUR PASSWORD'
 end
 
-api_instance = CatalogApiClient::OrderApi.new
-order_id = 'order_id_example' # String | The Order ID
-order_item = CatalogApiClient::OrderItem.new # OrderItem | 
+api_instance = CatalogApiClient::DefaultApi.new
 
 begin
-  #Add an order item to an order in pending state
-  api_instance.add_to_order(order_id, order_item)
+  #Return this API document in JSON format
+  api_instance.get_documentation
 rescue CatalogApiClient::ApiError => e
-  puts "Exception when calling OrderApi->add_to_order: #{e}"
+  puts "Exception when calling DefaultApi->get_documentation: #{e}"
 end
 
 ```
@@ -80,57 +78,94 @@ All URIs are relative to *https://cloud.redhat.com//api/catalog/v1.0*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*CatalogApiClient::DefaultApi* | [**get_documentation**](docs/DefaultApi.md#get_documentation) | **GET** /openapi.json | Return this API document in JSON format
+*CatalogApiClient::DefaultApi* | [**post_graph_ql**](docs/DefaultApi.md#post_graph_ql) | **POST** /graphql | Perform a GraphQL Query
+*CatalogApiClient::IconApi* | [**destroy_icon**](docs/IconApi.md#destroy_icon) | **DELETE** /icons/{id} | Delete an existing Icon
+*CatalogApiClient::IconApi* | [**icons_id_get**](docs/IconApi.md#icons_id_get) | **GET** /icons/{id} | Fetch an Icon by ID
+*CatalogApiClient::IconApi* | [**icons_post**](docs/IconApi.md#icons_post) | **POST** /icons | Create an Icon
+*CatalogApiClient::IconApi* | [**override_icon**](docs/IconApi.md#override_icon) | **POST** /icons/{id}/override | Override the specified Portfolio Item's Icon
+*CatalogApiClient::IconApi* | [**show_icon_data**](docs/IconApi.md#show_icon_data) | **GET** /icons/{id}/icon_data | Fetches the specified icon's image
+*CatalogApiClient::IconApi* | [**update_icon**](docs/IconApi.md#update_icon) | **PATCH** /icons/{id} | Edit an existing Icon
 *CatalogApiClient::OrderApi* | [**add_to_order**](docs/OrderApi.md#add_to_order) | **POST** /orders/{order_id}/order_items | Add an order item to an order in pending state
+*CatalogApiClient::OrderApi* | [**cancel_order**](docs/OrderApi.md#cancel_order) | **PATCH** /orders/{order_id}/cancel | Cancels a given order
 *CatalogApiClient::OrderApi* | [**create_order**](docs/OrderApi.md#create_order) | **POST** /orders | Create a new order
-*CatalogApiClient::OrderApi* | [**list_order_items**](docs/OrderApi.md#list_order_items) | **GET** /orders/{order_id}/order_items | Gets a list of items in a given order
+*CatalogApiClient::OrderApi* | [**destroy_order**](docs/OrderApi.md#destroy_order) | **DELETE** /orders/{id} | Delete an existing Order
+*CatalogApiClient::OrderApi* | [**list_order_items_from_order**](docs/OrderApi.md#list_order_items_from_order) | **GET** /orders/{order_id}/order_items | Gets a list of items in a given order
 *CatalogApiClient::OrderApi* | [**list_orders**](docs/OrderApi.md#list_orders) | **GET** /orders | Get a list of orders
-*CatalogApiClient::OrderApi* | [**show_order_item**](docs/OrderApi.md#show_order_item) | **GET** /orders/{order_id}/order_items/{id} | Gets an individual order item from a given order
+*CatalogApiClient::OrderApi* | [**restore_order**](docs/OrderApi.md#restore_order) | **POST** /orders/{id}/restore | Restore specific Order
+*CatalogApiClient::OrderApi* | [**show_order_item_from_order**](docs/OrderApi.md#show_order_item_from_order) | **GET** /orders/{order_id}/order_items/{id} | Gets an individual order item from a given order
 *CatalogApiClient::OrderApi* | [**submit_order**](docs/OrderApi.md#submit_order) | **POST** /orders/{order_id}/submit_order | Submit a given order
+*CatalogApiClient::OrderItemApi* | [**destroy_order_item**](docs/OrderItemApi.md#destroy_order_item) | **DELETE** /order_items/{id} | Delete an existing OrderItem
 *CatalogApiClient::OrderItemApi* | [**list_approval_requests**](docs/OrderItemApi.md#list_approval_requests) | **GET** /order_items/{order_item_id}/approval_requests | Gets a list of approval requests for an item
+*CatalogApiClient::OrderItemApi* | [**list_order_items**](docs/OrderItemApi.md#list_order_items) | **GET** /order_items | List Order Items
 *CatalogApiClient::OrderItemApi* | [**list_progress_messages**](docs/OrderItemApi.md#list_progress_messages) | **GET** /order_items/{order_item_id}/progress_messages | Gets a list of progress messages in an item
+*CatalogApiClient::OrderItemApi* | [**restore_order_item**](docs/OrderItemApi.md#restore_order_item) | **POST** /order_items/{id}/restore | Restore specific Order item
+*CatalogApiClient::OrderItemApi* | [**show_order_item**](docs/OrderItemApi.md#show_order_item) | **GET** /order_items/{id} | Gets a specific order item
 *CatalogApiClient::PortfolioApi* | [**add_portfolio_item_to_portfolio**](docs/PortfolioApi.md#add_portfolio_item_to_portfolio) | **POST** /portfolios/{portfolio_id}/portfolio_items | Add a portfolio item to a portfolio
 *CatalogApiClient::PortfolioApi* | [**create_portfolio**](docs/PortfolioApi.md#create_portfolio) | **POST** /portfolios | Add a new portfolio
 *CatalogApiClient::PortfolioApi* | [**destroy_portfolio**](docs/PortfolioApi.md#destroy_portfolio) | **DELETE** /portfolios/{id} | Delete an existing portfolio
 *CatalogApiClient::PortfolioApi* | [**fetch_portfolio_items_with_portfolio**](docs/PortfolioApi.md#fetch_portfolio_items_with_portfolio) | **GET** /portfolios/{portfolio_id}/portfolio_items | Get all portfolio items from a specific portfolio
 *CatalogApiClient::PortfolioApi* | [**list_portfolios**](docs/PortfolioApi.md#list_portfolios) | **GET** /portfolios | List portfolios
+*CatalogApiClient::PortfolioApi* | [**post_copy_portfolio**](docs/PortfolioApi.md#post_copy_portfolio) | **POST** /portfolios/{portfolio_id}/copy | Make a copy of the Portfolio
 *CatalogApiClient::PortfolioApi* | [**share_info**](docs/PortfolioApi.md#share_info) | **GET** /portfolios/{portfolio_id}/share_info | Fetch share information about this portfolio, the response would include a collection of groups and permissions with each group
 *CatalogApiClient::PortfolioApi* | [**share_portfolio**](docs/PortfolioApi.md#share_portfolio) | **POST** /portfolios/{portfolio_id}/share | Share a portfolio with one or more groups with specific permission
 *CatalogApiClient::PortfolioApi* | [**show_portfolio**](docs/PortfolioApi.md#show_portfolio) | **GET** /portfolios/{id} | Get a specific portfolio
+*CatalogApiClient::PortfolioApi* | [**un_delete_portfolio**](docs/PortfolioApi.md#un_delete_portfolio) | **POST** /portfolios/{id}/undelete | Undelete specific portfolio
 *CatalogApiClient::PortfolioApi* | [**unshare_portfolio**](docs/PortfolioApi.md#unshare_portfolio) | **POST** /portfolios/{portfolio_id}/unshare | Unshare a portfolio from one or more groups with specific permission
 *CatalogApiClient::PortfolioApi* | [**update_portfolio**](docs/PortfolioApi.md#update_portfolio) | **PATCH** /portfolios/{id} | Edit an existing portfolio
+*CatalogApiClient::PortfolioItemApi* | [**add_icon_to_portfolio_item**](docs/PortfolioItemApi.md#add_icon_to_portfolio_item) | **POST** /portfolio_items/{portfolio_item_id}/icon | Add an Icon to a Portfolio Item
 *CatalogApiClient::PortfolioItemApi* | [**create_portfolio_item**](docs/PortfolioItemApi.md#create_portfolio_item) | **POST** /portfolio_items | Add a new portfolio item
 *CatalogApiClient::PortfolioItemApi* | [**destroy_portfolio_item**](docs/PortfolioItemApi.md#destroy_portfolio_item) | **DELETE** /portfolio_items/{id} | Delete an existing portfolio item
+*CatalogApiClient::PortfolioItemApi* | [**get_portfolio_item_next_name**](docs/PortfolioItemApi.md#get_portfolio_item_next_name) | **GET** /portfolio_items/{portfolio_item_id}/next_name | Get the next name for a the Portfolio Item prior to a copy operation
 *CatalogApiClient::PortfolioItemApi* | [**list_portfolio_items**](docs/PortfolioItemApi.md#list_portfolio_items) | **GET** /portfolio_items | List all portfolio items
 *CatalogApiClient::PortfolioItemApi* | [**list_provider_control_parameters**](docs/PortfolioItemApi.md#list_provider_control_parameters) | **GET** /portfolio_items/{portfolio_item_id}/provider_control_parameters | Gets the provider control parameters for this portfolio item; requires control paramaters provided when provisioning the portfolio item.
-*CatalogApiClient::PortfolioItemApi* | [**list_service_offering_icon**](docs/PortfolioItemApi.md#list_service_offering_icon) | **GET** /portfolio_items/{portfolio_item_id}/icon | Fetches the specified portfolio item's icon information
 *CatalogApiClient::PortfolioItemApi* | [**list_service_plans**](docs/PortfolioItemApi.md#list_service_plans) | **GET** /portfolio_items/{portfolio_item_id}/service_plans | Gets all service plans for a specific portfolio item; requires a connection to the topology service.
+*CatalogApiClient::PortfolioItemApi* | [**portfolio_items_portfolio_item_id_undelete_post**](docs/PortfolioItemApi.md#portfolio_items_portfolio_item_id_undelete_post) | **POST** /portfolio_items/{portfolio_item_id}/undelete | Undelete a specified Portfolio Item
+*CatalogApiClient::PortfolioItemApi* | [**post_copy_portfolio_item**](docs/PortfolioItemApi.md#post_copy_portfolio_item) | **POST** /portfolio_items/{portfolio_item_id}/copy | Make a copy of the Portfolio Item
 *CatalogApiClient::PortfolioItemApi* | [**show_portfolio_item**](docs/PortfolioItemApi.md#show_portfolio_item) | **GET** /portfolio_items/{id} | Gets a specific portfolio item
+*CatalogApiClient::PortfolioItemApi* | [**show_portfolio_item_icon**](docs/PortfolioItemApi.md#show_portfolio_item_icon) | **GET** /portfolio_items/{portfolio_item_id}/icon | Fetches the specified portfolio item's icon image
 *CatalogApiClient::PortfolioItemApi* | [**update_portfolio_item**](docs/PortfolioItemApi.md#update_portfolio_item) | **PATCH** /portfolio_items/{id} | Edit an existing portfolio item
+*CatalogApiClient::SettingsApi* | [**create_setting**](docs/SettingsApi.md#create_setting) | **POST** /settings | Create Tenant Setting
+*CatalogApiClient::SettingsApi* | [**destroy_setting**](docs/SettingsApi.md#destroy_setting) | **DELETE** /settings/{name} | Delete a Tenant Setting
+*CatalogApiClient::SettingsApi* | [**list_settings**](docs/SettingsApi.md#list_settings) | **GET** /settings | List Tenant Settings
+*CatalogApiClient::SettingsApi* | [**show_setting**](docs/SettingsApi.md#show_setting) | **GET** /settings/{name} | Get a specific Tenant Setting
+*CatalogApiClient::SettingsApi* | [**update_setting**](docs/SettingsApi.md#update_setting) | **PATCH** /settings/{name} | Update a Tenant Setting
 
 
 ## Documentation for Models
 
+ - [CatalogApiClient::AddIcon](docs/AddIcon.md)
  - [CatalogApiClient::AddPortfolioItem](docs/AddPortfolioItem.md)
  - [CatalogApiClient::ApprovalRequest](docs/ApprovalRequest.md)
  - [CatalogApiClient::ApprovalRequestsCollection](docs/ApprovalRequestsCollection.md)
  - [CatalogApiClient::CollectionLinks](docs/CollectionLinks.md)
  - [CatalogApiClient::CollectionMetadata](docs/CollectionMetadata.md)
+ - [CatalogApiClient::CopyPortfolioItem](docs/CopyPortfolioItem.md)
  - [CatalogApiClient::CreatePortfolioItem](docs/CreatePortfolioItem.md)
+ - [CatalogApiClient::Icon](docs/Icon.md)
+ - [CatalogApiClient::Image](docs/Image.md)
+ - [CatalogApiClient::InlineObject](docs/InlineObject.md)
+ - [CatalogApiClient::InlineResponse200](docs/InlineResponse200.md)
  - [CatalogApiClient::Order](docs/Order.md)
  - [CatalogApiClient::OrderItem](docs/OrderItem.md)
  - [CatalogApiClient::OrderItemsCollection](docs/OrderItemsCollection.md)
  - [CatalogApiClient::OrdersCollection](docs/OrdersCollection.md)
+ - [CatalogApiClient::OverrideIcon](docs/OverrideIcon.md)
  - [CatalogApiClient::Portfolio](docs/Portfolio.md)
  - [CatalogApiClient::PortfolioItem](docs/PortfolioItem.md)
+ - [CatalogApiClient::PortfolioItemNextName](docs/PortfolioItemNextName.md)
  - [CatalogApiClient::PortfolioItemsCollection](docs/PortfolioItemsCollection.md)
  - [CatalogApiClient::PortfoliosCollection](docs/PortfoliosCollection.md)
  - [CatalogApiClient::ProgressMessage](docs/ProgressMessage.md)
  - [CatalogApiClient::ProgressMessagesCollection](docs/ProgressMessagesCollection.md)
  - [CatalogApiClient::ProviderControlParameters](docs/ProviderControlParameters.md)
- - [CatalogApiClient::ServiceOfferingIcon](docs/ServiceOfferingIcon.md)
+ - [CatalogApiClient::RestoreKey](docs/RestoreKey.md)
  - [CatalogApiClient::ServicePlan](docs/ServicePlan.md)
+ - [CatalogApiClient::Setting](docs/Setting.md)
  - [CatalogApiClient::ShareInfo](docs/ShareInfo.md)
  - [CatalogApiClient::SharePolicy](docs/SharePolicy.md)
+ - [CatalogApiClient::TenantSettings](docs/TenantSettings.md)
+ - [CatalogApiClient::TenantSettingsSchema](docs/TenantSettingsSchema.md)
  - [CatalogApiClient::UnsharePolicy](docs/UnsharePolicy.md)
 
 

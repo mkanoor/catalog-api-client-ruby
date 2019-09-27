@@ -44,6 +44,10 @@ module CatalogApiClient
       if @api_client.config.client_side_validation && portfolio_id.nil?
         fail ArgumentError, "Missing the required parameter 'portfolio_id' when calling PortfolioApi.add_portfolio_item_to_portfolio"
       end
+      if @api_client.config.client_side_validation && portfolio_id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'portfolio_id' when calling PortfolioApi.add_portfolio_item_to_portfolio, must conform to the pattern /^\d+$/."
+      end
+
       # verify the required parameter 'add_portfolio_item' is set
       if @api_client.config.client_side_validation && add_portfolio_item.nil?
         fail ArgumentError, "Missing the required parameter 'add_portfolio_item' when calling PortfolioApi.add_portfolio_item_to_portfolio"
@@ -136,17 +140,17 @@ module CatalogApiClient
     # Deletes the portfolio specified by the ID. 
     # @param id ID of the resource
     # @param [Hash] opts the optional parameters
-    # @return [nil]
+    # @return [RestoreKey]
     def destroy_portfolio(id, opts = {})
-      destroy_portfolio_with_http_info(id, opts)
-      nil
+      data, _status_code, _headers = destroy_portfolio_with_http_info(id, opts)
+      data
     end
 
     # Delete an existing portfolio
     # Deletes the portfolio specified by the ID. 
     # @param id ID of the resource
     # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    # @return [Array<(RestoreKey, Fixnum, Hash)>] RestoreKey data, response status code and response headers
     def destroy_portfolio_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: PortfolioApi.destroy_portfolio ...'
@@ -155,6 +159,10 @@ module CatalogApiClient
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling PortfolioApi.destroy_portfolio"
       end
+      if @api_client.config.client_side_validation && id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'id' when calling PortfolioApi.destroy_portfolio, must conform to the pattern /^\d+$/."
+      end
+
       # resource path
       local_var_path = '/portfolios/{id}'.sub('{' + 'id' + '}', id.to_s)
 
@@ -163,6 +171,8 @@ module CatalogApiClient
 
       # header parameters
       header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
 
       # form parameters
       form_params = {}
@@ -175,7 +185,8 @@ module CatalogApiClient
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
-        :auth_names => auth_names)
+        :auth_names => auth_names,
+        :return_type => 'RestoreKey')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: PortfolioApi#destroy_portfolio\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -211,6 +222,10 @@ module CatalogApiClient
       if @api_client.config.client_side_validation && portfolio_id.nil?
         fail ArgumentError, "Missing the required parameter 'portfolio_id' when calling PortfolioApi.fetch_portfolio_items_with_portfolio"
       end
+      if @api_client.config.client_side_validation && portfolio_id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'portfolio_id' when calling PortfolioApi.fetch_portfolio_items_with_portfolio, must conform to the pattern /^\d+$/."
+      end
+
       if @api_client.config.client_side_validation && !opts[:'limit'].nil? && opts[:'limit'] > 1000
         fail ArgumentError, 'invalid value for "opts[:"limit"]" when calling PortfolioApi.fetch_portfolio_items_with_portfolio, must be smaller than or equal to 1000.'
       end
@@ -324,6 +339,63 @@ module CatalogApiClient
       return data, status_code, headers
     end
 
+    # Make a copy of the Portfolio
+    # Make a copy of the Portfolio.
+    # @param portfolio_id The Portfolio ID
+    # @param [Hash] opts the optional parameters
+    # @return [Portfolio]
+    def post_copy_portfolio(portfolio_id, opts = {})
+      data, _status_code, _headers = post_copy_portfolio_with_http_info(portfolio_id, opts)
+      data
+    end
+
+    # Make a copy of the Portfolio
+    # Make a copy of the Portfolio.
+    # @param portfolio_id The Portfolio ID
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Portfolio, Fixnum, Hash)>] Portfolio data, response status code and response headers
+    def post_copy_portfolio_with_http_info(portfolio_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: PortfolioApi.post_copy_portfolio ...'
+      end
+      # verify the required parameter 'portfolio_id' is set
+      if @api_client.config.client_side_validation && portfolio_id.nil?
+        fail ArgumentError, "Missing the required parameter 'portfolio_id' when calling PortfolioApi.post_copy_portfolio"
+      end
+      if @api_client.config.client_side_validation && portfolio_id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'portfolio_id' when calling PortfolioApi.post_copy_portfolio, must conform to the pattern /^\d+$/."
+      end
+
+      # resource path
+      local_var_path = '/portfolios/{portfolio_id}/copy'.sub('{' + 'portfolio_id' + '}', portfolio_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['BasicAuth']
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Portfolio')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: PortfolioApi#post_copy_portfolio\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Fetch share information about this portfolio, the response would include a collection of groups and permissions with each group
     # Fetch share information about a portfolio 
     # @param portfolio_id The Portfolio ID
@@ -347,6 +419,10 @@ module CatalogApiClient
       if @api_client.config.client_side_validation && portfolio_id.nil?
         fail ArgumentError, "Missing the required parameter 'portfolio_id' when calling PortfolioApi.share_info"
       end
+      if @api_client.config.client_side_validation && portfolio_id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'portfolio_id' when calling PortfolioApi.share_info, must conform to the pattern /^\d+$/."
+      end
+
       # resource path
       local_var_path = '/portfolios/{portfolio_id}/share_info'.sub('{' + 'portfolio_id' + '}', portfolio_id.to_s)
 
@@ -402,6 +478,10 @@ module CatalogApiClient
       if @api_client.config.client_side_validation && portfolio_id.nil?
         fail ArgumentError, "Missing the required parameter 'portfolio_id' when calling PortfolioApi.share_portfolio"
       end
+      if @api_client.config.client_side_validation && portfolio_id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'portfolio_id' when calling PortfolioApi.share_portfolio, must conform to the pattern /^\d+$/."
+      end
+
       # verify the required parameter 'share_policy' is set
       if @api_client.config.client_side_validation && share_policy.nil?
         fail ArgumentError, "Missing the required parameter 'share_policy' when calling PortfolioApi.share_portfolio"
@@ -458,6 +538,10 @@ module CatalogApiClient
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling PortfolioApi.show_portfolio"
       end
+      if @api_client.config.client_side_validation && id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'id' when calling PortfolioApi.show_portfolio, must conform to the pattern /^\d+$/."
+      end
+
       # resource path
       local_var_path = '/portfolios/{id}'.sub('{' + 'id' + '}', id.to_s)
 
@@ -488,6 +572,71 @@ module CatalogApiClient
       return data, status_code, headers
     end
 
+    # Undelete specific portfolio
+    # Undeletes the portfolio specified by the portfolio ID. 
+    # @param id ID of the resource
+    # @param restore_key 
+    # @param [Hash] opts the optional parameters
+    # @return [Portfolio]
+    def un_delete_portfolio(id, restore_key, opts = {})
+      data, _status_code, _headers = un_delete_portfolio_with_http_info(id, restore_key, opts)
+      data
+    end
+
+    # Undelete specific portfolio
+    # Undeletes the portfolio specified by the portfolio ID. 
+    # @param id ID of the resource
+    # @param restore_key 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Portfolio, Fixnum, Hash)>] Portfolio data, response status code and response headers
+    def un_delete_portfolio_with_http_info(id, restore_key, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: PortfolioApi.un_delete_portfolio ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling PortfolioApi.un_delete_portfolio"
+      end
+      if @api_client.config.client_side_validation && id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'id' when calling PortfolioApi.un_delete_portfolio, must conform to the pattern /^\d+$/."
+      end
+
+      # verify the required parameter 'restore_key' is set
+      if @api_client.config.client_side_validation && restore_key.nil?
+        fail ArgumentError, "Missing the required parameter 'restore_key' when calling PortfolioApi.un_delete_portfolio"
+      end
+      # resource path
+      local_var_path = '/portfolios/{id}/undelete'.sub('{' + 'id' + '}', id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(restore_key)
+      auth_names = ['BasicAuth']
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Portfolio')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: PortfolioApi#un_delete_portfolio\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Unshare a portfolio from one or more groups with specific permission
     # Unshare a Portfolio with one or more groups with specific permissions 
     # @param portfolio_id The Portfolio ID
@@ -513,6 +662,10 @@ module CatalogApiClient
       if @api_client.config.client_side_validation && portfolio_id.nil?
         fail ArgumentError, "Missing the required parameter 'portfolio_id' when calling PortfolioApi.unshare_portfolio"
       end
+      if @api_client.config.client_side_validation && portfolio_id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'portfolio_id' when calling PortfolioApi.unshare_portfolio, must conform to the pattern /^\d+$/."
+      end
+
       # verify the required parameter 'unshare_policy' is set
       if @api_client.config.client_side_validation && unshare_policy.nil?
         fail ArgumentError, "Missing the required parameter 'unshare_policy' when calling PortfolioApi.unshare_portfolio"
@@ -571,6 +724,10 @@ module CatalogApiClient
       if @api_client.config.client_side_validation && id.nil?
         fail ArgumentError, "Missing the required parameter 'id' when calling PortfolioApi.update_portfolio"
       end
+      if @api_client.config.client_side_validation && id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'id' when calling PortfolioApi.update_portfolio, must conform to the pattern /^\d+$/."
+      end
+
       # verify the required parameter 'portfolio' is set
       if @api_client.config.client_side_validation && portfolio.nil?
         fail ArgumentError, "Missing the required parameter 'portfolio' when calling PortfolioApi.update_portfolio"

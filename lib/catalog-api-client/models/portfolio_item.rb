@@ -40,6 +40,13 @@ module CatalogApiClient
 
     attr_accessor :owner
 
+    # The source reference this product was created from
+    attr_accessor :service_offering_source_ref
+
+    attr_accessor :created_at
+
+    attr_accessor :updated_at
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -55,7 +62,10 @@ module CatalogApiClient
         :'documentation_url' => :'documentation_url',
         :'support_url' => :'support_url',
         :'workflow_ref' => :'workflow_ref',
-        :'owner' => :'owner'
+        :'owner' => :'owner',
+        :'service_offering_source_ref' => :'service_offering_source_ref',
+        :'created_at' => :'created_at',
+        :'updated_at' => :'updated_at'
       }
     end
 
@@ -74,7 +84,10 @@ module CatalogApiClient
         :'documentation_url' => :'String',
         :'support_url' => :'String',
         :'workflow_ref' => :'String',
-        :'owner' => :'String'
+        :'owner' => :'String',
+        :'service_offering_source_ref' => :'String',
+        :'created_at' => :'DateTime',
+        :'updated_at' => :'DateTime'
       }
     end
 
@@ -137,18 +150,45 @@ module CatalogApiClient
       if attributes.has_key?(:'owner')
         self.owner = attributes[:'owner']
       end
+
+      if attributes.has_key?(:'service_offering_source_ref')
+        self.service_offering_source_ref = attributes[:'service_offering_source_ref']
+      end
+
+      if attributes.has_key?(:'created_at')
+        self.created_at = attributes[:'created_at']
+      end
+
+      if attributes.has_key?(:'updated_at')
+        self.updated_at = attributes[:'updated_at']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @name.nil?
+        invalid_properties.push('invalid value for "name", name cannot be nil.')
+      end
+
+      if @display_name.nil?
+        invalid_properties.push('invalid value for "display_name", display_name cannot be nil.')
+      end
+
+      if @service_offering_source_ref.nil?
+        invalid_properties.push('invalid value for "service_offering_source_ref", service_offering_source_ref cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @name.nil?
+      return false if @display_name.nil?
+      return false if @service_offering_source_ref.nil?
       true
     end
 
@@ -169,7 +209,10 @@ module CatalogApiClient
           documentation_url == o.documentation_url &&
           support_url == o.support_url &&
           workflow_ref == o.workflow_ref &&
-          owner == o.owner
+          owner == o.owner &&
+          service_offering_source_ref == o.service_offering_source_ref &&
+          created_at == o.created_at &&
+          updated_at == o.updated_at
     end
 
     # @see the `==` method
@@ -181,7 +224,7 @@ module CatalogApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, favorite, name, description, orphan, state, display_name, long_description, distributor, documentation_url, support_url, workflow_ref, owner].hash
+      [id, favorite, name, description, orphan, state, display_name, long_description, distributor, documentation_url, support_url, workflow_ref, owner, service_offering_source_ref, created_at, updated_at].hash
     end
 
     # Builds the object from hash

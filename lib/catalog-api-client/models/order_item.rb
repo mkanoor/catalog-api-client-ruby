@@ -32,9 +32,13 @@ module CatalogApiClient
     # Current state of this order item.
     attr_accessor :state
 
+    # The Order that the OrderItem belongs to.
+    attr_accessor :order_id
+
     attr_accessor :created_at
 
-    attr_accessor :ordered_at
+    # The time at which the order request was sent to the Topology Service
+    attr_accessor :order_request_sent_at
 
     attr_accessor :completed_at
 
@@ -80,8 +84,9 @@ module CatalogApiClient
         :'service_plan_ref' => :'service_plan_ref',
         :'portfolio_item_id' => :'portfolio_item_id',
         :'state' => :'state',
+        :'order_id' => :'order_id',
         :'created_at' => :'created_at',
-        :'ordered_at' => :'ordered_at',
+        :'order_request_sent_at' => :'order_request_sent_at',
         :'completed_at' => :'completed_at',
         :'updated_at' => :'updated_at',
         :'owner' => :'owner',
@@ -100,8 +105,9 @@ module CatalogApiClient
         :'service_plan_ref' => :'String',
         :'portfolio_item_id' => :'String',
         :'state' => :'String',
+        :'order_id' => :'String',
         :'created_at' => :'DateTime',
-        :'ordered_at' => :'DateTime',
+        :'order_request_sent_at' => :'DateTime',
         :'completed_at' => :'DateTime',
         :'updated_at' => :'DateTime',
         :'owner' => :'String',
@@ -148,12 +154,16 @@ module CatalogApiClient
         self.state = attributes[:'state']
       end
 
+      if attributes.has_key?(:'order_id')
+        self.order_id = attributes[:'order_id']
+      end
+
       if attributes.has_key?(:'created_at')
         self.created_at = attributes[:'created_at']
       end
 
-      if attributes.has_key?(:'ordered_at')
-        self.ordered_at = attributes[:'ordered_at']
+      if attributes.has_key?(:'order_request_sent_at')
+        self.order_request_sent_at = attributes[:'order_request_sent_at']
       end
 
       if attributes.has_key?(:'completed_at')
@@ -212,7 +222,7 @@ module CatalogApiClient
       return false if @provider_control_parameters.nil?
       return false if @service_plan_ref.nil?
       return false if @portfolio_item_id.nil?
-      state_validator = EnumAttributeValidator.new('String', ['Created', 'Approval Pending', 'Ordered', 'Failed', 'Completed', 'Denied'])
+      state_validator = EnumAttributeValidator.new('String', ['Created', 'Approval Pending', 'Ordered', 'Failed', 'Completed', 'Approved', 'Denied'])
       return false unless state_validator.valid?(@state)
       true
     end
@@ -220,7 +230,7 @@ module CatalogApiClient
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] state Object to be assigned
     def state=(state)
-      validator = EnumAttributeValidator.new('String', ['Created', 'Approval Pending', 'Ordered', 'Failed', 'Completed', 'Denied'])
+      validator = EnumAttributeValidator.new('String', ['Created', 'Approval Pending', 'Ordered', 'Failed', 'Completed', 'Approved', 'Denied'])
       unless validator.valid?(state)
         fail ArgumentError, 'invalid value for "state", must be one of #{validator.allowable_values}.'
       end
@@ -239,8 +249,9 @@ module CatalogApiClient
           service_plan_ref == o.service_plan_ref &&
           portfolio_item_id == o.portfolio_item_id &&
           state == o.state &&
+          order_id == o.order_id &&
           created_at == o.created_at &&
-          ordered_at == o.ordered_at &&
+          order_request_sent_at == o.order_request_sent_at &&
           completed_at == o.completed_at &&
           updated_at == o.updated_at &&
           owner == o.owner &&
@@ -257,7 +268,7 @@ module CatalogApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, count, service_parameters, provider_control_parameters, service_plan_ref, portfolio_item_id, state, created_at, ordered_at, completed_at, updated_at, owner, external_url, insights_request_id].hash
+      [id, count, service_parameters, provider_control_parameters, service_plan_ref, portfolio_item_id, state, order_id, created_at, order_request_sent_at, completed_at, updated_at, owner, external_url, insights_request_id].hash
     end
 
     # Builds the object from hash

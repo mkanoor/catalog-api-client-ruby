@@ -32,6 +32,18 @@ describe 'OrderItemApi' do
     end
   end
 
+  # unit tests for destroy_order_item
+  # Delete an existing OrderItem
+  # Deletes the order item  based on order item ID passed 
+  # @param id ID of the resource
+  # @param [Hash] opts the optional parameters
+  # @return [RestoreKey]
+  describe 'destroy_order_item test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for list_approval_requests
   # Gets a list of approval requests for an item
   # Gets a list of approval request associated with an order item. As the item is being approved one can check the status of the approvals. 
@@ -47,6 +59,20 @@ describe 'OrderItemApi' do
     end
   end
 
+  # unit tests for list_order_items
+  # List Order Items
+  # Gets a list of order items. 
+  # @param [Hash] opts the optional parameters
+  # @option opts [Integer] :limit The numbers of items to return per page.
+  # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
+  # @option opts [Object] :filter Filter for querying collections.
+  # @return [OrderItemsCollection]
+  describe 'list_order_items test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for list_progress_messages
   # Gets a list of progress messages in an item
   # Gets a list of progress messages associated with an order item. As the item is being processed the provider can update the progress messages. 
@@ -57,6 +83,31 @@ describe 'OrderItemApi' do
   # @option opts [Object] :filter Filter for querying collections.
   # @return [ProgressMessagesCollection]
   describe 'list_progress_messages test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for restore_order_item
+  # Restore specific Order item
+  # Restores the order item specified by the order item ID. 
+  # @param id ID of the resource
+  # @param restore_key 
+  # @param [Hash] opts the optional parameters
+  # @return [OrderItem]
+  describe 'restore_order_item test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
+  # unit tests for show_order_item
+  # Gets a specific order item
+  # Gets a specific order item based on the order item ID passed 
+  # @param id ID of the resource
+  # @param [Hash] opts the optional parameters
+  # @return [OrderItem]
+  describe 'show_order_item test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

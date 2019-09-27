@@ -35,6 +35,10 @@ describe 'SharePolicy' do
   describe 'test attribute "permissions"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('Array<String>', ["catalog:portfolios:read", "catalog:portfolios:write", "catalog:portfolios:order"])
+      # validator.allowable_values.each do |value|
+      #   expect { @instance.permissions = value }.not_to raise_error
+      # end
     end
   end
 

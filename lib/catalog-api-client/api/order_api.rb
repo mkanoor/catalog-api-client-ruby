@@ -44,6 +44,10 @@ module CatalogApiClient
       if @api_client.config.client_side_validation && order_id.nil?
         fail ArgumentError, "Missing the required parameter 'order_id' when calling OrderApi.add_to_order"
       end
+      if @api_client.config.client_side_validation && order_id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'order_id' when calling OrderApi.add_to_order, must conform to the pattern /^\d+$/."
+      end
+
       # verify the required parameter 'order_item' is set
       if @api_client.config.client_side_validation && order_item.nil?
         fail ArgumentError, "Missing the required parameter 'order_item' when calling OrderApi.add_to_order"
@@ -73,6 +77,63 @@ module CatalogApiClient
         :auth_names => auth_names)
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: OrderApi#add_to_order\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Cancels a given order
+    # Returns an updated order. 
+    # @param order_id The Order ID
+    # @param [Hash] opts the optional parameters
+    # @return [Order]
+    def cancel_order(order_id, opts = {})
+      data, _status_code, _headers = cancel_order_with_http_info(order_id, opts)
+      data
+    end
+
+    # Cancels a given order
+    # Returns an updated order. 
+    # @param order_id The Order ID
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Order, Fixnum, Hash)>] Order data, response status code and response headers
+    def cancel_order_with_http_info(order_id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: OrderApi.cancel_order ...'
+      end
+      # verify the required parameter 'order_id' is set
+      if @api_client.config.client_side_validation && order_id.nil?
+        fail ArgumentError, "Missing the required parameter 'order_id' when calling OrderApi.cancel_order"
+      end
+      if @api_client.config.client_side_validation && order_id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'order_id' when calling OrderApi.cancel_order, must conform to the pattern /^\d+$/."
+      end
+
+      # resource path
+      local_var_path = '/orders/{order_id}/cancel'.sub('{' + 'order_id' + '}', order_id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['BasicAuth']
+      data, status_code, headers = @api_client.call_api(:PATCH, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Order')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: OrderApi#cancel_order\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -124,6 +185,63 @@ module CatalogApiClient
       return data, status_code, headers
     end
 
+    # Delete an existing Order
+    # Deletes the Order based on order ID passed 
+    # @param id ID of the resource
+    # @param [Hash] opts the optional parameters
+    # @return [RestoreKey]
+    def destroy_order(id, opts = {})
+      data, _status_code, _headers = destroy_order_with_http_info(id, opts)
+      data
+    end
+
+    # Delete an existing Order
+    # Deletes the Order based on order ID passed 
+    # @param id ID of the resource
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(RestoreKey, Fixnum, Hash)>] RestoreKey data, response status code and response headers
+    def destroy_order_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: OrderApi.destroy_order ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling OrderApi.destroy_order"
+      end
+      if @api_client.config.client_side_validation && id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'id' when calling OrderApi.destroy_order, must conform to the pattern /^\d+$/."
+      end
+
+      # resource path
+      local_var_path = '/orders/{id}'.sub('{' + 'id' + '}', id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['BasicAuth']
+      data, status_code, headers = @api_client.call_api(:DELETE, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'RestoreKey')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: OrderApi#destroy_order\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Gets a list of items in a given order
     # Gets a list of items associated with an order. 
     # @param order_id The Order ID
@@ -132,8 +250,8 @@ module CatalogApiClient
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set. (default to 0)
     # @option opts [Object] :filter Filter for querying collections.
     # @return [OrderItemsCollection]
-    def list_order_items(order_id, opts = {})
-      data, _status_code, _headers = list_order_items_with_http_info(order_id, opts)
+    def list_order_items_from_order(order_id, opts = {})
+      data, _status_code, _headers = list_order_items_from_order_with_http_info(order_id, opts)
       data
     end
 
@@ -145,24 +263,28 @@ module CatalogApiClient
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
     # @option opts [Object] :filter Filter for querying collections.
     # @return [Array<(OrderItemsCollection, Fixnum, Hash)>] OrderItemsCollection data, response status code and response headers
-    def list_order_items_with_http_info(order_id, opts = {})
+    def list_order_items_from_order_with_http_info(order_id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: OrderApi.list_order_items ...'
+        @api_client.config.logger.debug 'Calling API: OrderApi.list_order_items_from_order ...'
       end
       # verify the required parameter 'order_id' is set
       if @api_client.config.client_side_validation && order_id.nil?
-        fail ArgumentError, "Missing the required parameter 'order_id' when calling OrderApi.list_order_items"
+        fail ArgumentError, "Missing the required parameter 'order_id' when calling OrderApi.list_order_items_from_order"
       end
+      if @api_client.config.client_side_validation && order_id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'order_id' when calling OrderApi.list_order_items_from_order, must conform to the pattern /^\d+$/."
+      end
+
       if @api_client.config.client_side_validation && !opts[:'limit'].nil? && opts[:'limit'] > 1000
-        fail ArgumentError, 'invalid value for "opts[:"limit"]" when calling OrderApi.list_order_items, must be smaller than or equal to 1000.'
+        fail ArgumentError, 'invalid value for "opts[:"limit"]" when calling OrderApi.list_order_items_from_order, must be smaller than or equal to 1000.'
       end
 
       if @api_client.config.client_side_validation && !opts[:'limit'].nil? && opts[:'limit'] < 1
-        fail ArgumentError, 'invalid value for "opts[:"limit"]" when calling OrderApi.list_order_items, must be greater than or equal to 1.'
+        fail ArgumentError, 'invalid value for "opts[:"limit"]" when calling OrderApi.list_order_items_from_order, must be greater than or equal to 1.'
       end
 
       if @api_client.config.client_side_validation && !opts[:'offset'].nil? && opts[:'offset'] < 0
-        fail ArgumentError, 'invalid value for "opts[:"offset"]" when calling OrderApi.list_order_items, must be greater than or equal to 0.'
+        fail ArgumentError, 'invalid value for "opts[:"offset"]" when calling OrderApi.list_order_items_from_order, must be greater than or equal to 0.'
       end
 
       # resource path
@@ -193,7 +315,7 @@ module CatalogApiClient
         :auth_names => auth_names,
         :return_type => 'OrderItemsCollection')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: OrderApi#list_order_items\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: OrderApi#list_order_items_from_order\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -266,14 +388,79 @@ module CatalogApiClient
       return data, status_code, headers
     end
 
+    # Restore specific Order
+    # Restores the order specified by the order ID. 
+    # @param id ID of the resource
+    # @param restore_key 
+    # @param [Hash] opts the optional parameters
+    # @return [Order]
+    def restore_order(id, restore_key, opts = {})
+      data, _status_code, _headers = restore_order_with_http_info(id, restore_key, opts)
+      data
+    end
+
+    # Restore specific Order
+    # Restores the order specified by the order ID. 
+    # @param id ID of the resource
+    # @param restore_key 
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Order, Fixnum, Hash)>] Order data, response status code and response headers
+    def restore_order_with_http_info(id, restore_key, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: OrderApi.restore_order ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling OrderApi.restore_order"
+      end
+      if @api_client.config.client_side_validation && id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'id' when calling OrderApi.restore_order, must conform to the pattern /^\d+$/."
+      end
+
+      # verify the required parameter 'restore_key' is set
+      if @api_client.config.client_side_validation && restore_key.nil?
+        fail ArgumentError, "Missing the required parameter 'restore_key' when calling OrderApi.restore_order"
+      end
+      # resource path
+      local_var_path = '/orders/{id}/restore'.sub('{' + 'id' + '}', id.to_s)
+
+      # query parameters
+      query_params = {}
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = @api_client.object_to_http_body(restore_key)
+      auth_names = ['BasicAuth']
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'Order')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: OrderApi#restore_order\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Gets an individual order item from a given order
     # Gets an order item associated with an order. 
     # @param order_id The Order ID
     # @param id ID of the resource
     # @param [Hash] opts the optional parameters
     # @return [OrderItem]
-    def show_order_item(order_id, id, opts = {})
-      data, _status_code, _headers = show_order_item_with_http_info(order_id, id, opts)
+    def show_order_item_from_order(order_id, id, opts = {})
+      data, _status_code, _headers = show_order_item_from_order_with_http_info(order_id, id, opts)
       data
     end
 
@@ -283,18 +470,26 @@ module CatalogApiClient
     # @param id ID of the resource
     # @param [Hash] opts the optional parameters
     # @return [Array<(OrderItem, Fixnum, Hash)>] OrderItem data, response status code and response headers
-    def show_order_item_with_http_info(order_id, id, opts = {})
+    def show_order_item_from_order_with_http_info(order_id, id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: OrderApi.show_order_item ...'
+        @api_client.config.logger.debug 'Calling API: OrderApi.show_order_item_from_order ...'
       end
       # verify the required parameter 'order_id' is set
       if @api_client.config.client_side_validation && order_id.nil?
-        fail ArgumentError, "Missing the required parameter 'order_id' when calling OrderApi.show_order_item"
+        fail ArgumentError, "Missing the required parameter 'order_id' when calling OrderApi.show_order_item_from_order"
       end
+      if @api_client.config.client_side_validation && order_id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'order_id' when calling OrderApi.show_order_item_from_order, must conform to the pattern /^\d+$/."
+      end
+
       # verify the required parameter 'id' is set
       if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling OrderApi.show_order_item"
+        fail ArgumentError, "Missing the required parameter 'id' when calling OrderApi.show_order_item_from_order"
       end
+      if @api_client.config.client_side_validation && id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'id' when calling OrderApi.show_order_item_from_order, must conform to the pattern /^\d+$/."
+      end
+
       # resource path
       local_var_path = '/orders/{order_id}/order_items/{id}'.sub('{' + 'order_id' + '}', order_id.to_s).sub('{' + 'id' + '}', id.to_s)
 
@@ -320,7 +515,7 @@ module CatalogApiClient
         :auth_names => auth_names,
         :return_type => 'OrderItem')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: OrderApi#show_order_item\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: OrderApi#show_order_item_from_order\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -348,6 +543,10 @@ module CatalogApiClient
       if @api_client.config.client_side_validation && order_id.nil?
         fail ArgumentError, "Missing the required parameter 'order_id' when calling OrderApi.submit_order"
       end
+      if @api_client.config.client_side_validation && order_id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'order_id' when calling OrderApi.submit_order, must conform to the pattern /^\d+$/."
+      end
+
       # resource path
       local_var_path = '/orders/{order_id}/submit_order'.sub('{' + 'order_id' + '}', order_id.to_s)
 

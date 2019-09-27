@@ -59,7 +59,7 @@ describe 'ApprovalRequest' do
   describe 'test attribute "state"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["undecided", "approved", "denied"])
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('String', ["undecided", "approved", "denied", "canceled"])
       # validator.allowable_values.each do |value|
       #   expect { @instance.state = value }.not_to raise_error
       # end

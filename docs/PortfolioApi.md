@@ -9,9 +9,11 @@ Method | HTTP request | Description
 [**destroy_portfolio**](PortfolioApi.md#destroy_portfolio) | **DELETE** /portfolios/{id} | Delete an existing portfolio
 [**fetch_portfolio_items_with_portfolio**](PortfolioApi.md#fetch_portfolio_items_with_portfolio) | **GET** /portfolios/{portfolio_id}/portfolio_items | Get all portfolio items from a specific portfolio
 [**list_portfolios**](PortfolioApi.md#list_portfolios) | **GET** /portfolios | List portfolios
+[**post_copy_portfolio**](PortfolioApi.md#post_copy_portfolio) | **POST** /portfolios/{portfolio_id}/copy | Make a copy of the Portfolio
 [**share_info**](PortfolioApi.md#share_info) | **GET** /portfolios/{portfolio_id}/share_info | Fetch share information about this portfolio, the response would include a collection of groups and permissions with each group
 [**share_portfolio**](PortfolioApi.md#share_portfolio) | **POST** /portfolios/{portfolio_id}/share | Share a portfolio with one or more groups with specific permission
 [**show_portfolio**](PortfolioApi.md#show_portfolio) | **GET** /portfolios/{id} | Get a specific portfolio
+[**un_delete_portfolio**](PortfolioApi.md#un_delete_portfolio) | **POST** /portfolios/{id}/undelete | Undelete specific portfolio
 [**unshare_portfolio**](PortfolioApi.md#unshare_portfolio) | **POST** /portfolios/{portfolio_id}/unshare | Unshare a portfolio from one or more groups with specific permission
 [**update_portfolio**](PortfolioApi.md#update_portfolio) | **PATCH** /portfolios/{id} | Edit an existing portfolio
 
@@ -120,7 +122,7 @@ Name | Type | Description  | Notes
 
 
 # **destroy_portfolio**
-> destroy_portfolio(id)
+> RestoreKey destroy_portfolio(id)
 
 Delete an existing portfolio
 
@@ -142,7 +144,8 @@ id = 'id_example' # String | ID of the resource
 
 begin
   #Delete an existing portfolio
-  api_instance.destroy_portfolio(id)
+  result = api_instance.destroy_portfolio(id)
+  p result
 rescue CatalogApiClient::ApiError => e
   puts "Exception when calling PortfolioApi->destroy_portfolio: #{e}"
 end
@@ -156,7 +159,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-nil (empty response body)
+[**RestoreKey**](RestoreKey.md)
 
 ### Authorization
 
@@ -165,7 +168,7 @@ nil (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 
@@ -273,6 +276,57 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PortfoliosCollection**](PortfoliosCollection.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+
+# **post_copy_portfolio**
+> Portfolio post_copy_portfolio(portfolio_id)
+
+Make a copy of the Portfolio
+
+Make a copy of the Portfolio.
+
+### Example
+```ruby
+# load the gem
+require 'catalog-api-client'
+# setup authorization
+CatalogApiClient.configure do |config|
+  # Configure HTTP basic authorization: BasicAuth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
+
+api_instance = CatalogApiClient::PortfolioApi.new
+portfolio_id = 'portfolio_id_example' # String | The Portfolio ID
+
+begin
+  #Make a copy of the Portfolio
+  result = api_instance.post_copy_portfolio(portfolio_id)
+  p result
+rescue CatalogApiClient::ApiError => e
+  puts "Exception when calling PortfolioApi->post_copy_portfolio: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **portfolio_id** | **String**| The Portfolio ID | 
+
+### Return type
+
+[**Portfolio**](Portfolio.md)
 
 ### Authorization
 
@@ -435,6 +489,59 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+
+# **un_delete_portfolio**
+> Portfolio un_delete_portfolio(id, restore_key)
+
+Undelete specific portfolio
+
+Undeletes the portfolio specified by the portfolio ID. 
+
+### Example
+```ruby
+# load the gem
+require 'catalog-api-client'
+# setup authorization
+CatalogApiClient.configure do |config|
+  # Configure HTTP basic authorization: BasicAuth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
+
+api_instance = CatalogApiClient::PortfolioApi.new
+id = 'id_example' # String | ID of the resource
+restore_key = CatalogApiClient::RestoreKey.new # RestoreKey | 
+
+begin
+  #Undelete specific portfolio
+  result = api_instance.un_delete_portfolio(id, restore_key)
+  p result
+rescue CatalogApiClient::ApiError => e
+  puts "Exception when calling PortfolioApi->un_delete_portfolio: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| ID of the resource | 
+ **restore_key** | [**RestoreKey**](RestoreKey.md)|  | 
+
+### Return type
+
+[**Portfolio**](Portfolio.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 

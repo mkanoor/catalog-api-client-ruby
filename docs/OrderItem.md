@@ -10,8 +10,9 @@ Name | Type | Description | Notes
 **service_plan_ref** | **String** | Stores the service plan ref from the Topology Service. | 
 **portfolio_item_id** | **String** | Stores the Portfolio Item ID. | 
 **state** | **String** | Current state of this order item. | [optional] 
+**order_id** | **String** | The Order that the OrderItem belongs to. | [optional] 
 **created_at** | **DateTime** |  | [optional] 
-**ordered_at** | **DateTime** |  | [optional] 
+**order_request_sent_at** | **DateTime** | The time at which the order request was sent to the Topology Service | [optional] 
 **completed_at** | **DateTime** |  | [optional] 
 **updated_at** | **DateTime** |  | [optional] 
 **owner** | **String** |  | [optional] 
