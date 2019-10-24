@@ -13,87 +13,21 @@ OpenAPI Generator version: 3.3.4
 require 'date'
 
 module CatalogApiClient
-  class PortfolioItem
-    attr_accessor :id
-
-    attr_accessor :favorite
-
-    attr_accessor :name
-
-    attr_accessor :description
-
-    attr_accessor :orphan
-
-    attr_accessor :state
-
-    attr_accessor :long_description
-
-    attr_accessor :distributor
-
-    attr_accessor :documentation_url
-
-    attr_accessor :support_url
-
-    attr_accessor :workflow_ref
-
-    attr_accessor :owner
-
-    # The source reference this product was created from
-    attr_accessor :service_offering_source_ref
-
-    # The service offering type stored by the Topology Service
-    attr_accessor :service_offering_type
-
-    # ID of a parent portfolio
-    attr_accessor :portfolio_id
-
-    attr_accessor :created_at
-
-    attr_accessor :updated_at
+  class Tenant
+    # The Request account number
+    attr_accessor :external_tenant
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
-        :'favorite' => :'favorite',
-        :'name' => :'name',
-        :'description' => :'description',
-        :'orphan' => :'orphan',
-        :'state' => :'state',
-        :'long_description' => :'long_description',
-        :'distributor' => :'distributor',
-        :'documentation_url' => :'documentation_url',
-        :'support_url' => :'support_url',
-        :'workflow_ref' => :'workflow_ref',
-        :'owner' => :'owner',
-        :'service_offering_source_ref' => :'service_offering_source_ref',
-        :'service_offering_type' => :'service_offering_type',
-        :'portfolio_id' => :'portfolio_id',
-        :'created_at' => :'created_at',
-        :'updated_at' => :'updated_at'
+        :'external_tenant' => :'external_tenant'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String',
-        :'favorite' => :'BOOLEAN',
-        :'name' => :'String',
-        :'description' => :'String',
-        :'orphan' => :'BOOLEAN',
-        :'state' => :'String',
-        :'long_description' => :'String',
-        :'distributor' => :'String',
-        :'documentation_url' => :'String',
-        :'support_url' => :'String',
-        :'workflow_ref' => :'String',
-        :'owner' => :'String',
-        :'service_offering_source_ref' => :'String',
-        :'service_offering_type' => :'String',
-        :'portfolio_id' => :'String',
-        :'created_at' => :'DateTime',
-        :'updated_at' => :'DateTime'
+        :'external_tenant' => :'String'
       }
     end
 
@@ -105,72 +39,8 @@ module CatalogApiClient
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'id')
-        self.id = attributes[:'id']
-      end
-
-      if attributes.has_key?(:'favorite')
-        self.favorite = attributes[:'favorite']
-      end
-
-      if attributes.has_key?(:'name')
-        self.name = attributes[:'name']
-      end
-
-      if attributes.has_key?(:'description')
-        self.description = attributes[:'description']
-      end
-
-      if attributes.has_key?(:'orphan')
-        self.orphan = attributes[:'orphan']
-      end
-
-      if attributes.has_key?(:'state')
-        self.state = attributes[:'state']
-      end
-
-      if attributes.has_key?(:'long_description')
-        self.long_description = attributes[:'long_description']
-      end
-
-      if attributes.has_key?(:'distributor')
-        self.distributor = attributes[:'distributor']
-      end
-
-      if attributes.has_key?(:'documentation_url')
-        self.documentation_url = attributes[:'documentation_url']
-      end
-
-      if attributes.has_key?(:'support_url')
-        self.support_url = attributes[:'support_url']
-      end
-
-      if attributes.has_key?(:'workflow_ref')
-        self.workflow_ref = attributes[:'workflow_ref']
-      end
-
-      if attributes.has_key?(:'owner')
-        self.owner = attributes[:'owner']
-      end
-
-      if attributes.has_key?(:'service_offering_source_ref')
-        self.service_offering_source_ref = attributes[:'service_offering_source_ref']
-      end
-
-      if attributes.has_key?(:'service_offering_type')
-        self.service_offering_type = attributes[:'service_offering_type']
-      end
-
-      if attributes.has_key?(:'portfolio_id')
-        self.portfolio_id = attributes[:'portfolio_id']
-      end
-
-      if attributes.has_key?(:'created_at')
-        self.created_at = attributes[:'created_at']
-      end
-
-      if attributes.has_key?(:'updated_at')
-        self.updated_at = attributes[:'updated_at']
+      if attributes.has_key?(:'external_tenant')
+        self.external_tenant = attributes[:'external_tenant']
       end
     end
 
@@ -192,23 +62,7 @@ module CatalogApiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
-          favorite == o.favorite &&
-          name == o.name &&
-          description == o.description &&
-          orphan == o.orphan &&
-          state == o.state &&
-          long_description == o.long_description &&
-          distributor == o.distributor &&
-          documentation_url == o.documentation_url &&
-          support_url == o.support_url &&
-          workflow_ref == o.workflow_ref &&
-          owner == o.owner &&
-          service_offering_source_ref == o.service_offering_source_ref &&
-          service_offering_type == o.service_offering_type &&
-          portfolio_id == o.portfolio_id &&
-          created_at == o.created_at &&
-          updated_at == o.updated_at
+          external_tenant == o.external_tenant
     end
 
     # @see the `==` method
@@ -220,7 +74,7 @@ module CatalogApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, favorite, name, description, orphan, state, long_description, distributor, documentation_url, support_url, workflow_ref, owner, service_offering_source_ref, service_offering_type, portfolio_id, created_at, updated_at].hash
+      [external_tenant].hash
     end
 
     # Builds the object from hash

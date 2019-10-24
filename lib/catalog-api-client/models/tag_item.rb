@@ -13,26 +13,28 @@ OpenAPI Generator version: 3.3.4
 require 'date'
 
 module CatalogApiClient
-  class InlineResponse200
-    # Results from the GraphQL query
-    attr_accessor :data
+  class TagItem
+    attr_accessor :name
 
-    # Errors resulting from the GraphQL query
-    attr_accessor :errors
+    attr_accessor :namespace
+
+    attr_accessor :value
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'data' => :'data',
-        :'errors' => :'errors'
+        :'name' => :'name',
+        :'namespace' => :'namespace',
+        :'value' => :'value'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'data' => :'Object',
-        :'errors' => :'Array<Object>'
+        :'name' => :'String',
+        :'namespace' => :'String',
+        :'value' => :'String'
       }
     end
 
@@ -44,14 +46,16 @@ module CatalogApiClient
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'data')
-        self.data = attributes[:'data']
+      if attributes.has_key?(:'name')
+        self.name = attributes[:'name']
       end
 
-      if attributes.has_key?(:'errors')
-        if (value = attributes[:'errors']).is_a?(Array)
-          self.errors = value
-        end
+      if attributes.has_key?(:'namespace')
+        self.namespace = attributes[:'namespace']
+      end
+
+      if attributes.has_key?(:'value')
+        self.value = attributes[:'value']
       end
     end
 
@@ -73,8 +77,9 @@ module CatalogApiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          data == o.data &&
-          errors == o.errors
+          name == o.name &&
+          namespace == o.namespace &&
+          value == o.value
     end
 
     # @see the `==` method
@@ -86,7 +91,7 @@ module CatalogApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [data, errors].hash
+      [name, namespace, value].hash
     end
 
     # Builds the object from hash

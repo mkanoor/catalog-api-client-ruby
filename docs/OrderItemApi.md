@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 Delete an existing OrderItem
 
-Deletes the order item  based on order item ID passed 
+Deletes the order item  based on order item ID passed
 
 ### Example
 ```ruby
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 Gets a list of approval requests for an item
 
-Gets a list of approval request associated with an order item. As the item is being approved one can check the status of the approvals. 
+Gets a list of approval request associated with an order item. As the item is being approved one can check the status of the approvals.
 
 ### Example
 ```ruby
@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 
 List Order Items
 
-Gets a list of order items. 
+Gets a list of order items.
 
 ### Example
 ```ruby
@@ -184,7 +184,7 @@ Name | Type | Description  | Notes
 
 Gets a list of progress messages in an item
 
-Gets a list of progress messages associated with an order item. As the item is being processed the provider can update the progress messages. 
+Gets a list of progress messages associated with an order item. As the item is being processed the provider can update the progress messages.
 
 ### Example
 ```ruby
@@ -243,7 +243,7 @@ Name | Type | Description  | Notes
 
 Restore specific Order item
 
-Restores the order item specified by the order item ID. 
+Restores the order item specified by the order item ID.
 
 ### Example
 ```ruby
@@ -296,7 +296,7 @@ Name | Type | Description  | Notes
 
 Gets a specific order item
 
-Gets a specific order item based on the order item ID passed 
+Gets a specific order item based on the order item ID passed
 
 ### Example
 ```ruby

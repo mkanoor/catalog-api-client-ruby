@@ -45,9 +45,9 @@ describe 'DefaultApi' do
   # unit tests for post_graph_ql
   # Perform a GraphQL Query
   # Performs a GraphQL Query
+  # @param graph_ql_request GraphQL Query Request
   # @param [Hash] opts the optional parameters
-  # @option opts [InlineObject] :inline_object 
-  # @return [InlineResponse200]
+  # @return [GraphQLResponse]
   describe 'post_graph_ql test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers

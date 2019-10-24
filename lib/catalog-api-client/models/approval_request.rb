@@ -26,6 +26,8 @@ module CatalogApiClient
     # The reason for the current state.
     attr_accessor :reason
 
+    attr_accessor :request_completed_at
+
     # The state of the approval request (approved, denied, undecided, canceled)
     attr_accessor :state
 
@@ -61,6 +63,7 @@ module CatalogApiClient
         :'approval_request_ref' => :'approval_request_ref',
         :'order_item_id' => :'order_item_id',
         :'reason' => :'reason',
+        :'request_completed_at' => :'request_completed_at',
         :'state' => :'state',
         :'workflow_ref' => :'workflow_ref'
       }
@@ -73,6 +76,7 @@ module CatalogApiClient
         :'approval_request_ref' => :'String',
         :'order_item_id' => :'String',
         :'reason' => :'String',
+        :'request_completed_at' => :'DateTime',
         :'state' => :'String',
         :'workflow_ref' => :'String'
       }
@@ -100,6 +104,10 @@ module CatalogApiClient
 
       if attributes.has_key?(:'reason')
         self.reason = attributes[:'reason']
+      end
+
+      if attributes.has_key?(:'request_completed_at')
+        self.request_completed_at = attributes[:'request_completed_at']
       end
 
       if attributes.has_key?(:'state')
@@ -145,6 +153,7 @@ module CatalogApiClient
           approval_request_ref == o.approval_request_ref &&
           order_item_id == o.order_item_id &&
           reason == o.reason &&
+          request_completed_at == o.request_completed_at &&
           state == o.state &&
           workflow_ref == o.workflow_ref
     end
@@ -158,7 +167,7 @@ module CatalogApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, approval_request_ref, order_item_id, reason, state, workflow_ref].hash
+      [id, approval_request_ref, order_item_id, reason, request_completed_at, state, workflow_ref].hash
     end
 
     # Builds the object from hash

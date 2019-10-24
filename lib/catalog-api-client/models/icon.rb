@@ -26,13 +26,21 @@ module CatalogApiClient
     # The source ID for this icon
     attr_accessor :source_id
 
+    # The portfolio this icon belongs to.
+    attr_accessor :portfolio_id
+
+    # The portfolio_item this icon belongs to.
+    attr_accessor :portfolio_item_id
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
         :'id' => :'id',
         :'image_id' => :'image_id',
         :'source_ref' => :'source_ref',
-        :'source_id' => :'source_id'
+        :'source_id' => :'source_id',
+        :'portfolio_id' => :'portfolio_id',
+        :'portfolio_item_id' => :'portfolio_item_id'
       }
     end
 
@@ -42,7 +50,9 @@ module CatalogApiClient
         :'id' => :'String',
         :'image_id' => :'String',
         :'source_ref' => :'String',
-        :'source_id' => :'String'
+        :'source_id' => :'String',
+        :'portfolio_id' => :'String',
+        :'portfolio_item_id' => :'String'
       }
     end
 
@@ -69,6 +79,14 @@ module CatalogApiClient
       if attributes.has_key?(:'source_id')
         self.source_id = attributes[:'source_id']
       end
+
+      if attributes.has_key?(:'portfolio_id')
+        self.portfolio_id = attributes[:'portfolio_id']
+      end
+
+      if attributes.has_key?(:'portfolio_item_id')
+        self.portfolio_item_id = attributes[:'portfolio_item_id']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -92,7 +110,9 @@ module CatalogApiClient
           id == o.id &&
           image_id == o.image_id &&
           source_ref == o.source_ref &&
-          source_id == o.source_id
+          source_id == o.source_id &&
+          portfolio_id == o.portfolio_id &&
+          portfolio_item_id == o.portfolio_item_id
     end
 
     # @see the `==` method
@@ -104,7 +124,7 @@ module CatalogApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id, image_id, source_ref, source_id].hash
+      [id, image_id, source_ref, source_id, portfolio_id, portfolio_item_id].hash
     end
 
     # Builds the object from hash

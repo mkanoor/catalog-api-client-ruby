@@ -53,7 +53,7 @@ nil (empty response body)
 
 
 # **post_graph_ql**
-> InlineResponse200 post_graph_ql(opts)
+> GraphQLResponse post_graph_ql(graph_ql_request)
 
 Perform a GraphQL Query
 
@@ -71,13 +71,11 @@ CatalogApiClient.configure do |config|
 end
 
 api_instance = CatalogApiClient::DefaultApi.new
-opts = {
-  inline_object: CatalogApiClient::InlineObject.new # InlineObject | 
-}
+graph_ql_request = CatalogApiClient::GraphQLRequest.new # GraphQLRequest | GraphQL Query Request
 
 begin
   #Perform a GraphQL Query
-  result = api_instance.post_graph_ql(opts)
+  result = api_instance.post_graph_ql(graph_ql_request)
   p result
 rescue CatalogApiClient::ApiError => e
   puts "Exception when calling DefaultApi->post_graph_ql: #{e}"
@@ -88,11 +86,11 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inline_object** | [**InlineObject**](InlineObject.md)|  | [optional] 
+ **graph_ql_request** | [**GraphQLRequest**](GraphQLRequest.md)| GraphQL Query Request | 
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**GraphQLResponse**](GraphQLResponse.md)
 
 ### Authorization
 

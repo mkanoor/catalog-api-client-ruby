@@ -1,4 +1,4 @@
-# CatalogApiClient::InlineResponse200
+# CatalogApiClient::GraphQLResponse
 
 ## Properties
 Name | Type | Description | Notes

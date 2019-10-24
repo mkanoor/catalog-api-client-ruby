@@ -63,22 +63,26 @@ module CatalogApiClient
 
     # Perform a GraphQL Query
     # Performs a GraphQL Query
+    # @param graph_ql_request GraphQL Query Request
     # @param [Hash] opts the optional parameters
-    # @option opts [InlineObject] :inline_object 
-    # @return [InlineResponse200]
-    def post_graph_ql(opts = {})
-      data, _status_code, _headers = post_graph_ql_with_http_info(opts)
+    # @return [GraphQLResponse]
+    def post_graph_ql(graph_ql_request, opts = {})
+      data, _status_code, _headers = post_graph_ql_with_http_info(graph_ql_request, opts)
       data
     end
 
     # Perform a GraphQL Query
     # Performs a GraphQL Query
+    # @param graph_ql_request GraphQL Query Request
     # @param [Hash] opts the optional parameters
-    # @option opts [InlineObject] :inline_object 
-    # @return [Array<(InlineResponse200, Fixnum, Hash)>] InlineResponse200 data, response status code and response headers
-    def post_graph_ql_with_http_info(opts = {})
+    # @return [Array<(GraphQLResponse, Fixnum, Hash)>] GraphQLResponse data, response status code and response headers
+    def post_graph_ql_with_http_info(graph_ql_request, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DefaultApi.post_graph_ql ...'
+      end
+      # verify the required parameter 'graph_ql_request' is set
+      if @api_client.config.client_side_validation && graph_ql_request.nil?
+        fail ArgumentError, "Missing the required parameter 'graph_ql_request' when calling DefaultApi.post_graph_ql"
       end
       # resource path
       local_var_path = '/graphql'
@@ -97,7 +101,7 @@ module CatalogApiClient
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(opts[:'inline_object'])
+      post_body = @api_client.object_to_http_body(graph_ql_request)
       auth_names = ['BasicAuth']
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -105,7 +109,7 @@ module CatalogApiClient
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'InlineResponse200')
+        :return_type => 'GraphQLResponse')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DefaultApi#post_graph_ql\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

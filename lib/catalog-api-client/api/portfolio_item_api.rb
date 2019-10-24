@@ -19,73 +19,8 @@ module CatalogApiClient
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Add an Icon to a Portfolio Item
-    # Add an Icon to a Portfolio Item
-    # @param portfolio_item_id The Portfolio Item ID
-    # @param add_icon 
-    # @param [Hash] opts the optional parameters
-    # @return [Icon]
-    def add_icon_to_portfolio_item(portfolio_item_id, add_icon, opts = {})
-      data, _status_code, _headers = add_icon_to_portfolio_item_with_http_info(portfolio_item_id, add_icon, opts)
-      data
-    end
-
-    # Add an Icon to a Portfolio Item
-    # Add an Icon to a Portfolio Item
-    # @param portfolio_item_id The Portfolio Item ID
-    # @param add_icon 
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(Icon, Fixnum, Hash)>] Icon data, response status code and response headers
-    def add_icon_to_portfolio_item_with_http_info(portfolio_item_id, add_icon, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: PortfolioItemApi.add_icon_to_portfolio_item ...'
-      end
-      # verify the required parameter 'portfolio_item_id' is set
-      if @api_client.config.client_side_validation && portfolio_item_id.nil?
-        fail ArgumentError, "Missing the required parameter 'portfolio_item_id' when calling PortfolioItemApi.add_icon_to_portfolio_item"
-      end
-      if @api_client.config.client_side_validation && portfolio_item_id !~ Regexp.new(/^\d+$/)
-        fail ArgumentError, "invalid value for 'portfolio_item_id' when calling PortfolioItemApi.add_icon_to_portfolio_item, must conform to the pattern /^\d+$/."
-      end
-
-      # verify the required parameter 'add_icon' is set
-      if @api_client.config.client_side_validation && add_icon.nil?
-        fail ArgumentError, "Missing the required parameter 'add_icon' when calling PortfolioItemApi.add_icon_to_portfolio_item"
-      end
-      # resource path
-      local_var_path = '/portfolio_items/{portfolio_item_id}/icon'.sub('{' + 'portfolio_item_id' + '}', portfolio_item_id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = @api_client.object_to_http_body(add_icon)
-      auth_names = ['BasicAuth']
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'Icon')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: PortfolioItemApi#add_icon_to_portfolio_item\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
     # Add a new portfolio item
-    # Adds a name and description for a portfolio item and returns the newly created portfolio item. 
+    # Adds a name and description for a portfolio item and returns the newly created portfolio item.
     # @param create_portfolio_item 
     # @param [Hash] opts the optional parameters
     # @return [PortfolioItem]
@@ -95,7 +30,7 @@ module CatalogApiClient
     end
 
     # Add a new portfolio item
-    # Adds a name and description for a portfolio item and returns the newly created portfolio item. 
+    # Adds a name and description for a portfolio item and returns the newly created portfolio item.
     # @param create_portfolio_item 
     # @param [Hash] opts the optional parameters
     # @return [Array<(PortfolioItem, Fixnum, Hash)>] PortfolioItem data, response status code and response headers
@@ -140,7 +75,7 @@ module CatalogApiClient
     end
 
     # Delete an existing portfolio item
-    # Deletes the portfolio item based on portfolio item ID passed 
+    # Deletes the portfolio item based on portfolio item ID passed
     # @param id ID of the resource
     # @param [Hash] opts the optional parameters
     # @return [RestoreKey]
@@ -150,7 +85,7 @@ module CatalogApiClient
     end
 
     # Delete an existing portfolio item
-    # Deletes the portfolio item based on portfolio item ID passed 
+    # Deletes the portfolio item based on portfolio item ID passed
     # @param id ID of the resource
     # @param [Hash] opts the optional parameters
     # @return [Array<(RestoreKey, Fixnum, Hash)>] RestoreKey data, response status code and response headers
@@ -260,8 +195,86 @@ module CatalogApiClient
       return data, status_code, headers
     end
 
+    # List Tags for Portfolio Items
+    # Returns an array of Tag objects
+    # @param id ID of the resource
+    # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :limit The numbers of items to return per page. (default to 100)
+    # @option opts [Integer] :offset The number of items to skip before starting to collect the result set. (default to 0)
+    # @option opts [Object] :filter Filter for querying collections.
+    # @return [TagsCollection]
+    def list_portfolio_item_tags(id, opts = {})
+      data, _status_code, _headers = list_portfolio_item_tags_with_http_info(id, opts)
+      data
+    end
+
+    # List Tags for Portfolio Items
+    # Returns an array of Tag objects
+    # @param id ID of the resource
+    # @param [Hash] opts the optional parameters
+    # @option opts [Integer] :limit The numbers of items to return per page.
+    # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
+    # @option opts [Object] :filter Filter for querying collections.
+    # @return [Array<(TagsCollection, Fixnum, Hash)>] TagsCollection data, response status code and response headers
+    def list_portfolio_item_tags_with_http_info(id, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: PortfolioItemApi.list_portfolio_item_tags ...'
+      end
+      # verify the required parameter 'id' is set
+      if @api_client.config.client_side_validation && id.nil?
+        fail ArgumentError, "Missing the required parameter 'id' when calling PortfolioItemApi.list_portfolio_item_tags"
+      end
+      if @api_client.config.client_side_validation && id !~ Regexp.new(/^\d+$/)
+        fail ArgumentError, "invalid value for 'id' when calling PortfolioItemApi.list_portfolio_item_tags, must conform to the pattern /^\d+$/."
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'limit'].nil? && opts[:'limit'] > 1000
+        fail ArgumentError, 'invalid value for "opts[:"limit"]" when calling PortfolioItemApi.list_portfolio_item_tags, must be smaller than or equal to 1000.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'limit'].nil? && opts[:'limit'] < 1
+        fail ArgumentError, 'invalid value for "opts[:"limit"]" when calling PortfolioItemApi.list_portfolio_item_tags, must be greater than or equal to 1.'
+      end
+
+      if @api_client.config.client_side_validation && !opts[:'offset'].nil? && opts[:'offset'] < 0
+        fail ArgumentError, 'invalid value for "opts[:"offset"]" when calling PortfolioItemApi.list_portfolio_item_tags, must be greater than or equal to 0.'
+      end
+
+      # resource path
+      local_var_path = '/portfolio_items/{id}/tags'.sub('{' + 'id' + '}', id.to_s)
+
+      # query parameters
+      query_params = {}
+      query_params[:'limit'] = opts[:'limit'] if !opts[:'limit'].nil?
+      query_params[:'offset'] = opts[:'offset'] if !opts[:'offset'].nil?
+      query_params[:'filter'] = opts[:'filter'] if !opts[:'filter'].nil?
+
+      # header parameters
+      header_params = {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = {}
+
+      # http body (model)
+      post_body = nil
+      auth_names = ['BasicAuth']
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => 'TagsCollection')
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: PortfolioItemApi#list_portfolio_item_tags\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # List all portfolio items
-    # Gets a list of portfolio items. 
+    # Gets a list of portfolio items.
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page. (default to 100)
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set. (default to 0)
@@ -273,7 +286,7 @@ module CatalogApiClient
     end
 
     # List all portfolio items
-    # Gets a list of portfolio items. 
+    # Gets a list of portfolio items.
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page.
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
@@ -329,7 +342,7 @@ module CatalogApiClient
     end
 
     # Gets the provider control parameters for this portfolio item; requires control paramaters provided when provisioning the portfolio item.
-    # Gets the provider control parameters for a portfolio item. 
+    # Gets the provider control parameters for a portfolio item.
     # @param portfolio_item_id The Portfolio Item ID
     # @param [Hash] opts the optional parameters
     # @return [ProviderControlParameters]
@@ -339,7 +352,7 @@ module CatalogApiClient
     end
 
     # Gets the provider control parameters for this portfolio item; requires control paramaters provided when provisioning the portfolio item.
-    # Gets the provider control parameters for a portfolio item. 
+    # Gets the provider control parameters for a portfolio item.
     # @param portfolio_item_id The Portfolio Item ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(ProviderControlParameters, Fixnum, Hash)>] ProviderControlParameters data, response status code and response headers
@@ -386,7 +399,7 @@ module CatalogApiClient
     end
 
     # Gets all service plans for a specific portfolio item; requires a connection to the topology service.
-    # Gets all service plans for a portfolio item. 
+    # Gets all service plans for a portfolio item.
     # @param portfolio_item_id The Portfolio Item ID
     # @param [Hash] opts the optional parameters
     # @return [Array<ServicePlan>]
@@ -396,7 +409,7 @@ module CatalogApiClient
     end
 
     # Gets all service plans for a specific portfolio item; requires a connection to the topology service.
-    # Gets all service plans for a portfolio item. 
+    # Gets all service plans for a portfolio item.
     # @param portfolio_item_id The Portfolio Item ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Array<ServicePlan>, Fixnum, Hash)>] Array<ServicePlan> data, response status code and response headers
@@ -569,7 +582,7 @@ module CatalogApiClient
     end
 
     # Gets a specific portfolio item
-    # Gets a specific portfolio item based on the portfolio item ID passed 
+    # Gets a specific portfolio item based on the portfolio item ID passed
     # @param id ID of the resource
     # @param [Hash] opts the optional parameters
     # @return [PortfolioItem]
@@ -579,7 +592,7 @@ module CatalogApiClient
     end
 
     # Gets a specific portfolio item
-    # Gets a specific portfolio item based on the portfolio item ID passed 
+    # Gets a specific portfolio item based on the portfolio item ID passed
     # @param id ID of the resource
     # @param [Hash] opts the optional parameters
     # @return [Array<(PortfolioItem, Fixnum, Hash)>] PortfolioItem data, response status code and response headers

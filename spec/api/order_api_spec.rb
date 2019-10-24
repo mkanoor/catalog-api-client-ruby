@@ -34,7 +34,7 @@ describe 'OrderApi' do
 
   # unit tests for add_to_order
   # Add an order item to an order in pending state
-  # Adds an order item to an order in pending state 
+  # Adds an order item to an order in pending state
   # @param order_id The Order ID
   # @param order_item 
   # @param [Hash] opts the optional parameters
@@ -47,7 +47,7 @@ describe 'OrderApi' do
 
   # unit tests for cancel_order
   # Cancels a given order
-  # Returns an updated order. 
+  # Returns an updated order.
   # @param order_id The Order ID
   # @param [Hash] opts the optional parameters
   # @return [Order]
@@ -59,7 +59,7 @@ describe 'OrderApi' do
 
   # unit tests for create_order
   # Create a new order
-  # Creates a new order. 
+  # Creates a new order.
   # @param [Hash] opts the optional parameters
   # @return [Order]
   describe 'create_order test' do
@@ -70,7 +70,7 @@ describe 'OrderApi' do
 
   # unit tests for destroy_order
   # Delete an existing Order
-  # Deletes the Order based on order ID passed 
+  # Deletes the Order based on order ID passed
   # @param id ID of the resource
   # @param [Hash] opts the optional parameters
   # @return [RestoreKey]
@@ -82,7 +82,7 @@ describe 'OrderApi' do
 
   # unit tests for list_order_items_from_order
   # Gets a list of items in a given order
-  # Gets a list of items associated with an order. 
+  # Gets a list of items associated with an order.
   # @param order_id The Order ID
   # @param [Hash] opts the optional parameters
   # @option opts [Integer] :limit The numbers of items to return per page.
@@ -97,7 +97,7 @@ describe 'OrderApi' do
 
   # unit tests for list_orders
   # Get a list of orders
-  # Gets a list of orders associated with the logged in user. 
+  # Gets a list of orders associated with the logged in user.
   # @param [Hash] opts the optional parameters
   # @option opts [Integer] :limit The numbers of items to return per page.
   # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
@@ -111,7 +111,7 @@ describe 'OrderApi' do
 
   # unit tests for restore_order
   # Restore specific Order
-  # Restores the order specified by the order ID. 
+  # Restores the order specified by the order ID.
   # @param id ID of the resource
   # @param restore_key 
   # @param [Hash] opts the optional parameters
@@ -124,7 +124,7 @@ describe 'OrderApi' do
 
   # unit tests for show_order_item_from_order
   # Gets an individual order item from a given order
-  # Gets an order item associated with an order. 
+  # Gets an order item associated with an order.
   # @param order_id The Order ID
   # @param id ID of the resource
   # @param [Hash] opts the optional parameters
@@ -137,7 +137,7 @@ describe 'OrderApi' do
 
   # unit tests for submit_order
   # Submit a given order
-  # Returns an updated order. 
+  # Returns an updated order.
   # @param order_id The Order ID
   # @param [Hash] opts the optional parameters
   # @return [Order]

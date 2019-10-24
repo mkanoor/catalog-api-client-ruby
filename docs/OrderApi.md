@@ -20,7 +20,7 @@ Method | HTTP request | Description
 
 Add an order item to an order in pending state
 
-Adds an order item to an order in pending state 
+Adds an order item to an order in pending state
 
 ### Example
 ```ruby
@@ -72,7 +72,7 @@ nil (empty response body)
 
 Cancels a given order
 
-Returns an updated order. 
+Returns an updated order.
 
 ### Example
 ```ruby
@@ -123,7 +123,7 @@ Name | Type | Description  | Notes
 
 Create a new order
 
-Creates a new order. 
+Creates a new order.
 
 ### Example
 ```ruby
@@ -170,7 +170,7 @@ This endpoint does not need any parameter.
 
 Delete an existing Order
 
-Deletes the Order based on order ID passed 
+Deletes the Order based on order ID passed
 
 ### Example
 ```ruby
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 Gets a list of items in a given order
 
-Gets a list of items associated with an order. 
+Gets a list of items associated with an order.
 
 ### Example
 ```ruby
@@ -280,7 +280,7 @@ Name | Type | Description  | Notes
 
 Get a list of orders
 
-Gets a list of orders associated with the logged in user. 
+Gets a list of orders associated with the logged in user.
 
 ### Example
 ```ruby
@@ -337,7 +337,7 @@ Name | Type | Description  | Notes
 
 Restore specific Order
 
-Restores the order specified by the order ID. 
+Restores the order specified by the order ID.
 
 ### Example
 ```ruby
@@ -390,7 +390,7 @@ Name | Type | Description  | Notes
 
 Gets an individual order item from a given order
 
-Gets an order item associated with an order. 
+Gets an order item associated with an order.
 
 ### Example
 ```ruby
@@ -443,7 +443,7 @@ Name | Type | Description  | Notes
 
 Submit a given order
 
-Returns an updated order. 
+Returns an updated order.
 
 ### Example
 ```ruby

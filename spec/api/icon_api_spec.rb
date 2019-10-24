@@ -34,7 +34,7 @@ describe 'IconApi' do
 
   # unit tests for destroy_icon
   # Delete an existing Icon
-  # Deletes the icon based on the icon ID passed 
+  # Deletes the icon based on the icon ID passed
   # @param id ID of the resource
   # @param [Hash] opts the optional parameters
   # @return [nil]
@@ -60,22 +60,9 @@ describe 'IconApi' do
   # Create an Icon
   # Creates an Icon from the specified parameters
   # @param [Hash] opts the optional parameters
-  # @option opts [Icon] :icon 
+  # @option opts [File] :content 
   # @return [Icon]
   describe 'icons_post test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for override_icon
-  # Override the specified Portfolio Item&#39;s Icon
-  # Override the specified Portfolio Item&#39;s Icon
-  # @param id ID of the resource
-  # @param [Hash] opts the optional parameters
-  # @option opts [OverrideIcon] :override_icon 
-  # @return [Icon]
-  describe 'override_icon test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

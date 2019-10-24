@@ -13,21 +13,31 @@ OpenAPI Generator version: 3.3.4
 require 'date'
 
 module CatalogApiClient
-  class OverrideIcon
-    # Tthe ID of the portfolio which the icon will override
-    attr_accessor :portfolio_item_id
+  class GraphQLRequest
+    # The GraphQL query
+    attr_accessor :query
+
+    # If the Query contains several named operations, the operationName controls which one should be executed
+    attr_accessor :operation_name
+
+    # Optional Query variables
+    attr_accessor :variables
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'portfolio_item_id' => :'portfolio_item_id'
+        :'query' => :'query',
+        :'operation_name' => :'operationName',
+        :'variables' => :'variables'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'portfolio_item_id' => :'String'
+        :'query' => :'String',
+        :'operation_name' => :'String',
+        :'variables' => :'Object'
       }
     end
 
@@ -39,8 +49,18 @@ module CatalogApiClient
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'portfolio_item_id')
-        self.portfolio_item_id = attributes[:'portfolio_item_id']
+      if attributes.has_key?(:'query')
+        self.query = attributes[:'query']
+      else
+        self.query = '{}'
+      end
+
+      if attributes.has_key?(:'operationName')
+        self.operation_name = attributes[:'operationName']
+      end
+
+      if attributes.has_key?(:'variables')
+        self.variables = attributes[:'variables']
       end
     end
 
@@ -48,12 +68,17 @@ module CatalogApiClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
+      if @query.nil?
+        invalid_properties.push('invalid value for "query", query cannot be nil.')
+      end
+
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      return false if @query.nil?
       true
     end
 
@@ -62,7 +87,9 @@ module CatalogApiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          portfolio_item_id == o.portfolio_item_id
+          query == o.query &&
+          operation_name == o.operation_name &&
+          variables == o.variables
     end
 
     # @see the `==` method
@@ -74,7 +101,7 @@ module CatalogApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [portfolio_item_id].hash
+      [query, operation_name, variables].hash
     end
 
     # Builds the object from hash

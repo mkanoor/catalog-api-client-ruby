@@ -1,8 +1,8 @@
-# CatalogApiClient::AddIcon
+# CatalogApiClient::Tenant
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**icon_id** | **String** | This is the ID of the icon object. | [optional] 
+**external_tenant** | **String** | The Request account number | [optional] 
 
 

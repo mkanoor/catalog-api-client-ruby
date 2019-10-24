@@ -20,7 +20,7 @@ module CatalogApiClient
       @api_client = api_client
     end
     # Delete an existing Icon
-    # Deletes the icon based on the icon ID passed 
+    # Deletes the icon based on the icon ID passed
     # @param id ID of the resource
     # @param [Hash] opts the optional parameters
     # @return [nil]
@@ -30,7 +30,7 @@ module CatalogApiClient
     end
 
     # Delete an existing Icon
-    # Deletes the icon based on the icon ID passed 
+    # Deletes the icon based on the icon ID passed
     # @param id ID of the resource
     # @param [Hash] opts the optional parameters
     # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
@@ -133,7 +133,7 @@ module CatalogApiClient
     # Create an Icon
     # Creates an Icon from the specified parameters
     # @param [Hash] opts the optional parameters
-    # @option opts [Icon] :icon 
+    # @option opts [File] :content 
     # @return [Icon]
     def icons_post(opts = {})
       data, _status_code, _headers = icons_post_with_http_info(opts)
@@ -143,7 +143,7 @@ module CatalogApiClient
     # Create an Icon
     # Creates an Icon from the specified parameters
     # @param [Hash] opts the optional parameters
-    # @option opts [Icon] :icon 
+    # @option opts [File] :content 
     # @return [Array<(Icon, Fixnum, Hash)>] Icon data, response status code and response headers
     def icons_post_with_http_info(opts = {})
       if @api_client.config.debugging
@@ -160,13 +160,14 @@ module CatalogApiClient
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['multipart/form-data'])
 
       # form parameters
       form_params = {}
+      form_params['content'] = opts[:'content'] if !opts[:'content'].nil?
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(opts[:'icon'])
+      post_body = nil
       auth_names = ['BasicAuth']
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -177,67 +178,6 @@ module CatalogApiClient
         :return_type => 'Icon')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: IconApi#icons_post\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Override the specified Portfolio Item's Icon
-    # Override the specified Portfolio Item's Icon
-    # @param id ID of the resource
-    # @param [Hash] opts the optional parameters
-    # @option opts [OverrideIcon] :override_icon 
-    # @return [Icon]
-    def override_icon(id, opts = {})
-      data, _status_code, _headers = override_icon_with_http_info(id, opts)
-      data
-    end
-
-    # Override the specified Portfolio Item&#39;s Icon
-    # Override the specified Portfolio Item&#39;s Icon
-    # @param id ID of the resource
-    # @param [Hash] opts the optional parameters
-    # @option opts [OverrideIcon] :override_icon 
-    # @return [Array<(Icon, Fixnum, Hash)>] Icon data, response status code and response headers
-    def override_icon_with_http_info(id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: IconApi.override_icon ...'
-      end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling IconApi.override_icon"
-      end
-      if @api_client.config.client_side_validation && id !~ Regexp.new(/^\d+$/)
-        fail ArgumentError, "invalid value for 'id' when calling IconApi.override_icon, must conform to the pattern /^\d+$/."
-      end
-
-      # resource path
-      local_var_path = '/icons/{id}/override'.sub('{' + 'id' + '}', id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = @api_client.object_to_http_body(opts[:'override_icon'])
-      auth_names = ['BasicAuth']
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'Icon')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: IconApi#override_icon\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

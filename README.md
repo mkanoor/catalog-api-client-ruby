@@ -83,7 +83,6 @@ Class | Method | HTTP request | Description
 *CatalogApiClient::IconApi* | [**destroy_icon**](docs/IconApi.md#destroy_icon) | **DELETE** /icons/{id} | Delete an existing Icon
 *CatalogApiClient::IconApi* | [**icons_id_get**](docs/IconApi.md#icons_id_get) | **GET** /icons/{id} | Fetch an Icon by ID
 *CatalogApiClient::IconApi* | [**icons_post**](docs/IconApi.md#icons_post) | **POST** /icons | Create an Icon
-*CatalogApiClient::IconApi* | [**override_icon**](docs/IconApi.md#override_icon) | **POST** /icons/{id}/override | Override the specified Portfolio Item's Icon
 *CatalogApiClient::IconApi* | [**show_icon_data**](docs/IconApi.md#show_icon_data) | **GET** /icons/{id}/icon_data | Fetches the specified icon's image
 *CatalogApiClient::IconApi* | [**update_icon**](docs/IconApi.md#update_icon) | **PATCH** /icons/{id} | Edit an existing Icon
 *CatalogApiClient::OrderApi* | [**add_to_order**](docs/OrderApi.md#add_to_order) | **POST** /orders/{order_id}/order_items | Add an order item to an order in pending state
@@ -101,22 +100,26 @@ Class | Method | HTTP request | Description
 *CatalogApiClient::OrderItemApi* | [**list_progress_messages**](docs/OrderItemApi.md#list_progress_messages) | **GET** /order_items/{order_item_id}/progress_messages | Gets a list of progress messages in an item
 *CatalogApiClient::OrderItemApi* | [**restore_order_item**](docs/OrderItemApi.md#restore_order_item) | **POST** /order_items/{id}/restore | Restore specific Order item
 *CatalogApiClient::OrderItemApi* | [**show_order_item**](docs/OrderItemApi.md#show_order_item) | **GET** /order_items/{id} | Gets a specific order item
+*CatalogApiClient::PortfolioApi* | [**add_portfolio_item_tag**](docs/PortfolioApi.md#add_portfolio_item_tag) | **POST** /portfolio_items/{id}/tags | Add Tag for Portfolio
 *CatalogApiClient::PortfolioApi* | [**add_portfolio_item_to_portfolio**](docs/PortfolioApi.md#add_portfolio_item_to_portfolio) | **POST** /portfolios/{portfolio_id}/portfolio_items | Add a portfolio item to a portfolio
+*CatalogApiClient::PortfolioApi* | [**add_portfolio_tag**](docs/PortfolioApi.md#add_portfolio_tag) | **POST** /portfolios/{id}/tags | Add Tag for Portfolio
 *CatalogApiClient::PortfolioApi* | [**create_portfolio**](docs/PortfolioApi.md#create_portfolio) | **POST** /portfolios | Add a new portfolio
 *CatalogApiClient::PortfolioApi* | [**destroy_portfolio**](docs/PortfolioApi.md#destroy_portfolio) | **DELETE** /portfolios/{id} | Delete an existing portfolio
 *CatalogApiClient::PortfolioApi* | [**fetch_portfolio_items_with_portfolio**](docs/PortfolioApi.md#fetch_portfolio_items_with_portfolio) | **GET** /portfolios/{portfolio_id}/portfolio_items | Get all portfolio items from a specific portfolio
+*CatalogApiClient::PortfolioApi* | [**list_portfolio_tags**](docs/PortfolioApi.md#list_portfolio_tags) | **GET** /portfolios/{id}/tags | List Tags for Portfolio
 *CatalogApiClient::PortfolioApi* | [**list_portfolios**](docs/PortfolioApi.md#list_portfolios) | **GET** /portfolios | List portfolios
 *CatalogApiClient::PortfolioApi* | [**post_copy_portfolio**](docs/PortfolioApi.md#post_copy_portfolio) | **POST** /portfolios/{portfolio_id}/copy | Make a copy of the Portfolio
 *CatalogApiClient::PortfolioApi* | [**share_info**](docs/PortfolioApi.md#share_info) | **GET** /portfolios/{portfolio_id}/share_info | Fetch share information about this portfolio, the response would include a collection of groups and permissions with each group
 *CatalogApiClient::PortfolioApi* | [**share_portfolio**](docs/PortfolioApi.md#share_portfolio) | **POST** /portfolios/{portfolio_id}/share | Share a portfolio with one or more groups with specific permission
 *CatalogApiClient::PortfolioApi* | [**show_portfolio**](docs/PortfolioApi.md#show_portfolio) | **GET** /portfolios/{id} | Get a specific portfolio
+*CatalogApiClient::PortfolioApi* | [**show_portfolio_icon**](docs/PortfolioApi.md#show_portfolio_icon) | **GET** /portfolios/{portfolio_id}/icon | Fetches the specified portfolio's icon image
 *CatalogApiClient::PortfolioApi* | [**un_delete_portfolio**](docs/PortfolioApi.md#un_delete_portfolio) | **POST** /portfolios/{id}/undelete | Undelete specific portfolio
 *CatalogApiClient::PortfolioApi* | [**unshare_portfolio**](docs/PortfolioApi.md#unshare_portfolio) | **POST** /portfolios/{portfolio_id}/unshare | Unshare a portfolio from one or more groups with specific permission
 *CatalogApiClient::PortfolioApi* | [**update_portfolio**](docs/PortfolioApi.md#update_portfolio) | **PATCH** /portfolios/{id} | Edit an existing portfolio
-*CatalogApiClient::PortfolioItemApi* | [**add_icon_to_portfolio_item**](docs/PortfolioItemApi.md#add_icon_to_portfolio_item) | **POST** /portfolio_items/{portfolio_item_id}/icon | Add an Icon to a Portfolio Item
 *CatalogApiClient::PortfolioItemApi* | [**create_portfolio_item**](docs/PortfolioItemApi.md#create_portfolio_item) | **POST** /portfolio_items | Add a new portfolio item
 *CatalogApiClient::PortfolioItemApi* | [**destroy_portfolio_item**](docs/PortfolioItemApi.md#destroy_portfolio_item) | **DELETE** /portfolio_items/{id} | Delete an existing portfolio item
 *CatalogApiClient::PortfolioItemApi* | [**get_portfolio_item_next_name**](docs/PortfolioItemApi.md#get_portfolio_item_next_name) | **GET** /portfolio_items/{portfolio_item_id}/next_name | Get the next name for a the Portfolio Item prior to a copy operation
+*CatalogApiClient::PortfolioItemApi* | [**list_portfolio_item_tags**](docs/PortfolioItemApi.md#list_portfolio_item_tags) | **GET** /portfolio_items/{id}/tags | List Tags for Portfolio Items
 *CatalogApiClient::PortfolioItemApi* | [**list_portfolio_items**](docs/PortfolioItemApi.md#list_portfolio_items) | **GET** /portfolio_items | List all portfolio items
 *CatalogApiClient::PortfolioItemApi* | [**list_provider_control_parameters**](docs/PortfolioItemApi.md#list_provider_control_parameters) | **GET** /portfolio_items/{portfolio_item_id}/provider_control_parameters | Gets the provider control parameters for this portfolio item; requires control paramaters provided when provisioning the portfolio item.
 *CatalogApiClient::PortfolioItemApi* | [**list_service_plans**](docs/PortfolioItemApi.md#list_service_plans) | **GET** /portfolio_items/{portfolio_item_id}/service_plans | Gets all service plans for a specific portfolio item; requires a connection to the topology service.
@@ -130,11 +133,17 @@ Class | Method | HTTP request | Description
 *CatalogApiClient::SettingsApi* | [**list_settings**](docs/SettingsApi.md#list_settings) | **GET** /settings | List Tenant Settings
 *CatalogApiClient::SettingsApi* | [**show_setting**](docs/SettingsApi.md#show_setting) | **GET** /settings/{name} | Get a specific Tenant Setting
 *CatalogApiClient::SettingsApi* | [**update_setting**](docs/SettingsApi.md#update_setting) | **PATCH** /settings/{name} | Update a Tenant Setting
+*CatalogApiClient::TagsApi* | [**list_tag_portfolio_items**](docs/TagsApi.md#list_tag_portfolio_items) | **GET** /tags/{id}/portfolio_items | List Portfolio Items for Tag
+*CatalogApiClient::TagsApi* | [**list_tag_portfolios**](docs/TagsApi.md#list_tag_portfolios) | **GET** /tags/{id}/portfolios | List Portfolios for Tag
+*CatalogApiClient::TagsApi* | [**list_tags**](docs/TagsApi.md#list_tags) | **GET** /tags | List Tags
+*CatalogApiClient::TagsApi* | [**show_tag**](docs/TagsApi.md#show_tag) | **GET** /tags/{id} | Show Tag
+*CatalogApiClient::TenantApi* | [**list_tenants**](docs/TenantApi.md#list_tenants) | **GET** /tenants | List Tenants
+*CatalogApiClient::TenantApi* | [**show_tenant**](docs/TenantApi.md#show_tenant) | **GET** /tenants/{tenant_id} | Get a specific Tenant
+*CatalogApiClient::TenantApi* | [**tenant_seed**](docs/TenantApi.md#tenant_seed) | **POST** /tenants/{tenant_id}/seed | Seed Tenant Groups
 
 
 ## Documentation for Models
 
- - [CatalogApiClient::AddIcon](docs/AddIcon.md)
  - [CatalogApiClient::AddPortfolioItem](docs/AddPortfolioItem.md)
  - [CatalogApiClient::ApprovalRequest](docs/ApprovalRequest.md)
  - [CatalogApiClient::ApprovalRequestsCollection](docs/ApprovalRequestsCollection.md)
@@ -142,15 +151,14 @@ Class | Method | HTTP request | Description
  - [CatalogApiClient::CollectionMetadata](docs/CollectionMetadata.md)
  - [CatalogApiClient::CopyPortfolioItem](docs/CopyPortfolioItem.md)
  - [CatalogApiClient::CreatePortfolioItem](docs/CreatePortfolioItem.md)
+ - [CatalogApiClient::GraphQLRequest](docs/GraphQLRequest.md)
+ - [CatalogApiClient::GraphQLResponse](docs/GraphQLResponse.md)
  - [CatalogApiClient::Icon](docs/Icon.md)
- - [CatalogApiClient::Image](docs/Image.md)
  - [CatalogApiClient::InlineObject](docs/InlineObject.md)
- - [CatalogApiClient::InlineResponse200](docs/InlineResponse200.md)
  - [CatalogApiClient::Order](docs/Order.md)
  - [CatalogApiClient::OrderItem](docs/OrderItem.md)
  - [CatalogApiClient::OrderItemsCollection](docs/OrderItemsCollection.md)
  - [CatalogApiClient::OrdersCollection](docs/OrdersCollection.md)
- - [CatalogApiClient::OverrideIcon](docs/OverrideIcon.md)
  - [CatalogApiClient::Portfolio](docs/Portfolio.md)
  - [CatalogApiClient::PortfolioItem](docs/PortfolioItem.md)
  - [CatalogApiClient::PortfolioItemNextName](docs/PortfolioItemNextName.md)
@@ -164,8 +172,13 @@ Class | Method | HTTP request | Description
  - [CatalogApiClient::Setting](docs/Setting.md)
  - [CatalogApiClient::ShareInfo](docs/ShareInfo.md)
  - [CatalogApiClient::SharePolicy](docs/SharePolicy.md)
+ - [CatalogApiClient::Tag](docs/Tag.md)
+ - [CatalogApiClient::TagItem](docs/TagItem.md)
+ - [CatalogApiClient::TagsCollection](docs/TagsCollection.md)
+ - [CatalogApiClient::Tenant](docs/Tenant.md)
  - [CatalogApiClient::TenantSettings](docs/TenantSettings.md)
  - [CatalogApiClient::TenantSettingsSchema](docs/TenantSettingsSchema.md)
+ - [CatalogApiClient::TenantsCollection](docs/TenantsCollection.md)
  - [CatalogApiClient::UnsharePolicy](docs/UnsharePolicy.md)
 
 

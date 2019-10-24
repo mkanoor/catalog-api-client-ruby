@@ -4,10 +4,10 @@ All URIs are relative to *https://cloud.redhat.com//api/catalog/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_icon_to_portfolio_item**](PortfolioItemApi.md#add_icon_to_portfolio_item) | **POST** /portfolio_items/{portfolio_item_id}/icon | Add an Icon to a Portfolio Item
 [**create_portfolio_item**](PortfolioItemApi.md#create_portfolio_item) | **POST** /portfolio_items | Add a new portfolio item
 [**destroy_portfolio_item**](PortfolioItemApi.md#destroy_portfolio_item) | **DELETE** /portfolio_items/{id} | Delete an existing portfolio item
 [**get_portfolio_item_next_name**](PortfolioItemApi.md#get_portfolio_item_next_name) | **GET** /portfolio_items/{portfolio_item_id}/next_name | Get the next name for a the Portfolio Item prior to a copy operation
+[**list_portfolio_item_tags**](PortfolioItemApi.md#list_portfolio_item_tags) | **GET** /portfolio_items/{id}/tags | List Tags for Portfolio Items
 [**list_portfolio_items**](PortfolioItemApi.md#list_portfolio_items) | **GET** /portfolio_items | List all portfolio items
 [**list_provider_control_parameters**](PortfolioItemApi.md#list_provider_control_parameters) | **GET** /portfolio_items/{portfolio_item_id}/provider_control_parameters | Gets the provider control parameters for this portfolio item; requires control paramaters provided when provisioning the portfolio item.
 [**list_service_plans**](PortfolioItemApi.md#list_service_plans) | **GET** /portfolio_items/{portfolio_item_id}/service_plans | Gets all service plans for a specific portfolio item; requires a connection to the topology service.
@@ -18,65 +18,12 @@ Method | HTTP request | Description
 [**update_portfolio_item**](PortfolioItemApi.md#update_portfolio_item) | **PATCH** /portfolio_items/{id} | Edit an existing portfolio item
 
 
-# **add_icon_to_portfolio_item**
-> Icon add_icon_to_portfolio_item(portfolio_item_id, add_icon)
-
-Add an Icon to a Portfolio Item
-
-Add an Icon to a Portfolio Item
-
-### Example
-```ruby
-# load the gem
-require 'catalog-api-client'
-# setup authorization
-CatalogApiClient.configure do |config|
-  # Configure HTTP basic authorization: BasicAuth
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
-end
-
-api_instance = CatalogApiClient::PortfolioItemApi.new
-portfolio_item_id = 'portfolio_item_id_example' # String | The Portfolio Item ID
-add_icon = CatalogApiClient::AddIcon.new # AddIcon | 
-
-begin
-  #Add an Icon to a Portfolio Item
-  result = api_instance.add_icon_to_portfolio_item(portfolio_item_id, add_icon)
-  p result
-rescue CatalogApiClient::ApiError => e
-  puts "Exception when calling PortfolioItemApi->add_icon_to_portfolio_item: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **portfolio_item_id** | **String**| The Portfolio Item ID | 
- **add_icon** | [**AddIcon**](AddIcon.md)|  | 
-
-### Return type
-
-[**Icon**](Icon.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-
 # **create_portfolio_item**
 > PortfolioItem create_portfolio_item(create_portfolio_item)
 
 Add a new portfolio item
 
-Adds a name and description for a portfolio item and returns the newly created portfolio item. 
+Adds a name and description for a portfolio item and returns the newly created portfolio item.
 
 ### Example
 ```ruby
@@ -127,7 +74,7 @@ Name | Type | Description  | Notes
 
 Delete an existing portfolio item
 
-Deletes the portfolio item based on portfolio item ID passed 
+Deletes the portfolio item based on portfolio item ID passed
 
 ### Example
 ```ruby
@@ -228,12 +175,71 @@ Name | Type | Description  | Notes
 
 
 
+# **list_portfolio_item_tags**
+> TagsCollection list_portfolio_item_tags(id, opts)
+
+List Tags for Portfolio Items
+
+Returns an array of Tag objects
+
+### Example
+```ruby
+# load the gem
+require 'catalog-api-client'
+# setup authorization
+CatalogApiClient.configure do |config|
+  # Configure HTTP basic authorization: BasicAuth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
+
+api_instance = CatalogApiClient::PortfolioItemApi.new
+id = 'id_example' # String | ID of the resource
+opts = {
+  limit: 100, # Integer | The numbers of items to return per page.
+  offset: 0, # Integer | The number of items to skip before starting to collect the result set.
+  filter: nil # Object | Filter for querying collections.
+}
+
+begin
+  #List Tags for Portfolio Items
+  result = api_instance.list_portfolio_item_tags(id, opts)
+  p result
+rescue CatalogApiClient::ApiError => e
+  puts "Exception when calling PortfolioItemApi->list_portfolio_item_tags: #{e}"
+end
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| ID of the resource | 
+ **limit** | **Integer**| The numbers of items to return per page. | [optional] [default to 100]
+ **offset** | **Integer**| The number of items to skip before starting to collect the result set. | [optional] [default to 0]
+ **filter** | [**Object**](.md)| Filter for querying collections. | [optional] 
+
+### Return type
+
+[**TagsCollection**](TagsCollection.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+
 # **list_portfolio_items**
 > PortfolioItemsCollection list_portfolio_items(opts)
 
 List all portfolio items
 
-Gets a list of portfolio items. 
+Gets a list of portfolio items.
 
 ### Example
 ```ruby
@@ -290,7 +296,7 @@ Name | Type | Description  | Notes
 
 Gets the provider control parameters for this portfolio item; requires control paramaters provided when provisioning the portfolio item.
 
-Gets the provider control parameters for a portfolio item. 
+Gets the provider control parameters for a portfolio item.
 
 ### Example
 ```ruby
@@ -341,7 +347,7 @@ Name | Type | Description  | Notes
 
 Gets all service plans for a specific portfolio item; requires a connection to the topology service.
 
-Gets all service plans for a portfolio item. 
+Gets all service plans for a portfolio item.
 
 ### Example
 ```ruby
@@ -500,7 +506,7 @@ Name | Type | Description  | Notes
 
 Gets a specific portfolio item
 
-Gets a specific portfolio item based on the portfolio item ID passed 
+Gets a specific portfolio item based on the portfolio item ID passed
 
 ### Example
 ```ruby

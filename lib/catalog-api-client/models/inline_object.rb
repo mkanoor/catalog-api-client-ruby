@@ -14,30 +14,19 @@ require 'date'
 
 module CatalogApiClient
   class InlineObject
-    # The GraphQL query
-    attr_accessor :query
-
-    # If the Query contains several named operations, the operationName controls which one should be executed
-    attr_accessor :operation_name
-
-    # Optional Query variables
-    attr_accessor :variables
+    attr_accessor :content
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'query' => :'query',
-        :'operation_name' => :'operationName',
-        :'variables' => :'variables'
+        :'content' => :'content'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'query' => :'String',
-        :'operation_name' => :'String',
-        :'variables' => :'Object'
+        :'content' => :'File'
       }
     end
 
@@ -49,18 +38,8 @@ module CatalogApiClient
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'query')
-        self.query = attributes[:'query']
-      else
-        self.query = '{}'
-      end
-
-      if attributes.has_key?(:'operationName')
-        self.operation_name = attributes[:'operationName']
-      end
-
-      if attributes.has_key?(:'variables')
-        self.variables = attributes[:'variables']
+      if attributes.has_key?(:'content')
+        self.content = attributes[:'content']
       end
     end
 
@@ -68,17 +47,12 @@ module CatalogApiClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @query.nil?
-        invalid_properties.push('invalid value for "query", query cannot be nil.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @query.nil?
       true
     end
 
@@ -87,9 +61,7 @@ module CatalogApiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          query == o.query &&
-          operation_name == o.operation_name &&
-          variables == o.variables
+          content == o.content
     end
 
     # @see the `==` method
@@ -101,7 +73,7 @@ module CatalogApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [query, operation_name, variables].hash
+      [content].hash
     end
 
     # Builds the object from hash

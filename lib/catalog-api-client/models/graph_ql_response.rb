@@ -13,21 +13,26 @@ OpenAPI Generator version: 3.3.4
 require 'date'
 
 module CatalogApiClient
-  class AddIcon
-    # This is the ID of the icon object.
-    attr_accessor :icon_id
+  class GraphQLResponse
+    # Results from the GraphQL query
+    attr_accessor :data
+
+    # Errors resulting from the GraphQL query
+    attr_accessor :errors
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'icon_id' => :'icon_id'
+        :'data' => :'data',
+        :'errors' => :'errors'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'icon_id' => :'String'
+        :'data' => :'Object',
+        :'errors' => :'Array<Object>'
       }
     end
 
@@ -39,8 +44,14 @@ module CatalogApiClient
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'icon_id')
-        self.icon_id = attributes[:'icon_id']
+      if attributes.has_key?(:'data')
+        self.data = attributes[:'data']
+      end
+
+      if attributes.has_key?(:'errors')
+        if (value = attributes[:'errors']).is_a?(Array)
+          self.errors = value
+        end
       end
     end
 
@@ -62,7 +73,8 @@ module CatalogApiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          icon_id == o.icon_id
+          data == o.data &&
+          errors == o.errors
     end
 
     # @see the `==` method
@@ -74,7 +86,7 @@ module CatalogApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [icon_id].hash
+      [data, errors].hash
     end
 
     # Builds the object from hash

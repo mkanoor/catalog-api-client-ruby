@@ -32,22 +32,9 @@ describe 'PortfolioItemApi' do
     end
   end
 
-  # unit tests for add_icon_to_portfolio_item
-  # Add an Icon to a Portfolio Item
-  # Add an Icon to a Portfolio Item
-  # @param portfolio_item_id The Portfolio Item ID
-  # @param add_icon 
-  # @param [Hash] opts the optional parameters
-  # @return [Icon]
-  describe 'add_icon_to_portfolio_item test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
   # unit tests for create_portfolio_item
   # Add a new portfolio item
-  # Adds a name and description for a portfolio item and returns the newly created portfolio item. 
+  # Adds a name and description for a portfolio item and returns the newly created portfolio item.
   # @param create_portfolio_item 
   # @param [Hash] opts the optional parameters
   # @return [PortfolioItem]
@@ -59,7 +46,7 @@ describe 'PortfolioItemApi' do
 
   # unit tests for destroy_portfolio_item
   # Delete an existing portfolio item
-  # Deletes the portfolio item based on portfolio item ID passed 
+  # Deletes the portfolio item based on portfolio item ID passed
   # @param id ID of the resource
   # @param [Hash] opts the optional parameters
   # @return [RestoreKey]
@@ -82,9 +69,24 @@ describe 'PortfolioItemApi' do
     end
   end
 
+  # unit tests for list_portfolio_item_tags
+  # List Tags for Portfolio Items
+  # Returns an array of Tag objects
+  # @param id ID of the resource
+  # @param [Hash] opts the optional parameters
+  # @option opts [Integer] :limit The numbers of items to return per page.
+  # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
+  # @option opts [Object] :filter Filter for querying collections.
+  # @return [TagsCollection]
+  describe 'list_portfolio_item_tags test' do
+    it 'should work' do
+      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
+    end
+  end
+
   # unit tests for list_portfolio_items
   # List all portfolio items
-  # Gets a list of portfolio items. 
+  # Gets a list of portfolio items.
   # @param [Hash] opts the optional parameters
   # @option opts [Integer] :limit The numbers of items to return per page.
   # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
@@ -98,7 +100,7 @@ describe 'PortfolioItemApi' do
 
   # unit tests for list_provider_control_parameters
   # Gets the provider control parameters for this portfolio item; requires control paramaters provided when provisioning the portfolio item.
-  # Gets the provider control parameters for a portfolio item. 
+  # Gets the provider control parameters for a portfolio item.
   # @param portfolio_item_id The Portfolio Item ID
   # @param [Hash] opts the optional parameters
   # @return [ProviderControlParameters]
@@ -110,7 +112,7 @@ describe 'PortfolioItemApi' do
 
   # unit tests for list_service_plans
   # Gets all service plans for a specific portfolio item; requires a connection to the topology service.
-  # Gets all service plans for a portfolio item. 
+  # Gets all service plans for a portfolio item.
   # @param portfolio_item_id The Portfolio Item ID
   # @param [Hash] opts the optional parameters
   # @return [Array<ServicePlan>]
@@ -148,7 +150,7 @@ describe 'PortfolioItemApi' do
 
   # unit tests for show_portfolio_item
   # Gets a specific portfolio item
-  # Gets a specific portfolio item based on the portfolio item ID passed 
+  # Gets a specific portfolio item based on the portfolio item ID passed
   # @param id ID of the resource
   # @param [Hash] opts the optional parameters
   # @return [PortfolioItem]

@@ -20,7 +20,7 @@ module CatalogApiClient
       @api_client = api_client
     end
     # Add an order item to an order in pending state
-    # Adds an order item to an order in pending state 
+    # Adds an order item to an order in pending state
     # @param order_id The Order ID
     # @param order_item 
     # @param [Hash] opts the optional parameters
@@ -31,7 +31,7 @@ module CatalogApiClient
     end
 
     # Add an order item to an order in pending state
-    # Adds an order item to an order in pending state 
+    # Adds an order item to an order in pending state
     # @param order_id The Order ID
     # @param order_item 
     # @param [Hash] opts the optional parameters
@@ -82,7 +82,7 @@ module CatalogApiClient
     end
 
     # Cancels a given order
-    # Returns an updated order. 
+    # Returns an updated order.
     # @param order_id The Order ID
     # @param [Hash] opts the optional parameters
     # @return [Order]
@@ -92,7 +92,7 @@ module CatalogApiClient
     end
 
     # Cancels a given order
-    # Returns an updated order. 
+    # Returns an updated order.
     # @param order_id The Order ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Order, Fixnum, Hash)>] Order data, response status code and response headers
@@ -139,7 +139,7 @@ module CatalogApiClient
     end
 
     # Create a new order
-    # Creates a new order. 
+    # Creates a new order.
     # @param [Hash] opts the optional parameters
     # @return [Order]
     def create_order(opts = {})
@@ -148,7 +148,7 @@ module CatalogApiClient
     end
 
     # Create a new order
-    # Creates a new order. 
+    # Creates a new order.
     # @param [Hash] opts the optional parameters
     # @return [Array<(Order, Fixnum, Hash)>] Order data, response status code and response headers
     def create_order_with_http_info(opts = {})
@@ -186,7 +186,7 @@ module CatalogApiClient
     end
 
     # Delete an existing Order
-    # Deletes the Order based on order ID passed 
+    # Deletes the Order based on order ID passed
     # @param id ID of the resource
     # @param [Hash] opts the optional parameters
     # @return [RestoreKey]
@@ -196,7 +196,7 @@ module CatalogApiClient
     end
 
     # Delete an existing Order
-    # Deletes the Order based on order ID passed 
+    # Deletes the Order based on order ID passed
     # @param id ID of the resource
     # @param [Hash] opts the optional parameters
     # @return [Array<(RestoreKey, Fixnum, Hash)>] RestoreKey data, response status code and response headers
@@ -243,7 +243,7 @@ module CatalogApiClient
     end
 
     # Gets a list of items in a given order
-    # Gets a list of items associated with an order. 
+    # Gets a list of items associated with an order.
     # @param order_id The Order ID
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page. (default to 100)
@@ -256,7 +256,7 @@ module CatalogApiClient
     end
 
     # Gets a list of items in a given order
-    # Gets a list of items associated with an order. 
+    # Gets a list of items associated with an order.
     # @param order_id The Order ID
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page.
@@ -321,7 +321,7 @@ module CatalogApiClient
     end
 
     # Get a list of orders
-    # Gets a list of orders associated with the logged in user. 
+    # Gets a list of orders associated with the logged in user.
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page. (default to 100)
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set. (default to 0)
@@ -333,7 +333,7 @@ module CatalogApiClient
     end
 
     # Get a list of orders
-    # Gets a list of orders associated with the logged in user. 
+    # Gets a list of orders associated with the logged in user.
     # @param [Hash] opts the optional parameters
     # @option opts [Integer] :limit The numbers of items to return per page.
     # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
@@ -389,7 +389,7 @@ module CatalogApiClient
     end
 
     # Restore specific Order
-    # Restores the order specified by the order ID. 
+    # Restores the order specified by the order ID.
     # @param id ID of the resource
     # @param restore_key 
     # @param [Hash] opts the optional parameters
@@ -400,7 +400,7 @@ module CatalogApiClient
     end
 
     # Restore specific Order
-    # Restores the order specified by the order ID. 
+    # Restores the order specified by the order ID.
     # @param id ID of the resource
     # @param restore_key 
     # @param [Hash] opts the optional parameters
@@ -454,7 +454,7 @@ module CatalogApiClient
     end
 
     # Gets an individual order item from a given order
-    # Gets an order item associated with an order. 
+    # Gets an order item associated with an order.
     # @param order_id The Order ID
     # @param id ID of the resource
     # @param [Hash] opts the optional parameters
@@ -465,7 +465,7 @@ module CatalogApiClient
     end
 
     # Gets an individual order item from a given order
-    # Gets an order item associated with an order. 
+    # Gets an order item associated with an order.
     # @param order_id The Order ID
     # @param id ID of the resource
     # @param [Hash] opts the optional parameters
@@ -521,7 +521,7 @@ module CatalogApiClient
     end
 
     # Submit a given order
-    # Returns an updated order. 
+    # Returns an updated order.
     # @param order_id The Order ID
     # @param [Hash] opts the optional parameters
     # @return [Order]
@@ -531,7 +531,7 @@ module CatalogApiClient
     end
 
     # Submit a given order
-    # Returns an updated order. 
+    # Returns an updated order.
     # @param order_id The Order ID
     # @param [Hash] opts the optional parameters
     # @return [Array<(Order, Fixnum, Hash)>] Order data, response status code and response headers

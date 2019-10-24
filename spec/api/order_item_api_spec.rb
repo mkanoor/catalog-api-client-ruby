@@ -34,7 +34,7 @@ describe 'OrderItemApi' do
 
   # unit tests for destroy_order_item
   # Delete an existing OrderItem
-  # Deletes the order item  based on order item ID passed 
+  # Deletes the order item  based on order item ID passed
   # @param id ID of the resource
   # @param [Hash] opts the optional parameters
   # @return [RestoreKey]
@@ -46,7 +46,7 @@ describe 'OrderItemApi' do
 
   # unit tests for list_approval_requests
   # Gets a list of approval requests for an item
-  # Gets a list of approval request associated with an order item. As the item is being approved one can check the status of the approvals. 
+  # Gets a list of approval request associated with an order item. As the item is being approved one can check the status of the approvals.
   # @param order_item_id The Order Item ID
   # @param [Hash] opts the optional parameters
   # @option opts [Integer] :limit The numbers of items to return per page.
@@ -61,7 +61,7 @@ describe 'OrderItemApi' do
 
   # unit tests for list_order_items
   # List Order Items
-  # Gets a list of order items. 
+  # Gets a list of order items.
   # @param [Hash] opts the optional parameters
   # @option opts [Integer] :limit The numbers of items to return per page.
   # @option opts [Integer] :offset The number of items to skip before starting to collect the result set.
@@ -75,7 +75,7 @@ describe 'OrderItemApi' do
 
   # unit tests for list_progress_messages
   # Gets a list of progress messages in an item
-  # Gets a list of progress messages associated with an order item. As the item is being processed the provider can update the progress messages. 
+  # Gets a list of progress messages associated with an order item. As the item is being processed the provider can update the progress messages.
   # @param order_item_id The Order Item ID
   # @param [Hash] opts the optional parameters
   # @option opts [Integer] :limit The numbers of items to return per page.
@@ -90,7 +90,7 @@ describe 'OrderItemApi' do
 
   # unit tests for restore_order_item
   # Restore specific Order item
-  # Restores the order item specified by the order item ID. 
+  # Restores the order item specified by the order item ID.
   # @param id ID of the resource
   # @param restore_key 
   # @param [Hash] opts the optional parameters
@@ -103,7 +103,7 @@ describe 'OrderItemApi' do
 
   # unit tests for show_order_item
   # Gets a specific order item
-  # Gets a specific order item based on the order item ID passed 
+  # Gets a specific order item based on the order item ID passed
   # @param id ID of the resource
   # @param [Hash] opts the optional parameters
   # @return [OrderItem]

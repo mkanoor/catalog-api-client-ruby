@@ -7,7 +7,6 @@ Method | HTTP request | Description
 [**destroy_icon**](IconApi.md#destroy_icon) | **DELETE** /icons/{id} | Delete an existing Icon
 [**icons_id_get**](IconApi.md#icons_id_get) | **GET** /icons/{id} | Fetch an Icon by ID
 [**icons_post**](IconApi.md#icons_post) | **POST** /icons | Create an Icon
-[**override_icon**](IconApi.md#override_icon) | **POST** /icons/{id}/override | Override the specified Portfolio Item&#39;s Icon
 [**show_icon_data**](IconApi.md#show_icon_data) | **GET** /icons/{id}/icon_data | Fetches the specified icon&#39;s image
 [**update_icon**](IconApi.md#update_icon) | **PATCH** /icons/{id} | Edit an existing Icon
 
@@ -17,7 +16,7 @@ Method | HTTP request | Description
 
 Delete an existing Icon
 
-Deletes the icon based on the icon ID passed 
+Deletes the icon based on the icon ID passed
 
 ### Example
 ```ruby
@@ -133,7 +132,7 @@ end
 
 api_instance = CatalogApiClient::IconApi.new
 opts = {
-  icon: CatalogApiClient::Icon.new # Icon | 
+  content: File.new('/path/to/file') # File | 
 }
 
 begin
@@ -149,7 +148,7 @@ end
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **icon** | [**Icon**](Icon.md)|  | [optional] 
+ **content** | **File**|  | [optional] 
 
 ### Return type
 
@@ -161,62 +160,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-
-# **override_icon**
-> Icon override_icon(id, opts)
-
-Override the specified Portfolio Item's Icon
-
-Override the specified Portfolio Item's Icon
-
-### Example
-```ruby
-# load the gem
-require 'catalog-api-client'
-# setup authorization
-CatalogApiClient.configure do |config|
-  # Configure HTTP basic authorization: BasicAuth
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
-end
-
-api_instance = CatalogApiClient::IconApi.new
-id = 'id_example' # String | ID of the resource
-opts = {
-  override_icon: CatalogApiClient::OverrideIcon.new # OverrideIcon | 
-}
-
-begin
-  #Override the specified Portfolio Item's Icon
-  result = api_instance.override_icon(id, opts)
-  p result
-rescue CatalogApiClient::ApiError => e
-  puts "Exception when calling IconApi->override_icon: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| ID of the resource | 
- **override_icon** | [**OverrideIcon**](OverrideIcon.md)|  | [optional] 
-
-### Return type
-
-[**Icon**](Icon.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 

@@ -14,7 +14,7 @@ require 'date'
 
 module CatalogApiClient
   class SharePolicy
-    # The permissions to apply for this share. Each permission comprises of 3 parts catalog:portfolios:verb separated by :. The valid verbs are read, write and order
+    # The permissions to apply for this share. Each permission comprises of 3 parts catalog:portfolios:verb separated by :. The valid verbs are read, update, delete and order
     attr_accessor :permissions
 
     # An array of group UUID's retrieved from the RBAC Service with whom the resource has to be shared.

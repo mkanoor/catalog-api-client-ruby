@@ -32,19 +32,7 @@ describe 'InlineObject' do
       expect(@instance).to be_instance_of(CatalogApiClient::InlineObject)
     end
   end
-  describe 'test attribute "query"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "operation_name"' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  describe 'test attribute "variables"' do
+  describe 'test attribute "content"' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

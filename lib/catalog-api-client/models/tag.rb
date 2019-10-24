@@ -13,21 +13,40 @@ OpenAPI Generator version: 3.3.4
 require 'date'
 
 module CatalogApiClient
-  class Image
-    # The unique identifier for this Service Offering Icon
+  class Tag
     attr_accessor :id
+
+    attr_accessor :created_at
+
+    attr_accessor :description
+
+    attr_accessor :name
+
+    attr_accessor :namespace
+
+    attr_accessor :value
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id'
+        :'id' => :'id',
+        :'created_at' => :'created_at',
+        :'description' => :'description',
+        :'name' => :'name',
+        :'namespace' => :'namespace',
+        :'value' => :'value'
       }
     end
 
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String'
+        :'id' => :'String',
+        :'created_at' => :'DateTime',
+        :'description' => :'String',
+        :'name' => :'String',
+        :'namespace' => :'String',
+        :'value' => :'String'
       }
     end
 
@@ -41,6 +60,26 @@ module CatalogApiClient
 
       if attributes.has_key?(:'id')
         self.id = attributes[:'id']
+      end
+
+      if attributes.has_key?(:'created_at')
+        self.created_at = attributes[:'created_at']
+      end
+
+      if attributes.has_key?(:'description')
+        self.description = attributes[:'description']
+      end
+
+      if attributes.has_key?(:'name')
+        self.name = attributes[:'name']
+      end
+
+      if attributes.has_key?(:'namespace')
+        self.namespace = attributes[:'namespace']
+      end
+
+      if attributes.has_key?(:'value')
+        self.value = attributes[:'value']
       end
     end
 
@@ -62,7 +101,12 @@ module CatalogApiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id
+          id == o.id &&
+          created_at == o.created_at &&
+          description == o.description &&
+          name == o.name &&
+          namespace == o.namespace &&
+          value == o.value
     end
 
     # @see the `==` method
@@ -74,7 +118,7 @@ module CatalogApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [id].hash
+      [id, created_at, description, name, namespace, value].hash
     end
 
     # Builds the object from hash
