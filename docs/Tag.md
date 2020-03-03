@@ -1,13 +1,17 @@
 # CatalogApiClient::Tag
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | [optional] 
-**created_at** | **DateTime** |  | [optional] 
-**description** | **String** |  | [optional] 
-**name** | **String** |  | [optional] 
-**namespace** | **String** |  | [optional] 
-**value** | **String** |  | [optional] 
+**tag** | **String** |  | [optional] 
+
+## Code Sample
+
+```ruby
+require 'CatalogApiClient'
+
+instance = CatalogApiClient::Tag.new(tag: /namespace/architecture&#x3D;x86_64)
+```
 
 

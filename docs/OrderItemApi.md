@@ -1,6 +1,6 @@
 # CatalogApiClient::OrderItemApi
 
-All URIs are relative to *https://cloud.redhat.com//api/catalog/v1.0*
+All URIs are relative to *https://cloud.redhat.com//api/catalog/v1.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -12,7 +12,9 @@ Method | HTTP request | Description
 [**show_order_item**](OrderItemApi.md#show_order_item) | **GET** /order_items/{id} | Gets a specific order item
 
 
-# **destroy_order_item**
+
+## destroy_order_item
+
 > RestoreKey destroy_order_item(id)
 
 Delete an existing OrderItem
@@ -20,6 +22,7 @@ Delete an existing OrderItem
 Deletes the order item  based on order item ID passed
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -44,6 +47,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID of the resource | 
@@ -58,12 +62,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## list_approval_requests
 
-# **list_approval_requests**
 > ApprovalRequestsCollection list_approval_requests(order_item_id, opts)
 
 Gets a list of approval requests for an item
@@ -71,6 +75,7 @@ Gets a list of approval requests for an item
 Gets a list of approval request associated with an order item. As the item is being approved one can check the status of the approvals.
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -100,6 +105,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **order_item_id** | **String**| The Order Item ID | 
@@ -117,12 +123,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## list_order_items
 
-# **list_order_items**
 > OrderItemsCollection list_order_items(opts)
 
 List Order Items
@@ -130,6 +136,7 @@ List Order Items
 Gets a list of order items.
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -158,6 +165,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **Integer**| The numbers of items to return per page. | [optional] [default to 100]
@@ -174,12 +182,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## list_progress_messages
 
-# **list_progress_messages**
 > ProgressMessagesCollection list_progress_messages(order_item_id, opts)
 
 Gets a list of progress messages in an item
@@ -187,6 +195,7 @@ Gets a list of progress messages in an item
 Gets a list of progress messages associated with an order item. As the item is being processed the provider can update the progress messages.
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -216,6 +225,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **order_item_id** | **String**| The Order Item ID | 
@@ -233,12 +243,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## restore_order_item
 
-# **restore_order_item**
 > OrderItem restore_order_item(id, restore_key)
 
 Restore specific Order item
@@ -246,6 +256,7 @@ Restore specific Order item
 Restores the order item specified by the order item ID.
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -271,6 +282,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID of the resource | 
@@ -286,12 +298,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
+## show_order_item
 
-# **show_order_item**
 > OrderItem show_order_item(id)
 
 Gets a specific order item
@@ -299,6 +311,7 @@ Gets a specific order item
 Gets a specific order item based on the order item ID passed
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -323,6 +336,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID of the resource | 
@@ -337,8 +351,6 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
+- **Content-Type**: Not defined
+- **Accept**: application/json
 

@@ -1,17 +1,76 @@
 # CatalogApiClient::IconApi
 
-All URIs are relative to *https://cloud.redhat.com//api/catalog/v1.0*
+All URIs are relative to *https://cloud.redhat.com//api/catalog/v1.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**create_icon**](IconApi.md#create_icon) | **POST** /icons | Create an Icon
 [**destroy_icon**](IconApi.md#destroy_icon) | **DELETE** /icons/{id} | Delete an existing Icon
-[**icons_id_get**](IconApi.md#icons_id_get) | **GET** /icons/{id} | Fetch an Icon by ID
-[**icons_post**](IconApi.md#icons_post) | **POST** /icons | Create an Icon
-[**show_icon_data**](IconApi.md#show_icon_data) | **GET** /icons/{id}/icon_data | Fetches the specified icon&#39;s image
 [**update_icon**](IconApi.md#update_icon) | **PATCH** /icons/{id} | Edit an existing Icon
 
 
-# **destroy_icon**
+
+## create_icon
+
+> Icon create_icon(opts)
+
+Create an Icon
+
+Creates an Icon from the specified parameters
+
+### Example
+
+```ruby
+# load the gem
+require 'catalog-api-client'
+# setup authorization
+CatalogApiClient.configure do |config|
+  # Configure HTTP basic authorization: BasicAuth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
+
+api_instance = CatalogApiClient::IconApi.new
+opts = {
+  content: File.new('/path/to/file'), # File | The binary image contents, maximum size is 250KB
+  portfolio_id: 'portfolio_id_example', # String | The Portfolio this Icon belongs to
+  portfolio_item_id: 'portfolio_item_id_example' # String | The Portfolio Item this Icon belongs to
+}
+
+begin
+  #Create an Icon
+  result = api_instance.create_icon(opts)
+  p result
+rescue CatalogApiClient::ApiError => e
+  puts "Exception when calling IconApi->create_icon: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **content** | **File**| The binary image contents, maximum size is 250KB | [optional] 
+ **portfolio_id** | **String**| The Portfolio this Icon belongs to | [optional] 
+ **portfolio_item_id** | **String**| The Portfolio Item this Icon belongs to | [optional] 
+
+### Return type
+
+[**Icon**](Icon.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+
+## destroy_icon
+
 > destroy_icon(id)
 
 Delete an existing Icon
@@ -19,6 +78,7 @@ Delete an existing Icon
 Deletes the icon based on the icon ID passed
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -42,159 +102,6 @@ end
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| ID of the resource | 
-
-### Return type
-
-nil (empty response body)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-
-
-# **icons_id_get**
-> Icon icons_id_get(id)
-
-Fetch an Icon by ID
-
-Fetch an Icon by ID
-
-### Example
-```ruby
-# load the gem
-require 'catalog-api-client'
-# setup authorization
-CatalogApiClient.configure do |config|
-  # Configure HTTP basic authorization: BasicAuth
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
-end
-
-api_instance = CatalogApiClient::IconApi.new
-id = 'id_example' # String | ID of the resource
-
-begin
-  #Fetch an Icon by ID
-  result = api_instance.icons_id_get(id)
-  p result
-rescue CatalogApiClient::ApiError => e
-  puts "Exception when calling IconApi->icons_id_get: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| ID of the resource | 
-
-### Return type
-
-[**Icon**](Icon.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-
-# **icons_post**
-> Icon icons_post(opts)
-
-Create an Icon
-
-Creates an Icon from the specified parameters
-
-### Example
-```ruby
-# load the gem
-require 'catalog-api-client'
-# setup authorization
-CatalogApiClient.configure do |config|
-  # Configure HTTP basic authorization: BasicAuth
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
-end
-
-api_instance = CatalogApiClient::IconApi.new
-opts = {
-  content: File.new('/path/to/file') # File | 
-}
-
-begin
-  #Create an Icon
-  result = api_instance.icons_post(opts)
-  p result
-rescue CatalogApiClient::ApiError => e
-  puts "Exception when calling IconApi->icons_post: #{e}"
-end
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **content** | **File**|  | [optional] 
-
-### Return type
-
-[**Icon**](Icon.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth)
-
-### HTTP request headers
-
- - **Content-Type**: multipart/form-data
- - **Accept**: application/json
-
-
-
-# **show_icon_data**
-> show_icon_data(id)
-
-Fetches the specified icon's image
-
-Fetch the specified portfolio item's icon image.
-
-### Example
-```ruby
-# load the gem
-require 'catalog-api-client'
-# setup authorization
-CatalogApiClient.configure do |config|
-  # Configure HTTP basic authorization: BasicAuth
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
-end
-
-api_instance = CatalogApiClient::IconApi.new
-id = 'id_example' # String | ID of the resource
-
-begin
-  #Fetches the specified icon's image
-  api_instance.show_icon_data(id)
-rescue CatalogApiClient::ApiError => e
-  puts "Exception when calling IconApi->show_icon_data: #{e}"
-end
-```
-
-### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -210,12 +117,12 @@ nil (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: image/svg+xml
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
+## update_icon
 
-# **update_icon**
 > Icon update_icon(id, icon)
 
 Edit an existing Icon
@@ -223,6 +130,7 @@ Edit an existing Icon
 Edits Icon specified by the given ID.
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -248,6 +156,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID of the resource | 
@@ -263,8 +172,6 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
+- **Content-Type**: application/json
+- **Accept**: application/json
 

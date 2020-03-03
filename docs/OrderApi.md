@@ -1,6 +1,6 @@
 # CatalogApiClient::OrderApi
 
-All URIs are relative to *https://cloud.redhat.com//api/catalog/v1.0*
+All URIs are relative to *https://cloud.redhat.com//api/catalog/v1.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,18 +11,22 @@ Method | HTTP request | Description
 [**list_order_items_from_order**](OrderApi.md#list_order_items_from_order) | **GET** /orders/{order_id}/order_items | Gets a list of items in a given order
 [**list_orders**](OrderApi.md#list_orders) | **GET** /orders | Get a list of orders
 [**restore_order**](OrderApi.md#restore_order) | **POST** /orders/{id}/restore | Restore specific Order
+[**show_order**](OrderApi.md#show_order) | **GET** /orders/{id} | Get a specific order
 [**show_order_item_from_order**](OrderApi.md#show_order_item_from_order) | **GET** /orders/{order_id}/order_items/{id} | Gets an individual order item from a given order
 [**submit_order**](OrderApi.md#submit_order) | **POST** /orders/{order_id}/submit_order | Submit a given order
 
 
-# **add_to_order**
-> add_to_order(order_id, order_item)
+
+## add_to_order
+
+> OrderItem add_to_order(order_id, order_item)
 
 Add an order item to an order in pending state
 
 Adds an order item to an order in pending state
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -39,13 +43,15 @@ order_item = CatalogApiClient::OrderItem.new # OrderItem |
 
 begin
   #Add an order item to an order in pending state
-  api_instance.add_to_order(order_id, order_item)
+  result = api_instance.add_to_order(order_id, order_item)
+  p result
 rescue CatalogApiClient::ApiError => e
   puts "Exception when calling OrderApi->add_to_order: #{e}"
 end
 ```
 
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -54,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-nil (empty response body)
+[**OrderItem**](OrderItem.md)
 
 ### Authorization
 
@@ -62,12 +68,12 @@ nil (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: Not defined
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
+## cancel_order
 
-# **cancel_order**
 > Order cancel_order(order_id)
 
 Cancels a given order
@@ -75,6 +81,7 @@ Cancels a given order
 Returns an updated order.
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -99,6 +106,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **order_id** | **String**| The Order ID | 
@@ -113,12 +121,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## create_order
 
-# **create_order**
 > Order create_order
 
 Create a new order
@@ -126,6 +134,7 @@ Create a new order
 Creates a new order.
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -148,6 +157,7 @@ end
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -160,12 +170,12 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## destroy_order
 
-# **destroy_order**
 > RestoreKey destroy_order(id)
 
 Delete an existing Order
@@ -173,6 +183,7 @@ Delete an existing Order
 Deletes the Order based on order ID passed
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -197,6 +208,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID of the resource | 
@@ -211,12 +223,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## list_order_items_from_order
 
-# **list_order_items_from_order**
 > OrderItemsCollection list_order_items_from_order(order_id, opts)
 
 Gets a list of items in a given order
@@ -224,6 +236,7 @@ Gets a list of items in a given order
 Gets a list of items associated with an order.
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -253,6 +266,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **order_id** | **String**| The Order ID | 
@@ -270,12 +284,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## list_orders
 
-# **list_orders**
 > OrdersCollection list_orders(opts)
 
 Get a list of orders
@@ -283,6 +297,7 @@ Get a list of orders
 Gets a list of orders associated with the logged in user.
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -311,6 +326,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **Integer**| The numbers of items to return per page. | [optional] [default to 100]
@@ -327,12 +343,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## restore_order
 
-# **restore_order**
 > Order restore_order(id, restore_key)
 
 Restore specific Order
@@ -340,6 +356,7 @@ Restore specific Order
 Restores the order specified by the order ID.
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -365,6 +382,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **String**| ID of the resource | 
@@ -380,12 +398,65 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
+## show_order
 
-# **show_order_item_from_order**
+> Order show_order(id)
+
+Get a specific order
+
+Get a specific order based on the order ID
+
+### Example
+
+```ruby
+# load the gem
+require 'catalog-api-client'
+# setup authorization
+CatalogApiClient.configure do |config|
+  # Configure HTTP basic authorization: BasicAuth
+  config.username = 'YOUR USERNAME'
+  config.password = 'YOUR PASSWORD'
+end
+
+api_instance = CatalogApiClient::OrderApi.new
+id = 'id_example' # String | ID of the resource
+
+begin
+  #Get a specific order
+  result = api_instance.show_order(id)
+  p result
+rescue CatalogApiClient::ApiError => e
+  puts "Exception when calling OrderApi->show_order: #{e}"
+end
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| ID of the resource | 
+
+### Return type
+
+[**Order**](Order.md)
+
+### Authorization
+
+[BasicAuth](../README.md#BasicAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## show_order_item_from_order
+
 > OrderItem show_order_item_from_order(order_id, id)
 
 Gets an individual order item from a given order
@@ -393,6 +464,7 @@ Gets an individual order item from a given order
 Gets an order item associated with an order.
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -418,6 +490,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **order_id** | **String**| The Order ID | 
@@ -433,12 +506,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## submit_order
 
-# **submit_order**
 > Order submit_order(order_id)
 
 Submit a given order
@@ -446,6 +519,7 @@ Submit a given order
 Returns an updated order.
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -470,6 +544,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **order_id** | **String**| The Order ID | 
@@ -484,8 +559,6 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
+- **Content-Type**: Not defined
+- **Accept**: application/json
 

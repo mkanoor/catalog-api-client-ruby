@@ -1,6 +1,6 @@
 # CatalogApiClient::SettingsApi
 
-All URIs are relative to *https://cloud.redhat.com//api/catalog/v1.0*
+All URIs are relative to *https://cloud.redhat.com//api/catalog/v1.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,7 +11,9 @@ Method | HTTP request | Description
 [**update_setting**](SettingsApi.md#update_setting) | **PATCH** /settings/{name} | Update a Tenant Setting
 
 
-# **create_setting**
+
+## create_setting
+
 > create_setting(setting)
 
 Create Tenant Setting
@@ -19,6 +21,7 @@ Create Tenant Setting
 Create Tenant Setting
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -42,6 +45,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **setting** | [**Setting**](Setting.md)| Json encoded key/value pair to create a new setting | 
@@ -56,12 +60,12 @@ nil (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 
+## destroy_setting
 
-# **destroy_setting**
 > destroy_setting(name)
 
 Delete a Tenant Setting
@@ -69,6 +73,7 @@ Delete a Tenant Setting
 Delete a Tenant Setting
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -92,6 +97,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| name of the setting | 
@@ -106,12 +112,12 @@ nil (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
+## list_settings
 
-# **list_settings**
 > TenantSettings list_settings
 
 List Tenant Settings
@@ -119,6 +125,7 @@ List Tenant Settings
 List Tenant Settings
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -141,6 +148,7 @@ end
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -153,12 +161,12 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## show_setting
 
-# **show_setting**
 > show_setting(name)
 
 Get a specific Tenant Setting
@@ -166,6 +174,7 @@ Get a specific Tenant Setting
 Get a specific Tenant Setting
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -189,6 +198,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| name of the setting | 
@@ -203,12 +213,12 @@ nil (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## update_setting
 
-# **update_setting**
 > update_setting(name)
 
 Update a Tenant Setting
@@ -216,6 +226,7 @@ Update a Tenant Setting
 Update a Tenant Setting
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -239,6 +250,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **String**| name of the setting | 
@@ -253,8 +265,6 @@ nil (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
+- **Content-Type**: Not defined
+- **Accept**: application/json
 

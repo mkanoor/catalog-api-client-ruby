@@ -1,6 +1,6 @@
 # CatalogApiClient::TenantApi
 
-All URIs are relative to *https://cloud.redhat.com//api/catalog/v1.0*
+All URIs are relative to *https://cloud.redhat.com//api/catalog/v1.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -9,7 +9,9 @@ Method | HTTP request | Description
 [**tenant_seed**](TenantApi.md#tenant_seed) | **POST** /tenants/{tenant_id}/seed | Seed Tenant Groups
 
 
-# **list_tenants**
+
+## list_tenants
+
 > TenantsCollection list_tenants
 
 List Tenants
@@ -17,6 +19,7 @@ List Tenants
 Get a list of tenants.
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -39,6 +42,7 @@ end
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -51,12 +55,12 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## show_tenant
 
-# **show_tenant**
 > Tenant show_tenant(tenant_id)
 
 Get a specific Tenant
@@ -64,6 +68,7 @@ Get a specific Tenant
 Gets the tenant specified by the tenant id.
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -88,6 +93,7 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tenant_id** | **String**| ID of the resource | 
@@ -102,19 +108,20 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 
+## tenant_seed
 
-# **tenant_seed**
-> tenant_seed(tenant_id, opts)
+> tenant_seed(tenant_id)
 
 Seed Tenant Groups
 
 Run a task to seed the Tenant Groups required for an org admin to onboard additional users.
 
 ### Example
+
 ```ruby
 # load the gem
 require 'catalog-api-client'
@@ -127,15 +134,10 @@ end
 
 api_instance = CatalogApiClient::TenantApi.new
 tenant_id = 'tenant_id_example' # String | ID of the resource
-opts = {
-  limit: 100, # Integer | The numbers of items to return per page.
-  offset: 0, # Integer | The number of items to skip before starting to collect the result set.
-  filter: nil # Object | Filter for querying collections.
-}
 
 begin
   #Seed Tenant Groups
-  api_instance.tenant_seed(tenant_id, opts)
+  api_instance.tenant_seed(tenant_id)
 rescue CatalogApiClient::ApiError => e
   puts "Exception when calling TenantApi->tenant_seed: #{e}"
 end
@@ -143,12 +145,10 @@ end
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tenant_id** | **String**| ID of the resource | 
- **limit** | **Integer**| The numbers of items to return per page. | [optional] [default to 100]
- **offset** | **Integer**| The number of items to skip before starting to collect the result set. | [optional] [default to 0]
- **filter** | [**Object**](.md)| Filter for querying collections. | [optional] 
 
 ### Return type
 
@@ -160,8 +160,6 @@ nil (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 

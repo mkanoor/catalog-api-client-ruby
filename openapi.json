@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "description": "This API gets and orders catalog items from different cloud sources.",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "title": "Catalog API",
     "contact": {
       "email": "support@redhat.com"
@@ -14,9 +14,7 @@
   },
   "security": [
     {
-      "BasicAuth": [
-
-      ]
+      "BasicAuth": []
     }
   ],
   "tags": [
@@ -74,7 +72,14 @@
         "operationId": "getDocumentation",
         "responses": {
           "200": {
-            "description": "The API document for this version of the API"
+            "description": "The API document for this version of the API",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
           }
         }
       }
@@ -149,14 +154,14 @@
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "422": {
-            "$ref": "#/components/responses/InvalidEntity"
           }
         }
       }
@@ -185,6 +190,9 @@
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
@@ -193,9 +201,6 @@
           },
           "404": {
             "description": "Portfolio not found."
-          },
-          "422": {
-            "$ref": "#/components/responses/InvalidEntity"
           }
         }
       },
@@ -233,14 +238,14 @@
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "422": {
-            "$ref": "#/components/responses/InvalidEntity"
           }
         }
       },
@@ -267,11 +272,11 @@
               }
             }
           },
+          "400": {
+            "description": "Failed to discard child portfolio items."
+          },
           "404": {
             "description": "Portfolio Not Found."
-          },
-          "422": {
-            "description": "Failed to discard child portfolio items."
           }
         }
       }
@@ -319,43 +324,6 @@
             "description": "Portfolio not found"
           }
         }
-      },
-      "post": {
-        "tags": [
-          "Portfolio"
-        ],
-        "summary": "Add a portfolio item to a portfolio",
-        "operationId": "addPortfolioItemToPortfolio",
-        "description": "Adds a new portfolio item to an existing portfolio.",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/PortfolioID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully added a portfolio item to the portfolio."
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "description": "The portfolio or the portfolio item was not found."
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddPortfolioItem"
-              }
-            }
-          },
-          "required": true
-        }
       }
     },
     "/portfolios/{portfolio_id}/share": {
@@ -385,6 +353,9 @@
           "200": {
             "description": "Successfully shared the portfolio"
           },
+          "400": {
+            "description": "One or more of the RBAC groups was not found"
+          },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
@@ -393,9 +364,6 @@
           },
           "404": {
             "description": "The Portfolio Object was not found."
-          },
-          "422": {
-            "description": "One or more of the RBAC groups was not found"
           }
         }
       }
@@ -541,6 +509,9 @@
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
@@ -549,9 +520,6 @@
           },
           "404": {
             "description": "Portfolio not found."
-          },
-          "422": {
-            "$ref": "#/components/responses/InvalidEntity"
           }
         },
         "requestBody": {
@@ -584,7 +552,22 @@
             "description": "Portfolio Icon",
             "content": {
               "image/svg+xml": {
-                "example": "<svg rel=\"stylesheet\">thing</svg>"
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "image/jpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
               }
             }
           },
@@ -643,7 +626,9 @@
             "description": "Portfolio Not Found."
           }
         }
-      },
+      }
+    },
+    "/portfolios/{id}/tag": {
       "post": {
         "tags": [
           "Portfolio"
@@ -657,15 +642,21 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Tag successfully added",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Tag"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Tag"
+                  }
                 }
               }
             }
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
@@ -681,7 +672,49 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TagItem"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/portfolios/{id}/untag": {
+      "post": {
+        "tags": [
+          "Portfolio"
+        ],
+        "summary": "Remove Tags from Portfolio",
+        "description": "Remove Tags from Portfolio",
+        "operationId": "removePortfolioTags",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Tag Deleted"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Tag"
+                }
               }
             }
           },
@@ -741,6 +774,9 @@
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
@@ -749,9 +785,6 @@
           },
           "404": {
             "description": "Tenant not found."
-          },
-          "422": {
-            "$ref": "#/components/responses/InvalidEntity"
           }
         }
       }
@@ -767,15 +800,6 @@
         "parameters": [
           {
             "$ref": "#/components/parameters/TenantID"
-          },
-          {
-            "$ref": "#/components/parameters/QueryLimit"
-          },
-          {
-            "$ref": "#/components/parameters/QueryOffset"
-          },
-          {
-            "$ref": "#/components/parameters/QueryFilter"
           }
         ],
         "responses": {
@@ -851,6 +875,9 @@
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
@@ -859,9 +886,6 @@
           },
           "404": {
             "description": "Service Offering not found."
-          },
-          "422": {
-            "$ref": "#/components/responses/InvalidEntity"
           }
         },
         "requestBody": {
@@ -1072,6 +1096,7 @@
           "PortfolioItem"
         ],
         "summary": "Undelete a specified Portfolio Item",
+        "operationId": "unDeletePortfolioItem",
         "description": "If a record has been discarded, this operation will undelete it so it can be requested normally.",
         "parameters": [
           {
@@ -1157,29 +1182,37 @@
             "description": "Portfolio Item Not Found."
           }
         }
-      },
+      }
+    },
+    "/portfolio_items/{id}/tag": {
       "post": {
         "tags": [
-          "Portfolio"
+          "PortfolioItem"
         ],
-        "summary": "Add Tag for Portfolio",
+        "summary": "Add Tag for Portfolio Item",
         "operationId": "addPortfolioItemTag",
-        "description": "Adds a single tag to Portfolio object",
+        "description": "Adds a single tag to a Portfolio Item object",
         "parameters": [
           {
             "$ref": "#/components/parameters/ID"
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Tag successfully added",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Tag"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Tag"
+                  }
                 }
               }
             }
+          },
+          "304": {
+            "$ref": "#/components/responses/NotModified"
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
@@ -1195,7 +1228,49 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TagItem"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/portfolio_items/{id}/untag": {
+      "post": {
+        "tags": [
+          "PortfolioItem"
+        ],
+        "summary": "Remove Tags from Portfolio Item",
+        "description": "Remove Tags from Portfolio Item",
+        "operationId": "removePortfolioItemTags",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ID"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Tag Deleted"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Tag"
+                }
               }
             }
           },
@@ -1269,6 +1344,40 @@
       }
     },
     "/orders/{id}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "Get a specific order",
+        "operationId": "showOrder",
+        "description": "Get a specific order based on the order ID",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order specified by the given ID.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "description": "The Order ID was not found"
+          }
+        }
+      },
       "delete": {
         "tags": [
           "Order"
@@ -1353,7 +1462,14 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully added an item to order"
+            "description": "Successfully added an item to order",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderItem"
+                }
+              }
+            }
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
@@ -1476,6 +1592,9 @@
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
@@ -1484,9 +1603,6 @@
           },
           "404": {
             "description": "Order not found"
-          },
-          "422": {
-            "$ref": "#/components/responses/UnprocessableEntity"
           }
         }
       }
@@ -1515,6 +1631,9 @@
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
@@ -1523,9 +1642,6 @@
           },
           "404": {
             "description": "Order not found."
-          },
-          "422": {
-            "$ref": "#/components/responses/InvalidEntity"
           }
         },
         "requestBody": {
@@ -1667,6 +1783,9 @@
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
@@ -1675,9 +1794,6 @@
           },
           "404": {
             "description": "Order item not found."
-          },
-          "422": {
-            "$ref": "#/components/responses/InvalidEntity"
           }
         },
         "requestBody": {
@@ -1800,7 +1916,22 @@
             "description": "Portfolio Item Icon",
             "content": {
               "image/svg+xml": {
-                "example": "<svg rel=\"stylesheet\">thing</svg>"
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "image/jpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
               }
             }
           },
@@ -1840,6 +1971,9 @@
               }
             }
           },
+          "400": {
+            "description": "Portfolio not found"
+          },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
@@ -1848,9 +1982,6 @@
           },
           "404": {
             "description": "Portfolio Item not found"
-          },
-          "422": {
-            "description": "Portfolio not found"
           },
           "500": {
             "description": "Failed to copy Portfolio Item"
@@ -1874,18 +2005,13 @@
           "Icon"
         ],
         "summary": "Create an Icon",
+        "operationId": "createIcon",
         "description": "Creates an Icon from the specified parameters",
         "requestBody": {
           "content": {
             "multipart/form-data": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "content": {
-                    "type": "string",
-                    "format": "binary"
-                  }
-                }
+                "$ref": "#/components/schemas/CreateIcon"
               }
             }
           }
@@ -1911,39 +2037,6 @@
       }
     },
     "/icons/{id}": {
-      "get": {
-        "tags": [
-          "Icon"
-        ],
-        "summary": "Fetch an Icon by ID",
-        "description": "Fetch an Icon by ID",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/ID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The Icon matching the Icon ID",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Icon"
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "description": "Icon not found"
-          }
-        }
-      },
       "patch": {
         "tags": [
           "Icon"
@@ -2007,40 +2100,6 @@
           },
           "404": {
             "description": "Icon not found."
-          }
-        }
-      }
-    },
-    "/icons/{id}/icon_data": {
-      "get": {
-        "tags": [
-          "Icon"
-        ],
-        "summary": "Fetches the specified icon's image",
-        "operationId": "showIconData",
-        "description": "Fetch the specified portfolio item's icon image.",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/ID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Portfolio Item Icon",
-            "content": {
-              "image/svg+xml": {
-                "example": "<svg rel=\"stylesheet\">thing</svg>"
-              }
-            }
-          },
-          "204": {
-            "description": "No icon data present."
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
           }
         }
       }
@@ -2139,14 +2198,14 @@
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "422": {
-            "$ref": "#/components/responses/InvalidEntity"
           }
         }
       }
@@ -2173,14 +2232,14 @@
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "422": {
-            "$ref": "#/components/responses/InvalidEntity"
           }
         }
       },
@@ -2205,14 +2264,14 @@
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "422": {
-            "$ref": "#/components/responses/InvalidEntity"
           }
         }
       },
@@ -2232,14 +2291,14 @@
           "204": {
             "description": "Tenant Setting successfully deleted."
           },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
-          },
-          "422": {
-            "$ref": "#/components/responses/InvalidEntity"
           }
         }
       }
@@ -2272,29 +2331,39 @@
         }
       }
     },
-    "/tags/{id}": {
-      "get": {
+    "/service_plans": {
+      "post": {
         "tags": [
-          "Tags"
+          "Service Plans"
         ],
-        "summary": "Show Tag",
-        "operationId": "showTag",
-        "description": "Show a specific Tag",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/ID"
+        "summary": "Create Service Plan",
+        "operationId": "createServicePlan",
+        "description": "Returns the new Service Plan",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportServicePlan"
+              }
+            }
           }
-        ],
+        },
         "responses": {
           "200": {
-            "description": "The requestesd Tag",
+            "description": "Service Plan",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Tag"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServicePlan"
+                  }
                 }
               }
             }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
@@ -2303,40 +2372,34 @@
             "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Tag Not Found."
+            "description": "Service Plan Not Found."
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
           }
         }
       }
     },
-    "/tags/{id}/portfolios": {
+    "/service_plans/{id}": {
       "get": {
         "tags": [
-          "Tags"
+          "Service Plans"
         ],
-        "summary": "List Portfolios for Tag",
-        "operationId": "listTagPortfolios",
-        "description": "Returns an array of Portfolio objects",
+        "summary": "Show Service Plan",
+        "operationId": "showServicePlan",
+        "description": "Returns the specified Service Plan",
         "parameters": [
-          {
-            "$ref": "#/components/parameters/QueryLimit"
-          },
-          {
-            "$ref": "#/components/parameters/QueryOffset"
-          },
-          {
-            "$ref": "#/components/parameters/QueryFilter"
-          },
           {
             "$ref": "#/components/parameters/ID"
           }
         ],
         "responses": {
           "200": {
-            "description": "Portfolio collection",
+            "description": "Service Plan",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PortfoliosCollection"
+                  "$ref": "#/components/schemas/ServicePlan"
                 }
               }
             }
@@ -2348,40 +2411,31 @@
             "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Tag Not Found."
+            "description": "Service Plan Not Found."
           }
         }
       }
     },
-    "/tags/{id}/portfolio_items": {
+    "/service_plans/{id}/base": {
       "get": {
         "tags": [
-          "Tags"
+          "Service Plans"
         ],
-        "summary": "List Portfolio Items for Tag",
-        "operationId": "listTagPortfolioItems",
-        "description": "Returns an array of Portfolio Item objects",
+        "summary": "Show Service Plan Base Schema",
+        "operationId": "showServicePlanBase",
+        "description": "Returns the specified Service Plan's base schema",
         "parameters": [
-          {
-            "$ref": "#/components/parameters/QueryLimit"
-          },
-          {
-            "$ref": "#/components/parameters/QueryOffset"
-          },
-          {
-            "$ref": "#/components/parameters/QueryFilter"
-          },
           {
             "$ref": "#/components/parameters/ID"
           }
         ],
         "responses": {
           "200": {
-            "description": "Portfolio Item collection",
+            "description": "Service Plan Base Schema",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PortfolioItemsCollection"
+                  "$ref": "#/components/schemas/ServicePlan"
                 }
               }
             }
@@ -2393,7 +2447,123 @@
             "$ref": "#/components/responses/Forbidden"
           },
           "404": {
-            "description": "Tag Not Found."
+            "description": "Service Plan Not Found."
+          }
+        }
+      }
+    },
+    "/service_plans/{id}/modified": {
+      "get": {
+        "tags": [
+          "Service Plans"
+        ],
+        "summary": "Show Service Plan modified Schema",
+        "operationId": "showServicePlanModified",
+        "description": "Returns the specified Service Plan's modified schema",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Service Plan Modified Schema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicePlan"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No modified schema present for service_plan."
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "description": "Service Plan Not Found."
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Service Plans"
+        ],
+        "summary": "Patch Service Plan Modified Schema",
+        "operationId": "patchServicePlanModified",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchModifiedServicePlan"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Service Plan Modified Schema",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "description": "Service Plan Not Found."
+          }
+        }
+      }
+    },
+    "/service_plans/{id}/reset": {
+      "post": {
+        "tags": [
+          "Service Plans"
+        ],
+        "summary": "Reset Service Plan Modified schema",
+        "operationId": "resetServicePlanModified",
+        "description": "Resets the Service Plan's Modified schema",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Modified schema for service_plan has been reset"
+          },
+          "204": {
+            "description": "No modified schema present for service_plan."
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "description": "Service Plan Not Found."
           }
         }
       }
@@ -2405,7 +2575,7 @@
       "description": "Production Server",
       "variables": {
         "basePath": {
-          "default": "/api/catalog/v1.0"
+          "default": "/api/catalog/v1.1"
         }
       }
     },
@@ -2417,7 +2587,7 @@
           "default": "3000"
         },
         "basePath": {
-          "default": "/api/catalog/v1.0"
+          "default": "/api/catalog/v1.1"
         }
       }
     }
@@ -2539,17 +2709,20 @@
       }
     },
     "responses": {
-      "InvalidEntity": {
+      "BadRequest": {
         "description": "The entity being created does not have either all the required parameters specified or the parameter value is invalid."
+      },
+      "Conflict": {
+        "description": "The request could not be completed due to a conflict with the current state of the resource."
       },
       "Forbidden": {
         "description": "The caller is forbidden to perform the action."
       },
+      "NotModified": {
+        "description": " The entity has not changed since the last GET request"
+      },
       "Unauthorized": {
         "description": "The caller is not authorized to access this resource."
-      },
-      "UnprocessableEntity": {
-        "description": "The entity is currently in a state that does not allow the requested action"
       }
     },
     "requestBodies": {
@@ -2587,7 +2760,8 @@
           "description": {
             "type": "string",
             "title": "Description",
-            "example": "This is a sample description for a portfolio."
+            "example": "This is a sample description for a portfolio.",
+            "nullable": true
           },
           "enabled": {
             "type": "boolean",
@@ -2595,23 +2769,18 @@
             "default": false,
             "example": false
           },
-          "image_url": {
-            "type": "string",
-            "title": "Image URL",
-            "format": "url",
-            "example": "The public facing image url for a portfolio."
-          },
-          "workflow_ref": {
-            "type": "string",
-            "title": "Approval Workflow ID",
-            "example": "The current approval workflow selected for a portfolio",
-            "nullable": true
-          },
           "owner": {
             "type": "string",
             "title": "Owner",
             "example": "jdoe",
             "readOnly": true
+          },
+          "icon_id": {
+            "type": "string",
+            "title": "Icon ID",
+            "description": "The Portfolio Icon ID",
+            "readOnly": true,
+            "example": "1"
           },
           "created_at": {
             "type": "string",
@@ -2629,7 +2798,14 @@
       },
       "CreatePortfolioItem": {
         "type": "object",
+        "required": ["portfolio_id"],
         "properties": {
+          "portfolio_id": {
+            "type": "string",
+            "title": "Portfolio ID",
+            "description": "The Portfolio this portfolio item should belong to",
+            "example": "1"
+          },
           "service_offering_ref": {
             "type": "string",
             "title": "Service Offering Ref",
@@ -2638,14 +2814,47 @@
           }
         }
       },
-      "AddPortfolioItem": {
+      "CreateIcon": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "title": "Content",
+            "description": "The binary image contents, maximum size is 250KB",
+            "format": "binary"
+          },
+          "portfolio_id": {
+            "type": "string",
+            "title": "Portfolio ID",
+            "description": "The Portfolio this Icon belongs to",
+            "example": "1"
+          },
+          "portfolio_item_id": {
+            "type": "string",
+            "title": "Portfolio Item ID",
+            "description": "The Portfolio Item this Icon belongs to",
+            "example": "1"
+          }
+        }
+      },
+      "PatchModifiedServicePlan": {
+        "type": "object",
+        "properties": {
+          "modified": {
+            "type": "object",
+            "title": "Modified Schema",
+            "description": "the new modified schema for the service plan"
+          }
+        }
+      },
+      "ImportServicePlan": {
         "type": "object",
         "properties": {
           "portfolio_item_id": {
             "type": "string",
-            "title": "Portfolio Item Id",
-            "example": "100",
-            "description": "This is the ID of the portfolio item object."
+            "title": "Portfolio Item ID",
+            "description": "The Portfolio Item to import the service plans for.",
+            "example": "177"
           }
         }
       },
@@ -2723,7 +2932,8 @@
           "description": {
             "type": "string",
             "title": "Description",
-            "example": "Description of a portfolio item"
+            "example": "Description of a portfolio item",
+            "nullable": true
           },
           "orphan": {
             "type": "boolean",
@@ -2740,27 +2950,25 @@
           "long_description": {
             "type": "string",
             "title": "Long Description",
-            "example": "The longer description of a portfolio item"
+            "example": "The longer description of a portfolio item",
+            "nullable": true
           },
           "distributor": {
             "type": "string",
             "title": "Distributor",
-            "example": "The name of the provider for this Item"
+            "example": "The name of the provider for this Item",
+            "nullable": true
           },
           "documentation_url": {
             "type": "string",
             "title": "Documentation URL",
-            "example": "The URL for documentation of the portfolio item"
+            "example": "The URL for documentation of the portfolio item",
+            "nullable": true
           },
           "support_url": {
             "type": "string",
             "title": "Support URL",
-            "example": "The URL for finding support for the portfolio item"
-          },
-          "workflow_ref": {
-            "type": "string",
-            "title": "Approval Workflow ID",
-            "example": "The approval workflow selected for a portfolio item",
+            "example": "The URL for finding support for the portfolio item",
             "nullable": true
           },
           "owner": {
@@ -2787,6 +2995,13 @@
             "type": "string",
             "title": "Portfolio ID",
             "description": "ID of a parent portfolio",
+            "readOnly": true,
+            "example": "1"
+          },
+          "icon_id": {
+            "type": "string",
+            "title": "Icon ID",
+            "description": "The Portfolio Item Icon ID",
             "readOnly": true,
             "example": "1"
           },
@@ -2831,18 +3046,21 @@
           "created_at": {
             "type": "string",
             "format": "date-time",
-            "title": "Created at"
+            "title": "Created at",
+            "readOnly": true
           },
           "order_request_sent_at": {
             "type": "string",
             "format": "date-time",
             "title": "Order request sent at",
-            "description": "The time at which the order request was sent to the Topology Service"
+            "description": "The time at which the order request was sent to the Topology Service",
+            "nullable": true
           },
           "completed_at": {
             "type": "string",
             "format": "date-time",
-            "title": "Completed at"
+            "title": "Completed at",
+            "readOnly": true
           },
           "owner": {
             "type": "string",
@@ -2855,11 +3073,8 @@
       "OrderItem": {
         "type": "object",
         "required": [
-          "service_parameters",
           "count",
-          "service_plan_ref",
-          "portfolio_item_id",
-          "provider_control_parameters"
+          "portfolio_item_id"
         ],
         "properties": {
           "id": {
@@ -2873,17 +3088,14 @@
           },
           "service_parameters": {
             "type": "object",
-            "title": "JSON object with provisioning parameters"
+            "title": "JSON object with provisioning parameters",
+            "nullable": true
           },
           "provider_control_parameters": {
             "type": "object",
             "title": "Provider Control Parameters",
-            "description": "The provider specific parameters needed to provision this service. This might include namespaces, special keys."
-          },
-          "service_plan_ref": {
-            "type": "string",
-            "title": "The Service Plan ref",
-            "description": "Stores the service plan ref from the Topology Service."
+            "description": "The provider specific parameters needed to provision this service. This might include namespaces, special keys.",
+            "nullable": true
           },
           "portfolio_item_id": {
             "type": "string",
@@ -2899,7 +3111,8 @@
               "Failed",
               "Completed",
               "Approved",
-              "Denied"
+              "Denied",
+              "Canceled"
             ],
             "title": "State",
             "description": "Current state of this order item.",
@@ -2999,12 +3212,6 @@
             ],
             "description": "The state of the approval request (approved, denied, undecided, canceled)",
             "readOnly": true
-          },
-          "workflow_ref": {
-            "type": "string",
-            "title": "Workflow Ref",
-            "description": "The workflow that was requested",
-            "readOnly": true
           }
         }
       },
@@ -3097,10 +3304,16 @@
             "description": "The service plan description.",
             "readOnly": true
           },
-          "service_offering_id": {
+          "create_json_schema": {
+            "type": "object",
+            "title": "JSON Schema",
+            "description": "JSON schema for the object.",
+            "readOnly": true
+          },
+          "portfolio_item_id": {
             "type": "string",
-            "title": "Service Offering ID",
-            "description": "The reference ID of the service offering",
+            "title": "Portfolio Item ID",
+            "description": "The reference ID of the Portfolio Item",
             "readOnly": true
           },
           "id": {
@@ -3109,10 +3322,16 @@
             "description": "The unique identifier for this service plan.",
             "readOnly": true
           },
-          "create_json_schema": {
-            "type": "object",
-            "title": "JSON Schema",
-            "description": "JSON schema for the object.",
+          "imported": {
+            "type": "boolean",
+            "title": "Imported",
+            "description": "Whether or not the ServicePlan has been imported for editing",
+            "readOnly": true
+          },
+          "modified": {
+            "type": "boolean",
+            "title": "Modified",
+            "description": "Whether or not the ServicePlan has a modified schema",
             "readOnly": true
           }
         }
@@ -3306,22 +3525,22 @@
           "permissions": {
             "type": "array",
             "title": "Name",
-            "description": "The permissions to apply for this share. Each permission comprises of 3 parts catalog:portfolios:verb separated by :. The valid verbs are read, update, delete and order",
+            "description": "The permissions to apply for this share. The valid values are read, update, delete and order",
             "items": {
               "type": "string",
               "enum": [
-                "catalog:portfolios:read",
-                "catalog:portfolios:update",
-                "catalog:portfolios:delete",
-                "catalog:portfolios:order"
+                "read",
+                "update",
+                "delete",
+                "order"
               ]
             },
             "minItems": 1,
             "example": [
-              "catalog:portfolios:read",
-              "catalog:portfolios:update",
-              "catalog:portfolios:delete",
-              "catalog:portfolios:order"
+              "read",
+              "update",
+              "delete",
+              "order"
             ]
           },
           "group_uuids": {
@@ -3329,7 +3548,8 @@
             "title": "The Group UUIDs",
             "description": "An array of group UUID's retrieved from the RBAC Service with whom the resource has to be shared.",
             "items": {
-              "type": "string"
+              "type": "string",
+              "format": "uuid"
             },
             "minItems": 1
           }
@@ -3348,10 +3568,10 @@
             "items": {
               "type": "string",
               "enum": [
-                "catalog:portfolios:read",
-                "catalog:portfolios:update",
-                "catalog:portfolios:delete",
-                "catalog:portfolios:order"
+                "read",
+                "update",
+                "delete",
+                "order"
               ]
             },
             "minItems": 1
@@ -3361,7 +3581,8 @@
             "title": "The Group UUIDs",
             "description": "An array of group UUID's retrieved from the RBAC Service from which the permissions have to be removed. If group uuids are not specified we will unshare it from all groups.",
             "items": {
-              "type": "string"
+              "type": "string",
+              "format": "uuid"
             }
           }
         }
@@ -3373,61 +3594,24 @@
             "type": "string",
             "title": "Request account number",
             "description": "The Request account number"
+          },
+          "id": {
+            "type": "string",
+            "title": "Internal tenant id",
+            "description": "The internal tenant id"
           }
         }
       },
       "Tag": {
         "type": "object",
         "properties": {
-          "id": {
+          "tag": {
+            "example": "/namespace/architecture=x86_64",
             "type": "string",
-            "readOnly": true
-          },
-          "created_at": {
-            "format": "date-time",
-            "readOnly": true,
-            "type": "string"
-          },
-          "description": {
-            "example": "Instruction set architecture",
-            "readOnly": true,
-            "type": "string"
-          },
-          "name": {
-            "example": "architecture",
-            "readOnly": true,
-            "type": "string"
-          },
-          "namespace": {
-            "example": "openshift",
-            "readOnly": true,
-            "type": "string"
-          },
-          "value": {
-            "readOnly": true,
-            "type": "string"
+            "pattern": "\\/.*\\/.+(=.+|[^=]$)"
           }
         },
         "additionalProperties": false
-      },
-      "TagItem": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "example": "architecture",
-            "readOnly": true,
-            "type": "string"
-          },
-          "namespace": {
-            "example": "openshift",
-            "readOnly": true,
-            "type": "string"
-          },
-          "value": {
-            "readOnly": true,
-            "type": "string"
-          }
-        }
       },
       "TagsCollection": {
         "type": "object",
@@ -3466,10 +3650,10 @@
             "items": {
               "type": "string",
               "enum": [
-                "catalog:portfolios:read",
-                "catalog:portfolios:update",
-                "catalog:portfolios:delete",
-                "catalog:portfolios:order"
+                "read",
+                "update",
+                "delete",
+                "order"
               ]
             }
           }
