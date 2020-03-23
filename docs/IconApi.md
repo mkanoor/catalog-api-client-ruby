@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_icon**](IconApi.md#create_icon) | **POST** /icons | Create an Icon
 [**destroy_icon**](IconApi.md#destroy_icon) | **DELETE** /icons/{id} | Delete an existing Icon
-[**update_icon**](IconApi.md#update_icon) | **PATCH** /icons/{id} | Edit an existing Icon
 
 
 
@@ -119,59 +118,4 @@ nil (empty response body)
 
 - **Content-Type**: Not defined
 - **Accept**: Not defined
-
-
-## update_icon
-
-> Icon update_icon(id, icon)
-
-Edit an existing Icon
-
-Edits Icon specified by the given ID.
-
-### Example
-
-```ruby
-# load the gem
-require 'catalog-api-client'
-# setup authorization
-CatalogApiClient.configure do |config|
-  # Configure HTTP basic authorization: BasicAuth
-  config.username = 'YOUR USERNAME'
-  config.password = 'YOUR PASSWORD'
-end
-
-api_instance = CatalogApiClient::IconApi.new
-id = 'id_example' # String | ID of the resource
-icon = CatalogApiClient::Icon.new # Icon | Parameters needed to update an Icon
-
-begin
-  #Edit an existing Icon
-  result = api_instance.update_icon(id, icon)
-  p result
-rescue CatalogApiClient::ApiError => e
-  puts "Exception when calling IconApi->update_icon: #{e}"
-end
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **String**| ID of the resource | 
- **icon** | [**Icon**](Icon.md)| Parameters needed to update an Icon | 
-
-### Return type
-
-[**Icon**](Icon.md)
-
-### Authorization
-
-[BasicAuth](../README.md#BasicAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
 

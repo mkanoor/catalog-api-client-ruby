@@ -52,6 +52,9 @@ module CatalogApiClient
 
     attr_accessor :updated_at
 
+    # JSON Metadata about the portfolio item
+    attr_accessor :metadata
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
@@ -71,7 +74,8 @@ module CatalogApiClient
         :'portfolio_id' => :'portfolio_id',
         :'icon_id' => :'icon_id',
         :'created_at' => :'created_at',
-        :'updated_at' => :'updated_at'
+        :'updated_at' => :'updated_at',
+        :'metadata' => :'metadata'
       }
     end
 
@@ -94,7 +98,8 @@ module CatalogApiClient
         :'portfolio_id' => :'String',
         :'icon_id' => :'String',
         :'created_at' => :'DateTime',
-        :'updated_at' => :'DateTime'
+        :'updated_at' => :'DateTime',
+        :'metadata' => :'Object'
       }
     end
 
@@ -191,6 +196,10 @@ module CatalogApiClient
       if attributes.key?(:'updated_at')
         self.updated_at = attributes[:'updated_at']
       end
+
+      if attributes.key?(:'metadata')
+        self.metadata = attributes[:'metadata']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -227,7 +236,8 @@ module CatalogApiClient
           portfolio_id == o.portfolio_id &&
           icon_id == o.icon_id &&
           created_at == o.created_at &&
-          updated_at == o.updated_at
+          updated_at == o.updated_at &&
+          metadata == o.metadata
     end
 
     # @see the `==` method
@@ -239,7 +249,7 @@ module CatalogApiClient
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, favorite, name, description, orphan, state, long_description, distributor, documentation_url, support_url, owner, service_offering_source_ref, service_offering_type, portfolio_id, icon_id, created_at, updated_at].hash
+      [id, favorite, name, description, orphan, state, long_description, distributor, documentation_url, support_url, owner, service_offering_source_ref, service_offering_type, portfolio_id, icon_id, created_at, updated_at, metadata].hash
     end
 
     # Builds the object from hash

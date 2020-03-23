@@ -60,7 +60,7 @@ module CatalogApiClient
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      pattern = Regexp.new(/\\/.*\\/.*=.*$|\\/.*\\/.*$|\\/.*$/)
+      pattern = Regexp.new(/^\/.*\/.+(=.+|[^=]$)/)
       if !@tag.nil? && @tag !~ pattern
         invalid_properties.push("invalid value for \"tag\", must conform to the pattern #{pattern}.")
       end
@@ -71,14 +71,14 @@ module CatalogApiClient
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@tag.nil? && @tag !~ Regexp.new(/\\/.*\\/.*=.*$|\\/.*\\/.*$|\\/.*$/)
+      return false if !@tag.nil? && @tag !~ Regexp.new(/^\/.*\/.+(=.+|[^=]$)/)
       true
     end
 
     # Custom attribute writer method with validation
     # @param [Object] tag Value to be assigned
     def tag=(tag)
-      pattern = Regexp.new(/\\/.*\\/.*=.*$|\\/.*\\/.*$|\\/.*$/)
+      pattern = Regexp.new(/^\/.*\/.+(=.+|[^=]$)/)
       if !tag.nil? && tag !~ pattern
         fail ArgumentError, "invalid value for \"tag\", must conform to the pattern #{pattern}."
       end

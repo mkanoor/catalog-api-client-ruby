@@ -85,7 +85,6 @@ Class | Method | HTTP request | Description
 *CatalogApiClient::DefaultApi* | [**post_graph_ql**](docs/DefaultApi.md#post_graph_ql) | **POST** /graphql | Perform a GraphQL Query
 *CatalogApiClient::IconApi* | [**create_icon**](docs/IconApi.md#create_icon) | **POST** /icons | Create an Icon
 *CatalogApiClient::IconApi* | [**destroy_icon**](docs/IconApi.md#destroy_icon) | **DELETE** /icons/{id} | Delete an existing Icon
-*CatalogApiClient::IconApi* | [**update_icon**](docs/IconApi.md#update_icon) | **PATCH** /icons/{id} | Edit an existing Icon
 *CatalogApiClient::OrderApi* | [**add_to_order**](docs/OrderApi.md#add_to_order) | **POST** /orders/{order_id}/order_items | Add an order item to an order in pending state
 *CatalogApiClient::OrderApi* | [**cancel_order**](docs/OrderApi.md#cancel_order) | **PATCH** /orders/{order_id}/cancel | Cancels a given order
 *CatalogApiClient::OrderApi* | [**create_order**](docs/OrderApi.md#create_order) | **POST** /orders | Create a new order

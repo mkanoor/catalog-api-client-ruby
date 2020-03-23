@@ -58,17 +58,4 @@ describe 'IconApi' do
     end
   end
 
-  # unit tests for update_icon
-  # Edit an existing Icon
-  # Edits Icon specified by the given ID.
-  # @param id ID of the resource
-  # @param icon Parameters needed to update an Icon
-  # @param [Hash] opts the optional parameters
-  # @return [Icon]
-  describe 'update_icon test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
 end

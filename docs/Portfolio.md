@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **icon_id** | **String** | The Portfolio Icon ID | [optional] [readonly] 
 **created_at** | **DateTime** |  | [optional] [readonly] 
 **updated_at** | **DateTime** |  | [optional] [readonly] 
+**metadata** | [**Object**](.md) | JSON Metadata about the portfolio | [optional] [readonly] 
 
 ## Code Sample
 
@@ -25,7 +26,8 @@ instance = CatalogApiClient::Portfolio.new(id: null,
                                  owner: jdoe,
                                  icon_id: 1,
                                  created_at: null,
-                                 updated_at: null)
+                                 updated_at: null,
+                                 metadata: null)
 ```
 
 

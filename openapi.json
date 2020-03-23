@@ -2037,51 +2037,6 @@
       }
     },
     "/icons/{id}": {
-      "patch": {
-        "tags": [
-          "Icon"
-        ],
-        "summary": "Edit an existing Icon",
-        "description": "Edits Icon specified by the given ID.",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/ID"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Icon"
-              }
-            }
-          },
-          "description": "Parameters needed to update an Icon",
-          "required": true
-        },
-        "operationId": "updateIcon",
-        "responses": {
-          "200": {
-            "description": "Return the updated Icon object",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Icon"
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "description": "Icon not found."
-          }
-        }
-      },
       "delete": {
         "tags": [
           "Icon"
@@ -2793,6 +2748,12 @@
             "format": "date-time",
             "title": "Updated at",
             "readOnly": true
+          },
+          "metadata": {
+            "type": "object",
+            "title": "Metadata",
+            "description": "JSON Metadata about the portfolio",
+            "readOnly": true
           }
         }
       },
@@ -3015,6 +2976,12 @@
             "type": "string",
             "format": "date-time",
             "title": "Updated at",
+            "readOnly": true
+          },
+          "metadata": {
+            "type": "object",
+            "title": "Metadata",
+            "description": "JSON Metadata about the portfolio item",
             "readOnly": true
           }
         }
@@ -3608,7 +3575,7 @@
           "tag": {
             "example": "/namespace/architecture=x86_64",
             "type": "string",
-            "pattern": "\\\/.*\\\/.*=.*$|\\\/.*\\\/.*$|\\\/.*$"
+            "pattern": "^/.*/.+(=.+|[^=]$)"
           }
         },
         "additionalProperties": false
